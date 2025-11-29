@@ -1,0 +1,46 @@
+services:
+  db:
+    image: postgres:15
+    container_name: ubicomp_db
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: rootpassword
+      POSTGRES_DB: UBICOMP
+    volumes:
+      - ./docker/postgres/data:/var/lib/postgresql/data
+      - ./docker/postgres/init:/docker-entrypoint-initdb.d:ro
+    networks:
+      - ubicomp_net
+
+  mqtt:
+    image: eclipse-mosquitto:2.0
+    container_name: ubicomp_mqtt
+    restart: always
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./docker/mosquitto/config:/mosquitto/config:ro
+      - ./docker/mosquitto/data:/mosquitto/data
+      - ./docker/mosquitto/log:/mosquitto/log
+    networks:
+      - ubicomp_net
+
+  tomcat:
+    build:
+      context: ./docker/tomcat
+      dockerfile: Dockerfile
+    container_name: ubicomp_tomcat
+    restart: always
+    ports:
+      - "8081:8080"
+    depends_on:
+      - db
+      - mqtt
+    volumes:
+      - ./docker/tomcat/webapps:/usr/local/tomcat/webapps:rw
+    networks:
+      - ubicomp_net
+
+networks:
+  ubicomp_net:
+    driver: bridge

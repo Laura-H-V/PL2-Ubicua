@@ -1,0 +1,16 @@
+-- Initialization script for UBICOMP schema and MEASUREMENT table
+CREATE DATABASE IF NOT EXISTS UBICOMP;
+USE UBICOMP;
+
+CREATE TABLE IF NOT EXISTS MEASUREMENT (
+  VALUE INT NOT NULL,
+  DATE TIMESTAMP NOT NULL
+);
+
+-- Create a dedicated user for the application
+CREATE USER IF NOT EXISTS 'ubicomp_user'@'%' IDENTIFIED BY 'ubicomp_pass';
+GRANT ALL PRIVILEGES ON UBICOMP.* TO 'ubicomp_user'@'%';
+FLUSH PRIVILEGES;
+
+-- Insert sample data
+INSERT INTO MEASUREMENT (VALUE, DATE) VALUES (23, NOW()), (42, NOW());
