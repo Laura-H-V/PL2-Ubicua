@@ -1,5 +1,4 @@
 #!/bin/sh
-# Wait for the database TCP port to be available before starting Tomcat
 DB_HOST=${DB_HOST:-db}
 DB_PORT=${DB_PORT:-5432}
 RETRIES=${RETRIES:-60}

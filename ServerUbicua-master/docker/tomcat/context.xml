@@ -7,7 +7,7 @@
             driverClassName="org.postgresql.Driver"
             url="jdbc:postgresql://db:5432/UBICOMP"
             username="ubicomp_user"
-            password="ubicomp_pass"
+            password="ubicomp123"
             maxActive="20"
             maxIdle="10"
             maxWait="10000"
