@@ -92,3 +92,207 @@
 1764528256: mosquitto version 2.0.22 running
 1764528258: New connection from 172.18.0.1:50232 on port 1883.
 1764528258: New client connected from 172.18.0.1:50232 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764529473: mosquitto version 2.0.22 terminating
+1764529473: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1764531977: mosquitto version 2.0.22 starting
+1764531977: Config loaded from /mosquitto/config/mosquitto.conf.
+1764531977: Opening ipv4 listen socket on port 1883.
+1764531977: Opening ipv6 listen socket on port 1883.
+1764531977: mosquitto version 2.0.22 running
+1764531979: New connection from 172.18.0.1:59550 on port 1883.
+1764531979: New client connected from 172.18.0.1:59550 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764532048: mosquitto version 2.0.22 terminating
+1764532048: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1764532061: mosquitto version 2.0.22 starting
+1764532061: Config loaded from /mosquitto/config/mosquitto.conf.
+1764532061: Opening ipv4 listen socket on port 1883.
+1764532061: Opening ipv6 listen socket on port 1883.
+1764532061: mosquitto version 2.0.22 running
+1764532066: New connection from 172.18.0.1:36492 on port 1883.
+1764532066: New client connected from 172.18.0.1:36492 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764532858: mosquitto version 2.0.22 terminating
+1764532858: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1764533004: mosquitto version 2.0.22 starting
+1764533004: Config loaded from /mosquitto/config/mosquitto.conf.
+1764533004: Opening ipv4 listen socket on port 1883.
+1764533004: Opening ipv6 listen socket on port 1883.
+1764533004: mosquitto version 2.0.22 running
+1764533006: New connection from 172.18.0.1:52610 on port 1883.
+1764533006: New client connected from 172.18.0.1:52610 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764533034: New connection from 172.18.0.4:43370 on port 1883.
+1764533034: New client connected from 172.18.0.4:43370 as java_server (p2, c1, k60).
+1764533075: Client ESP32-weather_station_ST_1657 has exceeded timeout, disconnecting.
+1764534263: New connection from 172.18.0.1:44574 on port 1883.
+1764534263: New client connected from 172.18.0.1:44574 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764534804: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1764534813: Client java_server closed its connection.
+1764534813: mosquitto version 2.0.22 terminating
+1764534813: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1764534860: mosquitto version 2.0.22 starting
+1764534860: Config loaded from /mosquitto/config/mosquitto.conf.
+1764534860: Opening ipv4 listen socket on port 1883.
+1764534860: Opening ipv6 listen socket on port 1883.
+1764534860: mosquitto version 2.0.22 running
+1764534863: New connection from 172.18.0.1:54498 on port 1883.
+1764534863: New client connected from 172.18.0.1:54498 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764534888: New connection from 172.18.0.4:38564 on port 1883.
+1764534888: New client connected from 172.18.0.4:38564 as java_server (p2, c1, k60).
+1764535372: Client java_server closed its connection.
+1764535372: mosquitto version 2.0.22 terminating
+1764535372: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1764535408: mosquitto version 2.0.22 starting
+1764535408: Config loaded from /mosquitto/config/mosquitto.conf.
+1764535408: Opening ipv4 listen socket on port 1883.
+1764535408: Opening ipv6 listen socket on port 1883.
+1764535408: mosquitto version 2.0.22 running
+1764535412: New connection from 172.18.0.1:36760 on port 1883.
+1764535412: New client connected from 172.18.0.1:36760 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764536155: mosquitto version 2.0.22 terminating
+1764536155: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1764536203: mosquitto version 2.0.22 starting
+1764536203: Config loaded from /mosquitto/config/mosquitto.conf.
+1764536203: Opening ipv4 listen socket on port 1883.
+1764536203: Opening ipv6 listen socket on port 1883.
+1764536203: mosquitto version 2.0.22 running
+1764536206: New connection from 172.18.0.1:48918 on port 1883.
+1764536206: New client connected from 172.18.0.1:48918 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764536229: mosquitto version 2.0.22 terminating
+1764536229: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1764536348: mosquitto version 2.0.22 starting
+1764536348: Config loaded from /mosquitto/config/mosquitto.conf.
+1764536348: Opening ipv4 listen socket on port 1883.
+1764536348: Opening ipv6 listen socket on port 1883.
+1764536348: mosquitto version 2.0.22 running
+1764536350: New connection from 172.18.0.1:43142 on port 1883.
+1764536350: New client connected from 172.18.0.1:43142 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764536572: mosquitto version 2.0.22 terminating
+1764536572: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1764536683: mosquitto version 2.0.22 starting
+1764536683: Config loaded from /mosquitto/config/mosquitto.conf.
+1764536683: Opening ipv4 listen socket on port 1883.
+1764536683: Opening ipv6 listen socket on port 1883.
+1764536683: mosquitto version 2.0.22 running
+1764536686: New connection from 172.18.0.1:43282 on port 1883.
+1764536686: New client connected from 172.18.0.1:43282 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764537274: mosquitto version 2.0.22 terminating
+1764537274: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1764537377: mosquitto version 2.0.22 starting
+1764537377: Config loaded from /mosquitto/config/mosquitto.conf.
+1764537377: Opening ipv4 listen socket on port 1883.
+1764537377: Opening ipv6 listen socket on port 1883.
+1764537377: mosquitto version 2.0.22 running
+1764537380: New connection from 172.18.0.1:35284 on port 1883.
+1764537380: New client connected from 172.18.0.1:35284 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764537879: mosquitto version 2.0.22 terminating
+1764537879: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1764537935: mosquitto version 2.0.22 starting
+1764537935: Config loaded from /mosquitto/config/mosquitto.conf.
+1764537935: Opening ipv4 listen socket on port 1883.
+1764537935: Opening ipv6 listen socket on port 1883.
+1764537935: mosquitto version 2.0.22 running
+1764537937: New connection from 172.18.0.1:34520 on port 1883.
+1764537937: New client connected from 172.18.0.1:34520 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764538181: mosquitto version 2.0.22 terminating
+1764538181: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1764539162: mosquitto version 2.0.22 starting
+1764539162: Config loaded from /mosquitto/config/mosquitto.conf.
+1764539162: Opening ipv4 listen socket on port 1883.
+1764539162: Opening ipv6 listen socket on port 1883.
+1764539162: mosquitto version 2.0.22 running
+1764539165: New connection from 172.18.0.1:45722 on port 1883.
+1764539165: New client connected from 172.18.0.1:45722 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764539235: mosquitto version 2.0.22 terminating
+1764539235: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1764539324: mosquitto version 2.0.22 starting
+1764539324: Config loaded from /mosquitto/config/mosquitto.conf.
+1764539324: Opening ipv4 listen socket on port 1883.
+1764539324: Opening ipv6 listen socket on port 1883.
+1764539324: mosquitto version 2.0.22 running
+1764539325: New connection from 172.18.0.1:37926 on port 1883.
+1764539325: New client connected from 172.18.0.1:37926 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764539851: Client ESP32-weather_station_ST_1657 has exceeded timeout, disconnecting.
+1764608171: mosquitto version 2.0.22 starting
+1764608171: Config loaded from /mosquitto/config/mosquitto.conf.
+1764608171: Opening ipv4 listen socket on port 1883.
+1764608171: Opening ipv6 listen socket on port 1883.
+1764608171: mosquitto version 2.0.22 running
+1764619347: mosquitto version 2.0.22 starting
+1764619347: Config loaded from /mosquitto/config/mosquitto.conf.
+1764619347: Opening ipv4 listen socket on port 1883.
+1764619347: Opening ipv6 listen socket on port 1883.
+1764619347: mosquitto version 2.0.22 running
+1764620094: New connection from 172.18.0.2:47668 on port 1883.
+1764620095: New client connected from 172.18.0.2:47668 as java_server (p2, c1, k60).
+1764620101: Client java_server closed its connection.
+1764620101: mosquitto version 2.0.22 terminating
+1764620101: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1764620120: mosquitto version 2.0.22 starting
+1764620120: Config loaded from /mosquitto/config/mosquitto.conf.
+1764620120: Opening ipv4 listen socket on port 1883.
+1764620120: Opening ipv6 listen socket on port 1883.
+1764620120: mosquitto version 2.0.22 running
+1764620132: New connection from 172.18.0.4:44950 on port 1883.
+1764620133: New client connected from 172.18.0.4:44950 as java_server (p2, c1, k60).
+1764621592: New connection from 172.18.0.1:43116 on port 1883.
+1764621592: New client connected from 172.18.0.1:43116 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764621921: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1764623216: New connection from ::1:48672 on port 1883.
+1764623216: New client connected from ::1:48672 as auto-79FF9547-A54B-B942-4D2B-63BC616F34EE (p2, c1, k60, u'ubicua').
+1764623721: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1764623887: Client ESP32-weather_station_ST_1657 has exceeded timeout, disconnecting.
+1764623892: New connection from 172.18.0.1:51914 on port 1883.
+1764623892: New client connected from 172.18.0.1:51914 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764623929: Client ESP32-weather_station_ST_1657 has exceeded timeout, disconnecting.
+1764623969: New connection from 172.18.0.1:38810 on port 1883.
+1764623969: New client connected from 172.18.0.1:38810 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764624001: Client ESP32-weather_station_ST_1657 has exceeded timeout, disconnecting.
+1764624007: New connection from 172.18.0.1:43112 on port 1883.
+1764624007: New client connected from 172.18.0.1:43112 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764624041: Client ESP32-weather_station_ST_1657 has exceeded timeout, disconnecting.
+1764624046: Client java_server closed its connection.
+1764624046: mosquitto version 2.0.22 terminating
+1764624046: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1764624185: mosquitto version 2.0.22 starting
+1764624185: Config loaded from /mosquitto/config/mosquitto.conf.
+1764624185: Opening ipv4 listen socket on port 1883.
+1764624185: Opening ipv6 listen socket on port 1883.
+1764624185: mosquitto version 2.0.22 running
+1764624186: New connection from 172.18.0.1:36060 on port 1883.
+1764624186: New client connected from 172.18.0.1:36060 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764624198: New connection from 172.18.0.4:44454 on port 1883.
+1764624198: New client connected from 172.18.0.4:44454 as java_server (p2, c1, k60).
+1764624277: New connection from ::1:52792 on port 1883.
+1764624277: New client connected from ::1:52792 as auto-67834651-4F31-0F09-8357-AF6F1C35982B (p2, c1, k60, u'ubicua').
+1764624797: Client ESP32-weather_station_ST_1657 has exceeded timeout, disconnecting.
+1764624802: New connection from 172.18.0.1:41326 on port 1883.
+1764624802: New client connected from 172.18.0.1:41326 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764624824: Client ESP32-weather_station_ST_1657 has exceeded timeout, disconnecting.
+1764624829: New connection from 172.18.0.1:34668 on port 1883.
+1764624829: New client connected from 172.18.0.1:34668 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764624853: Client ESP32-weather_station_ST_1657 has exceeded timeout, disconnecting.
+1764624859: New connection from 172.18.0.1:49990 on port 1883.
+1764624859: New client connected from 172.18.0.1:49990 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764624881: Client ESP32-weather_station_ST_1657 has exceeded timeout, disconnecting.
+1764624886: New connection from 172.18.0.1:36036 on port 1883.
+1764624886: New client connected from 172.18.0.1:36036 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764624909: Client ESP32-weather_station_ST_1657 has exceeded timeout, disconnecting.
+1764624914: New connection from 172.18.0.1:52526 on port 1883.
+1764624923: New client connected from 172.18.0.1:52526 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764624946: Client ESP32-weather_station_ST_1657 has exceeded timeout, disconnecting.
+1764624952: New connection from 172.18.0.1:36256 on port 1883.
+1764624952: New client connected from 172.18.0.1:36256 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764624974: Client ESP32-weather_station_ST_1657 has exceeded timeout, disconnecting.
+1764624979: New connection from 172.18.0.1:60528 on port 1883.
+1764624979: New client connected from 172.18.0.1:60528 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764625002: Client ESP32-weather_station_ST_1657 has exceeded timeout, disconnecting.
+1764625007: New connection from 172.18.0.1:33342 on port 1883.
+1764625007: New client connected from 172.18.0.1:33342 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764625029: Client ESP32-weather_station_ST_1657 has exceeded timeout, disconnecting.
+1764625039: New connection from 172.18.0.1:53890 on port 1883.
+1764625039: New client connected from 172.18.0.1:53890 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764625075: Client ESP32-weather_station_ST_1657 has exceeded timeout, disconnecting.
+1764625079: New connection from 172.18.0.1:47838 on port 1883.
+1764625079: New client connected from 172.18.0.1:47838 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764625101: Client ESP32-weather_station_ST_1657 has exceeded timeout, disconnecting.
+1764625106: New connection from 172.18.0.1:48464 on port 1883.
+1764625106: New client connected from 172.18.0.1:48464 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').

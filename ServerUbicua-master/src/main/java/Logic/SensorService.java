@@ -12,21 +12,30 @@ import java.time.Instant;
 
 public class SensorService implements Runnable {
 
-    private final String brokerUrl = "tcp://mqtt:1883";
+    private final String brokerUrl = "tcp://ubicomp_mqtt:1883";
     private final String clientId = "java_server";
     private final String topic = "sensors/ST_1657/weather_station/WS_USE_1657";
 
     @Override
     public void run() {
         try {
+            MqttConnectOptions options = new MqttConnectOptions();
+            options.setAutomaticReconnect(true);
+            options.setCleanSession(true);
+            options.setConnectionTimeout(10);
+
             IMqttClient client = new MqttClient(brokerUrl, clientId);
-            client.connect();
+            client.connect(options);
             Log.logmqtt.info("Conectado a MQTT, suscribiéndose al tópico: " + topic);
 
             client.subscribe(topic, (t, msg) -> {
-                String payload = new String(msg.getPayload());
-                Log.logmqtt.info("Mensaje recibido: " + payload);
-                insertarEnBD(payload);
+                try {
+                    String payload = new String(msg.getPayload());
+                    Log.logmqtt.info("Mensaje recibido: " + payload);
+                    insertarEnBD(payload);
+                } catch (Exception ex) {
+                    Log.logmqtt.error("Error procesando mensaje MQTT: ", ex);
+                }
             });
 
         } catch (MqttException e) {
@@ -36,30 +45,31 @@ public class SensorService implements Runnable {
 
     private void insertarEnBD(String json) {
         try (Connection con = new ConectionDDBB().obtainConnection(true)) {
-
             JsonObject obj = JsonParser.parseString(json).getAsJsonObject();
 
-            String ts = obj.get("timestamp").getAsString();
-            double temp = obj.get("temperature_celsius").getAsDouble();
-            double hum = obj.get("humidity_percent").getAsDouble();
-            double uv = obj.get("uv_mw_cm2").getAsDouble();
-            double ruido = obj.get("sound_level_db").getAsDouble();
-            double aire = obj.get("air_quality_ppm").getAsDouble();
+            Instant instant = Instant.parse(obj.get("timestamp").getAsString());
 
-            String sql = "INSERT INTO mediciones (timestamp, temperatura, humedad, radiacion_uv, ruido_db, calidad_aire) " +
-                         "VALUES (?, ?, ?, ?, ?, ?)";
+            JsonObject data = obj.getAsJsonObject("data");
 
-            PreparedStatement st = con.prepareStatement(sql);
-            Instant instant = Instant.parse(ts);
-            st.setTimestamp(1, Timestamp.from(instant));
-            st.setDouble(2, temp);
-            st.setDouble(3, hum);
-            st.setDouble(4, uv);
-            st.setDouble(5, ruido);
-            st.setDouble(6, aire);
+            double temp = data.get("temperature_celsius").getAsDouble();
+            double hum = data.get("humidity_percent").getAsDouble();
+            double uv = data.get("uv_mw_cm2").getAsDouble();
+            double ruido = data.get("sound_level_db").getAsDouble();
+            double aire = data.get("air_quality_ppm").getAsDouble();
 
-            st.executeUpdate();
-            st.close();
+            String sql = "INSERT INTO mediciones (timestamp, temperatura, humedad, radiacion_uv, ruido_db, calidad_aire) "
+                    + "VALUES (?, ?, ?, ?, ?, ?)";
+
+            try (PreparedStatement st = con.prepareStatement(sql)) {
+                st.setTimestamp(1, Timestamp.from(instant));
+                st.setDouble(2, temp);
+                st.setDouble(3, hum);
+                st.setDouble(4, uv);
+                st.setDouble(5, ruido);
+                st.setDouble(6, aire);
+
+                st.executeUpdate();
+            }
 
             Log.logdb.info("Medición insertada correctamente: " + json);
 

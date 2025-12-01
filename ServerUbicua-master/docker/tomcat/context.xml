@@ -5,7 +5,7 @@
             auth="Container"
             type="javax.sql.DataSource"
             driverClassName="org.postgresql.Driver"
-            url="jdbc:postgresql://db:5432/UBICOMP"
+            url="jdbc:postgresql://ubicomp_db:5432/ubicomp"
             username="ubicomp_user"
             password="ubicomp123"
             maxActive="20"

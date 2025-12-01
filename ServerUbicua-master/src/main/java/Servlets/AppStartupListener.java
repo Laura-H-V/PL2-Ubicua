@@ -7,15 +7,24 @@ import jakarta.servlet.annotation.WebListener;
 
 @WebListener
 public class AppStartupListener implements ServletContextListener {
+
+    private Thread sensorThread;
+
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        Thread sensorThread = new Thread(new SensorService());
+        sensorThread = new Thread(new SensorService());
+        sensorThread.setDaemon(true);  // 🔥 IMPORTANTE: no bloquea el cierre de Tomcat
         sensorThread.start();
+
         System.out.println("SensorService iniciado en segundo plano.");
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        // Opcional: cerrar recursos si hace falta
+        try {
+            if (sensorThread != null && sensorThread.isAlive()) {
+                sensorThread.interrupt();   // apaga el hilo si hiciera falta
+            }
+        } catch (Exception ignored) {}
     }
 }

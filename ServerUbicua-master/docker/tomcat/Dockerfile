@@ -1,4 +1,5 @@
-FROM tomcat:10.1-jdk17
+FROM tomcat:10.1-jdk11
+
 
 # Copy Tomcat context configuration (defines a JNDI DataSource)
 COPY context.xml /usr/local/tomcat/conf/context.xml
