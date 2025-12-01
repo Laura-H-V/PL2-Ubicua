@@ -1,0 +1,32 @@
+ENCENDER TODO LO DEL DOCKER:
+	docker compose -f Docker_compose.yml up -d --build
+
+
+APAGAR EL DOCKER (volver a generar el ROOT.war, borrarlo de su ubicación en tomcat, asi como su carpeta en webbaps/, eliminar data de postgres/ si se quiere volver a crear la base de datos)
+	docker compose -f Docker_compose.yml down
+
+
+OTRA FORMA DE BORRAR LO DE LA BASE DE DATOS
+	Remove-Item -Recurse -Force .\docker\postgres\data
+
+
+CONECTARSE AL POSTGRES DEL DOCKER (no copiar a la vez. nombre base = ubicomp, EN MINÚSIULAS)
+	docker compose -f Docker_compose.yml exec db bash	
+	psql -U postgres
+
+
+CONECTARSE AL TOMCAT DEL DOCKER
+	docker compose -f Docker_compose.yml exec tomcat bash
+
+
+VER LOGS DEL TOMCAT
+	/usr/local/tomcat# tail -n 200 logs/localhost.2025-12-01.log
+
+
+CONECTARSE AL MQTT DEL DOCKER (y ver el topic)
+	 docker compose -f Docker_compose.yml exec mqtt sh
+	 mosquitto_sub -h localhost -p 1883 -u ubicua -P ubicua1234 -t "sensors/ST_1657/#" -v
+
+
+GENERAR .WAR (CAMBIAR NOMBRE A ROOT)
+	mvn -f pom.xml clean package
