@@ -1,0 +1,15 @@
+Database\Topics.class
+logic\SensorService.class
+Database\ConectionDDBB.class
+servlets\AppStartupListener.class
+servlets\MedicionesHtmlServlet.class
+logic\Projectinitializer.class
+servlets\GetData.class
+mqtt\MQTTPublisher.class
+logic\Measurement.class
+mqtt\MQTTBroker.class
+logic\Log.class
+mqtt\MQTTSuscriber.class
+logic\Logic.class
+servlets\SetData.class
+servlets\MedicionesApiServlet.class
