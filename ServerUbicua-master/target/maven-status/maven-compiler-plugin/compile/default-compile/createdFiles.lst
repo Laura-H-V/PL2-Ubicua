@@ -1,4 +1,5 @@
 Database\Topics.class
+logic\ActuatorService.class
 logic\SensorService.class
 Database\ConectionDDBB.class
 servlets\AppStartupListener.class

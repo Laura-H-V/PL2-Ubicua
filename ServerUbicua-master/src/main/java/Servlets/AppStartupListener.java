@@ -1,9 +1,12 @@
 package servlets;
 
-import logic.SensorService;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.annotation.WebListener;
+import logic.ActuatorService;
+import logic.SensorService;
+import org.eclipse.paho.client.mqttv3.IMqttClient;
+import org.eclipse.paho.client.mqttv3.MqttClient;
 
 @WebListener
 public class AppStartupListener implements ServletContextListener {
@@ -12,18 +15,34 @@ public class AppStartupListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        sensorThread = new Thread(new SensorService());
-        sensorThread.setDaemon(true);  // 🔥 IMPORTANTE: no bloquea el cierre de Tomcat
-        sensorThread.start();
+        try {
+            String brokerUrl = "tcp://ubicomp_mqtt:1883";
+            String clientId  = "java_server";
 
-        System.out.println("SensorService iniciado en segundo plano.");
+            IMqttClient client = new MqttClient(brokerUrl, clientId);
+
+            ActuatorService actuatorService = new ActuatorService(client);
+            SensorService sensorService = new SensorService(client, actuatorService);
+
+            sensorThread = new Thread(sensorService);
+            sensorThread.setDaemon(true);
+            sensorThread.start();
+
+            // opcional: guardar el servicio de actuadores para usarlo desde servlets HTTP
+            sce.getServletContext().setAttribute("actuatorService", actuatorService);
+
+            System.out.println("SensorService iniciado en segundo plano.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Error iniciando SensorService/ActuatorService: " + e.getMessage());
+        }
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
         try {
             if (sensorThread != null && sensorThread.isAlive()) {
-                sensorThread.interrupt();   // apaga el hilo si hiciera falta
+                sensorThread.interrupt();
             }
         } catch (Exception ignored) {}
     }

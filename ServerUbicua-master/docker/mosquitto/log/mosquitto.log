@@ -336,3 +336,160 @@
 1764716019: Client java_server closed its connection.
 1764716020: mosquitto version 2.0.22 terminating
 1764716020: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1764864889: mosquitto version 2.0.22 starting
+1764864889: Config loaded from /mosquitto/config/mosquitto.conf.
+1764864889: Opening ipv4 listen socket on port 1883.
+1764864889: Opening ipv6 listen socket on port 1883.
+1764864889: mosquitto version 2.0.22 running
+1764864892: New connection from 172.18.0.1:49274 on port 1883.
+1764864892: New client connected from 172.18.0.1:49274 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764864903: New connection from 172.18.0.2:46684 on port 1883.
+1764864904: New client connected from 172.18.0.2:46684 as java_server (p2, c1, k60).
+1764864912: Client java_server closed its connection.
+1764864924: New connection from 172.18.0.2:54408 on port 1883.
+1764864925: New client connected from 172.18.0.2:54408 as java_server (p2, c1, k60).
+1764865196: Client ESP32-weather_station_ST_1657 closed its connection.
+1764865221: New connection from 172.18.0.1:58618 on port 1883.
+1764865221: New client connected from 172.18.0.1:58618 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764865320: New connection from 172.18.0.1:40002 on port 1883.
+1764865320: Client ESP32-weather_station_ST_1657 already connected, closing old connection.
+1764865320: New client connected from 172.18.0.1:40002 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764865459: Client ESP32-weather_station_ST_1657 closed its connection.
+1764865460: New connection from 172.18.0.1:37518 on port 1883.
+1764865460: New client connected from 172.18.0.1:37518 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764865611: New connection from 172.18.0.1:48018 on port 1883.
+1764865611: Client ESP32-weather_station_ST_1657 already connected, closing old connection.
+1764865611: New client connected from 172.18.0.1:48018 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764865783: Client java_server closed its connection.
+1764865783: mosquitto version 2.0.22 terminating
+1764865783: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1764877421: mosquitto version 2.0.22 starting
+1764877421: Config loaded from /mosquitto/config/mosquitto.conf.
+1764877421: Opening ipv4 listen socket on port 1883.
+1764877421: Opening ipv6 listen socket on port 1883.
+1764877421: mosquitto version 2.0.22 running
+1764877424: New connection from 172.18.0.1:50366 on port 1883.
+1764877424: New client connected from 172.18.0.1:50366 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764877438: New connection from 172.18.0.2:33220 on port 1883.
+1764877439: New client connected from 172.18.0.2:33220 as java_server (p2, c1, k60).
+1764877785: Client ESP32-weather_station_ST_1657 has exceeded timeout, disconnecting.
+1764877787: New connection from 172.18.0.1:33608 on port 1883.
+1764877787: New client connected from 172.18.0.1:33608 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764877877: Client ESP32-weather_station_ST_1657 closed its connection.
+1764877956: New connection from 172.18.0.1:38656 on port 1883.
+1764877956: New client connected from 172.18.0.1:38656 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764878001: Client ESP32-weather_station_ST_1657 has exceeded timeout, disconnecting.
+1764878002: New connection from 172.18.0.1:35858 on port 1883.
+1764878002: New client connected from 172.18.0.1:35858 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764878103: Client ESP32-weather_station_ST_1657 has exceeded timeout, disconnecting.
+1764878104: New connection from 172.18.0.1:55712 on port 1883.
+1764878104: New client connected from 172.18.0.1:55712 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764878465: Client ESP32-weather_station_ST_1657 has exceeded timeout, disconnecting.
+1764879221: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1764879799: New connection from 172.18.0.1:58612 on port 1883.
+1764879799: New client connected from 172.18.0.1:58612 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764879934: Client ESP32-weather_station_ST_1657 closed its connection.
+1764880029: New connection from 172.18.0.1:47582 on port 1883.
+1764880029: New client connected from 172.18.0.1:47582 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764880131: Client ESP32-weather_station_ST_1657 closed its connection.
+1764880225: New connection from 172.18.0.1:52238 on port 1883.
+1764880225: New client connected from 172.18.0.1:52238 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764880359: Client ESP32-weather_station_ST_1657 closed its connection.
+1764880455: New connection from 172.18.0.1:33294 on port 1883.
+1764880455: New client connected from 172.18.0.1:33294 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764880535: Client ESP32-weather_station_ST_1657 has exceeded timeout, disconnecting.
+1764880535: New connection from 172.18.0.1:45796 on port 1883.
+1764880535: New client connected from 172.18.0.1:45796 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764880666: Client ESP32-weather_station_ST_1657 has exceeded timeout, disconnecting.
+1764880677: New connection from 172.18.0.1:55040 on port 1883.
+1764880677: New client connected from 172.18.0.1:55040 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764880788: New connection from 172.18.0.1:55208 on port 1883.
+1764880788: Client ESP32-weather_station_ST_1657 already connected, closing old connection.
+1764880788: New client connected from 172.18.0.1:55208 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764880921: Client ESP32-weather_station_ST_1657 closed its connection.
+1764880957: New connection from 172.18.0.1:54016 on port 1883.
+1764880957: New client connected from 172.18.0.1:54016 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764881022: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1764881117: Client ESP32-weather_station_ST_1657 closed its connection.
+1764881221: New connection from 172.18.0.1:54822 on port 1883.
+1764881221: New client connected from 172.18.0.1:54822 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764881482: Client ESP32-weather_station_ST_1657 closed its connection.
+1764881488: New connection from 172.18.0.1:36406 on port 1883.
+1764881488: New client connected from 172.18.0.1:36406 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764881707: Client ESP32-weather_station_ST_1657 closed its connection.
+1764881713: New connection from 172.18.0.1:49724 on port 1883.
+1764881713: New client connected from 172.18.0.1:49724 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764881782: Client ESP32-weather_station_ST_1657 has exceeded timeout, disconnecting.
+1764882405: New connection from 172.18.0.1:52016 on port 1883.
+1764882405: New client connected from 172.18.0.1:52016 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764882450: Client ESP32-weather_station_ST_1657 has exceeded timeout, disconnecting.
+1764882458: New connection from 172.18.0.1:50948 on port 1883.
+1764882458: New client connected from 172.18.0.1:50948 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764882556: New connection from 172.18.0.1:38488 on port 1883.
+1764882556: Client ESP32-weather_station_ST_1657 already connected, closing old connection.
+1764882556: New client connected from 172.18.0.1:38488 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764882823: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1764883099: Client java_server closed its connection.
+1764883099: mosquitto version 2.0.22 terminating
+1764883099: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1764883236: mosquitto version 2.0.22 starting
+1764883236: Config loaded from /mosquitto/config/mosquitto.conf.
+1764883236: Opening ipv4 listen socket on port 1883.
+1764883236: Opening ipv6 listen socket on port 1883.
+1764883236: mosquitto version 2.0.22 running
+1764883239: New connection from 172.18.0.1:38044 on port 1883.
+1764883239: New client connected from 172.18.0.1:38044 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764883250: New connection from 172.18.0.4:34142 on port 1883.
+1764883250: New client connected from 172.18.0.4:34142 as java_server (p2, c1, k60).
+1764883570: Client java_server closed its connection.
+1764883570: mosquitto version 2.0.22 terminating
+1764883570: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1764883785: mosquitto version 2.0.22 starting
+1764883785: Config loaded from /mosquitto/config/mosquitto.conf.
+1764883785: Opening ipv4 listen socket on port 1883.
+1764883785: Opening ipv6 listen socket on port 1883.
+1764883785: mosquitto version 2.0.22 running
+1764883787: New connection from 172.18.0.1:32856 on port 1883.
+1764883787: New client connected from 172.18.0.1:32856 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764883798: New connection from 172.18.0.4:40478 on port 1883.
+1764883798: New client connected from 172.18.0.4:40478 as java_server (p2, c1, k60).
+1764884310: New connection from 172.18.0.1:38852 on port 1883.
+1764884310: Client ESP32-weather_station_ST_1657 already connected, closing old connection.
+1764884310: New client connected from 172.18.0.1:38852 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764884402: Client ESP32-weather_station_ST_1657 has exceeded timeout, disconnecting.
+1764884402: New connection from 172.18.0.1:53684 on port 1883.
+1764884402: New client connected from 172.18.0.1:53684 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764885202: Client ESP32-weather_station_ST_1657 has exceeded timeout, disconnecting.
+1764885202: New connection from 172.18.0.1:53046 on port 1883.
+1764885202: New client connected from 172.18.0.1:53046 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764885586: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1764885701: Client ESP32-weather_station_ST_1657 closed its connection.
+1764885703: New connection from 172.18.0.1:43036 on port 1883.
+1764885703: New client connected from 172.18.0.1:43036 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764886021: New connection from 172.18.0.1:35260 on port 1883.
+1764886021: Client ESP32-weather_station_ST_1657 already connected, closing old connection.
+1764886021: New client connected from 172.18.0.1:35260 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764886502: Client ESP32-weather_station_ST_1657 has exceeded timeout, disconnecting.
+1764886540: Client java_server closed its connection.
+1764886540: mosquitto version 2.0.22 terminating
+1764886540: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1764887893: mosquitto version 2.0.22 starting
+1764887893: Config loaded from /mosquitto/config/mosquitto.conf.
+1764887893: Opening ipv4 listen socket on port 1883.
+1764887893: Opening ipv6 listen socket on port 1883.
+1764887893: mosquitto version 2.0.22 running
+1764887906: New connection from 172.18.0.4:38844 on port 1883.
+1764887907: New client connected from 172.18.0.4:38844 as java_server (p2, c1, k60).
+1764888176: New connection from ::1:54148 on port 1883.
+1764888176: New client connected from ::1:54148 as auto-9828AF9F-AC65-741D-16AC-E69EED0AED5F (p2, c1, k60, u'ubicua').
+1764888187: New connection from 172.18.0.1:58926 on port 1883.
+1764888187: New client connected from 172.18.0.1:58926 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764888216: Client ESP32-weather_station_ST_1657 has exceeded timeout, disconnecting.
+1764888711: New connection from 172.18.0.1:53854 on port 1883.
+1764888711: New client connected from 172.18.0.1:53854 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764888876: Client ESP32-weather_station_ST_1657 closed its connection.
+1764888877: New connection from 172.18.0.1:36546 on port 1883.
+1764888877: New client connected from 172.18.0.1:36546 as ESP32-weather_station_ST_1657 (p2, c1, k15, u'ubicua').
+1764889101: Client java_server closed its connection.
+1764889102: mosquitto version 2.0.22 terminating
+1764889102: Saving in-memory database to /mosquitto/data//mosquitto.db.
