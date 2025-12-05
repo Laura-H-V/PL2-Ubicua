@@ -5,7 +5,7 @@
     <artifactId>ServerExampleUbicomp</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>ServerExampleUbicomp</name>
+    <name>PECL_2COMPUBICUA</name>
     
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

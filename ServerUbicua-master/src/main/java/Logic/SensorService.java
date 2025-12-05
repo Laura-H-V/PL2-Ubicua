@@ -92,11 +92,11 @@ public class SensorService implements Runnable {
             Log.logdb.error("Error insertando en DB: ", e);
         }
 
-        // ----- Evaluar alarmas y enviar JSON a MQTT -----
+        //  Evaluar alarmas y enviar JSON al MQTT 
         try {
             List<String> mensajesAlarma = new ArrayList<>();
 
-            if (temp >= 23.0) {
+            if (temp >= 25.0) {
                 mensajesAlarma.add("Temperatura elevada");
             }
             if (hum <= 20.0) {

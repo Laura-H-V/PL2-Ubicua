@@ -25,7 +25,6 @@ public class ConectionDDBB
         	try
 	          {
 	            Context ctx = new InitialContext();
-	            // Get the connection factory configured in Tomcat
 	            DataSource ds = (DataSource) ctx.lookup("java:/comp/env/jdbc/ubicomp");
 	           
 	            // Obtiene una conexion

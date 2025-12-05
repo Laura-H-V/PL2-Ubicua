@@ -19,9 +19,9 @@ public class MedicionesHtmlServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
 
-        String fecha = req.getParameter("fecha");   // opcional (DD-MM-AAAA o YYYY-MM-DD, según tengas)
-        String desde = req.getParameter("desde");   // opcional
-        String hasta = req.getParameter("hasta");   // opcional
+        String fecha = req.getParameter("fecha");  
+        String desde = req.getParameter("desde");   
+        String hasta = req.getParameter("hasta");  
 
         // Checkboxes: si vienen no-null => marcados
         boolean mostrarTemp  = req.getParameter("mostrarTemp")  != null;

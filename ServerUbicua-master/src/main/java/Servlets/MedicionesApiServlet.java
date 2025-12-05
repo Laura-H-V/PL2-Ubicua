@@ -36,9 +36,9 @@ public class MedicionesApiServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
 
-        String fecha = req.getParameter("fecha");   // opcional, DD-MM-AAAA
-        String desde = req.getParameter("desde");   // opcional, DD-MM-AAAA
-        String hasta = req.getParameter("hasta");   // opcional, DD-MM-AAAA
+        String fecha = req.getParameter("fecha");  
+        String desde = req.getParameter("desde");  
+        String hasta = req.getParameter("hasta");  
 
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");

@@ -28,7 +28,6 @@ public class AppStartupListener implements ServletContextListener {
             sensorThread.setDaemon(true);
             sensorThread.start();
 
-            // opcional: guardar el servicio de actuadores para usarlo desde servlets HTTP
             sce.getServletContext().setAttribute("actuatorService", actuatorService);
 
             System.out.println("SensorService iniciado en segundo plano.");
