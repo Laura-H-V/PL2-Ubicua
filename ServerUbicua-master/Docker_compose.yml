@@ -8,6 +8,9 @@ services:
       - ./docker/postgres/init:/docker-entrypoint-initdb.d:ro
     networks:
       - ubicomp_net
+    environment:
+      POSTGRES_USER: ubicomp
+      POSTGRES_PASSWORD: ubicomp123
 
   mqtt:
     image: eclipse-mosquitto:2.0

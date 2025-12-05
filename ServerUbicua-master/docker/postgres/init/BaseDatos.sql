@@ -3,11 +3,11 @@ CREATE USER ubicomp_user WITH PASSWORD 'ubicomp123';
 ALTER USER ubicomp_user WITH LOGIN;
 ALTER USER ubicomp_user SET search_path TO public;
 
-CREATE DATABASE ubicomp OWNER ubicomp_user;
+ALTER DATABASE ubicomp OWNER TO ubicomp_user;
 
 \c ubicomp
 
-CREATE TABLE mediciones (
+CREATE TABLE IF NOT EXISTS mediciones  (
 
     id SERIAL PRIMARY KEY,
     timestamp TIMESTAMPTZ,
