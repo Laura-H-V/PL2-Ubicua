@@ -1,74 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
+    android:gravity="center_horizontal"
     android:padding="24dp"
-    android:background="#F5F5F5">
+    android:background="?attr/colorSurface">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:textSize="28sp"
+        android:layout_marginTop="64dp"
+        android:text="Estación Meteorológica"
+        android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+        android:textColor="?attr/colorPrimary"
         android:textStyle="bold"
-        android:textColor="#1976D2"
-        android:layout_marginBottom="16dp" />
+        android:textAlignment="center" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
         android:text="Estación ST_1657"
-        android:textSize="18sp"
-        android:textColor="#666666"
-        android:layout_marginBottom="48dp" />
+        android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+        android:textColor="?attr/colorOnSurfaceVariant" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnRealtime"
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_realtime"
-        android:textSize="18sp"
-        android:padding="16dp"
+        style="@style/Widget.Material3.Button"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
         android:layout_marginBottom="16dp"
-        android:backgroundTint="#4CAF50" />
+        android:text="Monitoreo en Tiempo Real"
+        app:cornerRadius="16dp"
+        app:icon="@android:drawable/ic_menu_compass"
+        app:iconPadding="12dp" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnHistoric"
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_historic"
-        android:textSize="18sp"
-        android:padding="16dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="#2196F3" />
+        style="@style/Widget.Material3.Button.TonalButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginBottom="12dp"
+        android:text="Consultar Histórico"
+        app:cornerRadius="16dp"
+        app:icon="@android:drawable/ic_menu_recent_history"
+        app:iconPadding="12dp" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnCharts"
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_charts"
-        android:textSize="18sp"
-        android:padding="16dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="#FF9800" />
+        style="@style/Widget.Material3.Button.TonalButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginBottom="12dp"
+        android:text="Ver Gráficas"
+        app:cornerRadius="16dp"
+        app:icon="@android:drawable/ic_menu_report_image"
+        app:iconPadding="12dp" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnAlertas"
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-        android:text="📋 Historial de Alertas"
-        android:textSize="18sp"
-        android:padding="16dp"
-        android:backgroundTint="#9C27B0" />
+        style="@style/Widget.Material3.Button.TonalButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Historial de Alertas"
+        app:cornerRadius="16dp"
+        app:icon="@android:drawable/ic_dialog_alert"
+        app:iconPadding="12dp" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:text="Versión 1.0 - PECL3 Ubicua"
-        android:textSize="12sp"
-        android:textColor="#999999"
-        android:layout_marginTop="48dp" />
+        android:textAppearance="@style/TextAppearance.Material3.LabelSmall"
+        android:textColor="?attr/colorOutline" />
 
 </LinearLayout>

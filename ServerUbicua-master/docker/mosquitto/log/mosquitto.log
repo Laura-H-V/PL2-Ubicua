@@ -631,3 +631,22 @@
 1766078203: Client java_server closed its connection.
 1766078204: mosquitto version 2.0.22 terminating
 1766078204: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1766094335: mosquitto version 2.0.22 starting
+1766094335: Config loaded from /mosquitto/config/mosquitto.conf.
+1766094335: Opening ipv4 listen socket on port 1883.
+1766094335: Opening ipv6 listen socket on port 1883.
+1766094335: mosquitto version 2.0.22 running
+1766094368: mosquitto version 2.0.22 terminating
+1766094368: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1766094386: mosquitto version 2.0.22 starting
+1766094386: Config loaded from /mosquitto/config/mosquitto.conf.
+1766094386: Opening ipv4 listen socket on port 1883.
+1766094386: Opening ipv6 listen socket on port 1883.
+1766094386: mosquitto version 2.0.22 running
+1766094409: New connection from 172.18.0.4:33558 on port 1883.
+1766094409: New client connected from 172.18.0.4:33558 as java_server (p2, c1, k60).
+1766096187: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1766097988: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1766098453: Client java_server closed its connection.
+1766098453: mosquitto version 2.0.22 terminating
+1766098453: Saving in-memory database to /mosquitto/data//mosquitto.db.

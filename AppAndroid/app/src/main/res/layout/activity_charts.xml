@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5">
+    android:background="?attr/colorSurface">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -10,268 +11,186 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Filtro de fecha -->
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.Material3.CardView.Elevated"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:elevation="4dp">
+            app:cardCornerRadius="24dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp"
-                android:background="#FFFFFF">
+                android:padding="20dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="📅 Filtrar por Fecha"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="#333333"
-                    android:paddingBottom="8dp" />
+                    android:text="Configurar Rango"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                    android:textColor="?attr/colorPrimary"
+                    android:layout_marginBottom="12dp" />
 
-                <!-- Radio buttons para elegir tipo de filtro -->
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/switchTodoHistorial"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cargar todo el historial"
+                    android:layout_marginBottom="16dp"/>
+
                 <RadioGroup
                     android:id="@+id/rgTipoFiltro"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginBottom="8dp">
-
-                    <RadioButton
+                    android:layout_marginBottom="16dp">
+                    <com.google.android.material.radiobutton.MaterialRadioButton
                         android:id="@+id/rbFechaUnica"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Fecha única"
+                        android:text="Día único"
                         android:checked="true" />
-
-                    <RadioButton
+                    <com.google.android.material.radiobutton.MaterialRadioButton
                         android:id="@+id/rbRangoFechas"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Rango de fechas" />
-
+                        android:text="Rango" />
                 </RadioGroup>
 
-                <!-- Layout para fecha única -->
                 <LinearLayout
-                    android:id="@+id/layoutFechaUnica"
+                    android:id="@+id/layoutInputsFechas"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="visible">
+                    android:orientation="vertical">
 
-                    <EditText
-                        android:id="@+id/etFechaCharts"
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="DD-MM-YYYY (ej: 18-12-2025)"
-                        android:inputType="text"
-                        android:padding="12dp"
-                        android:background="@android:drawable/edit_text"
-                        android:layout_marginBottom="8dp" />
+                        android:hint="Fecha (DD-MM-YYYY)"
+                        android:layout_marginBottom="12dp"
+                        app:startIconDrawable="@android:drawable/ic_menu_my_calendar">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etFechaCharts"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="date" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
+                    <LinearLayout
+                        android:id="@+id/layoutRangoFechas"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Desde"
+                            android:layout_marginBottom="12dp">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etFechaDesde"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="date" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Hasta">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etFechaHasta"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="date" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
                 </LinearLayout>
 
-                <!-- Layout para rango de fechas -->
-                <LinearLayout
-                    android:id="@+id/layoutRangoFechas"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="gone">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Desde:"
-                        android:textSize="14sp"
-                        android:textColor="#666666" />
-
-                    <EditText
-                        android:id="@+id/etFechaDesde"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="DD-MM-YYYY (ej: 16-12-2025)"
-                        android:inputType="text"
-                        android:padding="12dp"
-                        android:background="@android:drawable/edit_text"
-                        android:layout_marginBottom="8dp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Hasta:"
-                        android:textSize="14sp"
-                        android:textColor="#666666" />
-
-                    <EditText
-                        android:id="@+id/etFechaHasta"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="DD-MM-YYYY (ej: 18-12-2025)"
-                        android:inputType="text"
-                        android:padding="12dp"
-                        android:background="@android:drawable/edit_text"
-                        android:layout_marginBottom="8dp" />
-
-                </LinearLayout>
-
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnConsultarCharts"
+                    style="@style/Widget.Material3.Button"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="🔍 Consultar Datos"
-                    android:textColor="#FFFFFF"
-                    android:backgroundTint="#2196F3" />
-
+                    android:layout_height="56dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Actualizar Gráfica" />
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
-        <!-- Botones para seleccionar gráfica -->
-        <LinearLayout
+        <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:scrollbars="none"
             android:layout_marginBottom="16dp">
-
-            <Button
-                android:id="@+id/btnLineChart"
-                android:layout_width="0dp"
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroupVariables"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="📈 Evolución"
-                android:textColor="#FFFFFF"
-                android:backgroundTint="#4CAF50"
-                android:layout_marginEnd="8dp" />
+                app:singleSelection="true"
+                app:selectionRequired="true">
+                <com.google.android.material.chip.Chip android:id="@+id/chipTemp" style="@style/Widget.Material3.Chip.Filter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Temperatura" android:checked="true" />
+                <com.google.android.material.chip.Chip android:id="@+id/chipHum" style="@style/Widget.Material3.Chip.Filter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Humedad" />
+                <com.google.android.material.chip.Chip android:id="@+id/chipUV" style="@style/Widget.Material3.Chip.Filter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="UV" />
+                <com.google.android.material.chip.Chip android:id="@+id/chipRuido" style="@style/Widget.Material3.Chip.Filter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ruido" />
+                <com.google.android.material.chip.Chip android:id="@+id/chipAire" style="@style/Widget.Material3.Chip.Filter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Aire" />
+            </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
 
-            <Button
-                android:id="@+id/btnBarChart"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="📊 Promedios"
-                android:textColor="#FFFFFF"
-                android:backgroundTint="#FF9800" />
-
-        </LinearLayout>
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/toggleGroupCharts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:singleSelection="true"
+            app:selectionRequired="true"
+            app:checkedButton="@+id/btnLineChart">
+            <com.google.android.material.button.MaterialButton android:id="@+id/btnLineChart" style="@style/Widget.Material3.Button.OutlinedButton" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Evolución" />
+            <com.google.android.material.button.MaterialButton android:id="@+id/btnBarChart" style="@style/Widget.Material3.Button.OutlinedButton" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Promedios" />
+        </com.google.android.material.button.MaterialButtonToggleGroup>
 
         <TextView
             android:id="@+id/tvEstadoCharts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="ℹ️ Selecciona una gráfica"
-            android:textSize="16sp"
-            android:textColor="#2196F3"
-            android:padding="12dp"
-            android:background="#E3F2FD"
+            android:gravity="center"
             android:layout_marginBottom="16dp"
-            android:gravity="center" />
+            android:textAppearance="@style/TextAppearance.Material3.LabelLarge" />
 
-        <!-- LineChart: Evolución Temporal -->
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardLineChart"
-            android:visibility="gone"
+            style="@style/Widget.Material3.CardView.Elevated"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="350dp"
             android:layout_marginBottom="16dp"
-            android:elevation="4dp">
-
-            <LinearLayout
+            android:visibility="visible"
+            app:cardCornerRadius="24dp">
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/lineChart"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:padding="8dp"
-                android:background="#FFFFFF">
+                android:padding="8dp" />
+        </com.google.android.material.card.MaterialCardView>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="📈 Evolución Temporal"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="#333333"
-                    android:paddingBottom="8dp" />
-
-                <com.github.mikephil.charting.charts.LineChart
-                    android:id="@+id/lineChart"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- BarChart: Promedios -->
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardBarChart"
-            android:visibility="gone"
+            style="@style/Widget.Material3.CardView.Elevated"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="350dp"
             android:layout_marginBottom="16dp"
-            android:elevation="4dp">
-
-            <LinearLayout
+            android:visibility="gone"
+            app:cardCornerRadius="24dp">
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/barChart"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:padding="8dp"
-                android:background="#FFFFFF">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="📊 Promedios de Sensores"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="#333333"
-                    android:paddingBottom="8dp" />
-
-                <com.github.mikephil.charting.charts.BarChart
-                    android:id="@+id/barChart"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- Información adicional -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:elevation="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp"
-                android:background="#FFFFFF">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="ℹ️ Información"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="#333333"
-                    android:paddingBottom="8dp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="• Gráfica lineal: Muestra evolución de temperatura y humedad en el tiempo\n• Gráfica de barras: Compara promedios de todos los sensores\n• Los valores están escalados para mejor visualización"
-                    android:textSize="14sp"
-                    android:textColor="#666666"
-                    android:lineSpacingExtra="4dp" />
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+                android:padding="8dp" />
+        </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>
-
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

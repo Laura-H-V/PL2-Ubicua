@@ -15,7 +15,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar"
+        android:theme="@style/Theme.EstacionMeteorologica"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         
@@ -45,6 +45,7 @@
         
         <activity
             android:name=".AlertHistoryActivity"
+            android:theme="@style/Theme.EstacionMeteorologica"
             android:exported="false"
             android:label="Historial de Alertas" />
         
@@ -54,5 +55,6 @@
         
         <service android:name="org.eclipse.paho.android.service.MqttService" />
     </application>
-
+    <uses-permission
+        android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
 </manifest>

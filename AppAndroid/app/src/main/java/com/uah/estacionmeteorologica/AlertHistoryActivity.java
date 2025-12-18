@@ -9,7 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder; // Cambio a Material 3
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,7 +21,7 @@ public class AlertHistoryActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private AlertaAdapter adapter;
     private AlertaManager alertaManager;
-    private TextView tvNoAlertas;
+    private View layoutNoAlertas;
     private Button btnBorrarTodo;
 
     @Override
@@ -30,49 +30,47 @@ public class AlertHistoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_alert_history);
 
         recyclerView = findViewById(R.id.recyclerAlertas);
-        tvNoAlertas = findViewById(R.id.tvNoAlertas);
+        layoutNoAlertas = findViewById(R.id.tvNoAlertas);
         btnBorrarTodo = findViewById(R.id.btnBorrarTodo);
 
         alertaManager = new AlertaManager(this);
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        
+
         cargarAlertas();
 
         btnBorrarTodo.setOnClickListener(v -> {
-            new AlertDialog.Builder(this)
-                .setTitle("Borrar Historial")
-                .setMessage("¿Estás seguro de que quieres borrar todas las alertas?")
-                .setPositiveButton("Sí", (dialog, which) -> {
-                    alertaManager.borrarTodasLasAlertas();
-                    cargarAlertas();
-                    Toast.makeText(this, "Historial borrado", Toast.LENGTH_SHORT).show();
-                })
-                .setNegativeButton("No", null)
-                .show();
+            // Cambio: Diálogo con estilo Material 3
+            new MaterialAlertDialogBuilder(this)
+                    .setTitle("¿Borrar historial?")
+                    .setMessage("Esta acción eliminará todas las alertas registradas permanentemente.")
+                    .setPositiveButton("Borrar todo", (dialog, which) -> {
+                        alertaManager.borrarTodasLasAlertas();
+                        cargarAlertas();
+                        Toast.makeText(this, "Historial vaciado", Toast.LENGTH_SHORT).show();
+                    })
+                    .setNegativeButton("Cancelar", null)
+                    .show();
         });
     }
 
     private void cargarAlertas() {
         List<Alerta> alertas = alertaManager.obtenerAlertas();
-        
+
         if (alertas.isEmpty()) {
-            tvNoAlertas.setVisibility(View.VISIBLE);
+            layoutNoAlertas.setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.GONE);
-            btnBorrarTodo.setEnabled(false);
+            btnBorrarTodo.setVisibility(View.GONE);
         } else {
-            tvNoAlertas.setVisibility(View.GONE);
+            layoutNoAlertas.setVisibility(View.GONE);
             recyclerView.setVisibility(View.VISIBLE);
-            btnBorrarTodo.setEnabled(true);
-            
+            btnBorrarTodo.setVisibility(View.VISIBLE);
+
             adapter = new AlertaAdapter(alertas);
             recyclerView.setAdapter(adapter);
         }
     }
 
-    // Adapter para RecyclerView
     private class AlertaAdapter extends RecyclerView.Adapter<AlertaAdapter.AlertaViewHolder> {
-
         private List<Alerta> alertas;
 
         public AlertaAdapter(List<Alerta> alertas) {
@@ -83,14 +81,13 @@ public class AlertHistoryActivity extends AppCompatActivity {
         @Override
         public AlertaViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_alerta, parent, false);
+                    .inflate(R.layout.item_alerta, parent, false);
             return new AlertaViewHolder(view);
         }
 
         @Override
         public void onBindViewHolder(@NonNull AlertaViewHolder holder, int position) {
-            Alerta alerta = alertas.get(position);
-            holder.bind(alerta);
+            holder.bind(alertas.get(position));
         }
 
         @Override
@@ -115,28 +112,6 @@ public class AlertHistoryActivity extends AppCompatActivity {
                 tvFecha.setText(alerta.getFechaFormateada());
                 tvTipo.setText(alerta.getTipo());
 
-                // Color según tipo
-                int color;
-                switch (alerta.getTipo()) {
-                    case "TEMPERATURA":
-                        color = 0xFFFF5722; // Naranja
-                        break;
-                    case "HUMEDAD":
-                        color = 0xFF2196F3; // Azul
-                        break;
-                    case "UV":
-                        color = 0xFFFFEB3B; // Amarillo
-                        break;
-                    case "RUIDO":
-                        color = 0xFF9C27B0; // Púrpura
-                        break;
-                    case "AIRE":
-                        color = 0xFF607D8B; // Gris
-                        break;
-                    default:
-                        color = 0xFF9E9E9E; // Gris por defecto
-                }
-                tvTipo.setTextColor(color);
             }
         }
     }

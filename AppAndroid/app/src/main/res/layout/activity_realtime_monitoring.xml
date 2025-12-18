@@ -1,133 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
-    android:background="#F5F5F5">
+    android:background="?attr/colorSurface"
+    android:padding="16dp">
 
-    <TextView
-        android:id="@+id/tvEstado"
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Conectando..."
-        android:textSize="16sp"
-        android:textColor="#FF9800"
-        android:padding="12dp"
-        android:background="#FFF3E0"
-        android:layout_marginBottom="16dp"
-        android:gravity="center" />
+        android:layout_marginBottom="24dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp"
+        app:strokeWidth="0dp"
+        app:cardBackgroundColor="?attr/colorTertiaryContainer">
+
+        <TextView
+            android:id="@+id/tvEstado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Conectando..."
+            android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+            android:textColor="?attr/colorOnTertiaryContainer"
+            android:padding="12dp"
+            android:gravity="center" />
+    </com.google.android.material.card.MaterialCardView>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:clipToPadding="false">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.Material3.CardView.Elevated"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:elevation="4dp">
-
+                android:layout_marginBottom="12dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp"
-                    android:background="#FFFFFF">
-
+                    android:padding="20dp">
                     <TextView
                         android:id="@+id/tvTemperatura"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="🌡️ Temperatura: -- °C"
-                        android:textSize="18sp"
-                        android:textColor="#E53935"
-                        android:paddingBottom="8dp" />
+                        android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+                        android:textColor="?attr/colorPrimary" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.Material3.CardView.Elevated"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp">
                     <TextView
                         android:id="@+id/tvHumedad"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="💧 Humedad: -- %"
-                        android:textSize="18sp"
-                        android:textColor="#1E88E5" />
-
+                        android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+                        android:textColor="?attr/colorSecondary" />
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.Material3.CardView.Elevated"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:elevation="4dp">
-
+                android:layout_marginBottom="12dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp"
-                    android:background="#FFFFFF">
-
+                    android:padding="20dp">
                     <TextView
                         android:id="@+id/tvRadiacionUV"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="☀️ Radiación UV: -- mW/cm²"
-                        android:textSize="18sp"
-                        android:textColor="#FB8C00"
-                        android:paddingBottom="8dp" />
+                        android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+                        android:textColor="?attr/colorTertiary" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.Material3.CardView.Elevated"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp">
                     <TextView
                         android:id="@+id/tvRuido"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="🔊 Ruido: -- dB"
-                        android:textSize="18sp"
-                        android:textColor="#8E24AA" />
-
+                        android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+                        android:textColor="?attr/colorTertiary" />
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.Material3.CardView.Elevated"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:elevation="4dp">
-
+                android:layout_marginBottom="24dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp"
-                    android:background="#FFFFFF">
-
+                    android:padding="20dp">
                     <TextView
                         android:id="@+id/tvCalidadAire"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="💨 Calidad Aire: -- ppm"
-                        android:textSize="18sp"
-                        android:textColor="#43A047" />
-
+                        android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+                        android:textColor="?attr/colorOutline" />
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
             <TextView
                 android:id="@+id/tvTimestamp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="⏰ Última actualización: --"
-                android:textSize="14sp"
-                android:textColor="#757575"
+                android:text="Última actualización: --"
+                android:textAppearance="@style/TextAppearance.Material3.LabelMedium"
+                android:textColor="?attr/colorOutline"
                 android:gravity="center"
-                android:layout_marginTop="8dp" />
+                android:layout_marginBottom="32dp" />
 
         </LinearLayout>
     </ScrollView>
-
 </LinearLayout>

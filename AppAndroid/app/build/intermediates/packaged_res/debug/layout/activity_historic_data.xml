@@ -1,61 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
-    android:background="#F5F5F5">
+    android:background="?attr/colorSurface"
+    android:padding="16dp">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/historic_subtitle"
-        android:textSize="16sp"
-        android:textColor="#666666"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Historial"
+            android:textAppearance="@style/TextAppearance.Material3.TitleLarge" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnBorrarFiltros"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="Limpiar"
+            app:icon="@android:drawable/ic_menu_revert" />
+    </RelativeLayout>
 
-    <EditText
-        android:id="@+id/etFecha"
+    <com.google.android.material.materialswitch.MaterialSwitch
+        android:id="@+id/switchTodoHistorial"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Fecha (dd-MM-yyyy)"
-        android:inputType="text"
-        android:padding="12dp"
-        android:background="#FFFFFF"
+        android:text="Historial completo"
         android:layout_marginBottom="12dp" />
 
-    <Button
-        android:id="@+id/btnConsultar"
+    <LinearLayout
+        android:id="@+id/layoutFiltrosFecha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="🔍 Consultar"
-        android:textSize="16sp"
-        android:backgroundTint="#2196F3"
-        android:layout_marginBottom="16dp" />
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp">
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Desde"
+            android:layout_marginEnd="4dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etFechaDesde"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="date" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Hasta"
+            android:layout_marginStart="4dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etFechaHasta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="date" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/tvEstadoHistorico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Búsqueda por valor"
+        android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+        android:layout_marginBottom="8dp" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ℹ️ Ingresa una fecha para consultar"
-        android:textSize="14sp"
-        android:textColor="#1976D2"
-        android:padding="12dp"
-        android:background="#E3F2FD"
-        android:layout_marginBottom="16dp"
-        android:gravity="center" />
+        android:orientation="vertical"
+        android:background="?attr/colorSurfaceVariant"
+        android:padding="8dp">
 
-    <ScrollView
-        android:id="@+id/scrollResultados"
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroupSensores"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:singleSelection="true">
+                <com.google.android.material.chip.Chip android:id="@+id/chipTemp" style="@style/Widget.Material3.Chip.Filter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Temperatura" />
+                <com.google.android.material.chip.Chip android:id="@+id/chipHum" style="@style/Widget.Material3.Chip.Filter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Humedad" />
+                <com.google.android.material.chip.Chip android:id="@+id/chipRuido" style="@style/Widget.Material3.Chip.Filter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ruido" />
+                <com.google.android.material.chip.Chip android:id="@+id/chipUV" style="@style/Widget.Material3.Chip.Filter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="UV" />
+            </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
+
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/toggleMaxMin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:singleSelection="true">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnMax"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Máximo" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnMin"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Mínimo" />
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnConsultar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="56dp"
+        android:text="Consultar"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp" />
 
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="?attr/colorSecondaryContainer"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="0dp">
+        <TextView
+            android:id="@+id/tvEstadoHistorico"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ℹ️ Ingresa filtros para buscar"
+            android:padding="12dp"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+            android:textColor="?attr/colorOnSecondaryContainer" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="12dp">
         <LinearLayout
             android:id="@+id/layoutResultados"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" />
-
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

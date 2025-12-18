@@ -4,20 +4,14 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
@@ -26,6 +20,13 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.materialswitch.MaterialSwitch;
+import com.google.android.material.radiobutton.MaterialRadioButton;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -46,12 +47,13 @@ public class ChartsActivity extends AppCompatActivity {
     private LineChart lineChart;
     private BarChart barChart;
     private TextView tvEstadoCharts;
-    private EditText etFechaCharts, etFechaDesde, etFechaHasta;
-    private Button btnConsultarCharts, btnLineChart, btnBarChart;
-    private CardView cardLineChart, cardBarChart;
-    private RadioGroup rgTipoFiltro;
-    private RadioButton rbFechaUnica, rbRangoFechas;
-    private LinearLayout layoutFechaUnica, layoutRangoFechas;
+    private TextInputEditText etFechaCharts, etFechaDesde, etFechaHasta;
+    private MaterialButton btnConsultarCharts, btnLineChart, btnBarChart;
+    private MaterialCardView cardLineChart, cardBarChart;
+    private MaterialSwitch switchTodoHistorial;
+    private ChipGroup chipGroupVariables;
+    private LinearLayout layoutInputsFechas, layoutRangoFechas;
+    private MaterialRadioButton rbFechaUnica;
 
     private List<Medicion> medicionesActuales = null;
 
@@ -60,6 +62,7 @@ public class ChartsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_charts);
 
+        // Inicialización corregida para Material 3
         lineChart = findViewById(R.id.lineChart);
         barChart = findViewById(R.id.barChart);
         tvEstadoCharts = findViewById(R.id.tvEstadoCharts);
@@ -71,167 +74,54 @@ public class ChartsActivity extends AppCompatActivity {
         btnBarChart = findViewById(R.id.btnBarChart);
         cardLineChart = findViewById(R.id.cardLineChart);
         cardBarChart = findViewById(R.id.cardBarChart);
-        rgTipoFiltro = findViewById(R.id.rgTipoFiltro);
-        rbFechaUnica = findViewById(R.id.rbFechaUnica);
-        rbRangoFechas = findViewById(R.id.rbRangoFechas);
-        layoutFechaUnica = findViewById(R.id.layoutFechaUnica);
+        switchTodoHistorial = findViewById(R.id.switchTodoHistorial);
+        chipGroupVariables = findViewById(R.id.chipGroupVariables);
+        layoutInputsFechas = findViewById(R.id.layoutInputsFechas);
         layoutRangoFechas = findViewById(R.id.layoutRangoFechas);
+        rbFechaUnica = findViewById(R.id.rbFechaUnica);
 
-        // Listener para cambiar entre fecha única y rango
-        rgTipoFiltro.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId == R.id.rbFechaUnica) {
-                    layoutFechaUnica.setVisibility(View.VISIBLE);
-                    layoutRangoFechas.setVisibility(View.GONE);
-                } else {
-                    layoutFechaUnica.setVisibility(View.GONE);
-                    layoutRangoFechas.setVisibility(View.VISIBLE);
-                }
+        // Lógica del Switch "Todo el historial"
+        switchTodoHistorial.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            layoutInputsFechas.setVisibility(isChecked ? View.GONE : View.VISIBLE);
+        });
+
+        // Cambio de filtros rango/único
+        findViewById(R.id.rgTipoFiltro).setOnClickListener(v -> {
+            layoutRangoFechas.setVisibility(rbFechaUnica.isChecked() ? View.GONE : View.VISIBLE);
+        });
+
+        btnConsultarCharts.setOnClickListener(v -> {
+            if (switchTodoHistorial.isChecked()) {
+                cargarTodoElHistorial();
+            } else if (rbFechaUnica.isChecked()) {
+                cargarDatos(etFechaCharts.getText().toString().trim());
+            } else {
+                cargarDatosRango(etFechaDesde.getText().toString().trim(), etFechaHasta.getText().toString().trim());
             }
         });
 
-        btnConsultarCharts.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (rbFechaUnica.isChecked()) {
-                    String fecha = etFechaCharts.getText().toString().trim();
-                    if (fecha.isEmpty()) {
-                        Toast.makeText(ChartsActivity.this, 
-                            "Introduce una fecha (DD-MM-YYYY)", Toast.LENGTH_SHORT).show();
-                    } else {
-                        cargarDatos(fecha);
-                    }
-                } else {
-                    String fechaDesde = etFechaDesde.getText().toString().trim();
-                    String fechaHasta = etFechaHasta.getText().toString().trim();
-                    if (fechaDesde.isEmpty() || fechaHasta.isEmpty()) {
-                        Toast.makeText(ChartsActivity.this, 
-                            "Introduce ambas fechas (DD-MM-YYYY)", Toast.LENGTH_SHORT).show();
-                    } else {
-                        cargarDatosRango(fechaDesde, fechaHasta);
-                    }
-                }
-            }
+        // Actualizar gráfica al cambiar de variable (Chip)
+        chipGroupVariables.setOnCheckedStateChangeListener((group, checkedIds) -> {
+            if (medicionesActuales != null) actualizarGrafica();
         });
 
-        btnLineChart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (medicionesActuales != null && !medicionesActuales.isEmpty()) {
-                    mostrarLineChart();
-                } else {
-                    Toast.makeText(ChartsActivity.this, 
-                        "Primero consulta datos con una fecha", Toast.LENGTH_SHORT).show();
-                }
-            }
+        btnLineChart.setOnClickListener(v -> {
+            cardLineChart.setVisibility(View.VISIBLE);
+            cardBarChart.setVisibility(View.GONE);
+            if (medicionesActuales != null) actualizarGrafica();
         });
 
-        btnBarChart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (medicionesActuales != null && !medicionesActuales.isEmpty()) {
-                    mostrarBarChart();
-                } else {
-                    Toast.makeText(ChartsActivity.this, 
-                        "Primero consulta datos con una fecha", Toast.LENGTH_SHORT).show();
-                }
-            }
+        btnBarChart.setOnClickListener(v -> {
+            cardLineChart.setVisibility(View.GONE); // Ocultamos la de líneas
+            cardBarChart.setVisibility(View.VISIBLE); // Mostramos la de barras
+            if (medicionesActuales != null) actualizarGrafica();
         });
     }
-
-    private void cargarDatosRango(String fechaDesde, String fechaHasta) {
-        tvEstadoCharts.setText("⏳ Cargando datos del rango...");
-        cardLineChart.setVisibility(View.GONE);
-        cardBarChart.setVisibility(View.GONE);
-
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-        List<Medicion> todasMediciones = new ArrayList<>();
-        
-        try {
-            Date dateDesde = sdf.parse(fechaDesde);
-            Date dateHasta = sdf.parse(fechaHasta);
-            
-            if (dateDesde.after(dateHasta)) {
-                Toast.makeText(this, "La fecha desde debe ser anterior a la fecha hasta", 
-                    Toast.LENGTH_SHORT).show();
-                tvEstadoCharts.setText("❌ Fechas inválidas");
-                return;
-            }
-
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(dateDesde);
-            
-            // Contador para saber cuántas peticiones quedan
-            final int[] diasRestantes = {0};
-            
-            // Calcular número de días
-            while (!calendar.getTime().after(dateHasta)) {
-                diasRestantes[0]++;
-                calendar.add(Calendar.DAY_OF_MONTH, 1);
-            }
-            
-            // Resetear calendario
-            calendar.setTime(dateDesde);
-            final int totalDias = diasRestantes[0];
-            
-            // Hacer peticiones para cada día
-            while (!calendar.getTime().after(dateHasta)) {
-                String fechaActual = sdf.format(calendar.getTime());
-                
-                ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
-                Call<List<Medicion>> call = apiService.getMediciones(fechaActual);
-                
-                call.enqueue(new Callback<List<Medicion>>() {
-                    @Override
-                    public void onResponse(Call<List<Medicion>> call, Response<List<Medicion>> response) {
-                        if (response.isSuccessful() && response.body() != null) {
-                            todasMediciones.addAll(response.body());
-                        }
-                        
-                        diasRestantes[0]--;
-                        
-                        if (diasRestantes[0] == 0) {
-                            // Todas las peticiones completadas
-                            if (todasMediciones.isEmpty()) {
-                                tvEstadoCharts.setText("ℹ️ No hay datos en ese rango");
-                                medicionesActuales = null;
-                            } else {
-                                medicionesActuales = todasMediciones;
-                                tvEstadoCharts.setText("✅ " + todasMediciones.size() + 
-                                    " mediciones cargadas de " + totalDias + " días");
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<List<Medicion>> call, Throwable t) {
-                        Log.e(TAG, "Error API: " + t.getMessage(), t);
-                        diasRestantes[0]--;
-                        
-                        if (diasRestantes[0] == 0) {
-                            tvEstadoCharts.setText("❌ Error cargando datos");
-                            Toast.makeText(ChartsActivity.this, 
-                                "Error de red", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-                
-                calendar.add(Calendar.DAY_OF_MONTH, 1);
-            }
-            
-        } catch (ParseException e) {
-            Toast.makeText(this, "Formato de fecha inválido. Use DD-MM-YYYY", 
-                Toast.LENGTH_SHORT).show();
-            tvEstadoCharts.setText("❌ Formato de fecha incorrecto");
-        }
-    }
-
     private void cargarDatos(String fecha) {
         tvEstadoCharts.setText("⏳ Cargando datos...");
-        cardLineChart.setVisibility(View.GONE);
-        cardBarChart.setVisibility(View.GONE);
 
+        // Si el switch de "Todo el historial" envía "ALL",
+        // asegúrate de que tu API soporte recibir ese valor o una fecha vacía
         ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
         Call<List<Medicion>> call = apiService.getMediciones(fecha);
 
@@ -240,103 +130,175 @@ public class ChartsActivity extends AppCompatActivity {
             public void onResponse(Call<List<Medicion>> call, Response<List<Medicion>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     medicionesActuales = response.body();
-                    Log.i(TAG, "Mediciones recibidas: " + medicionesActuales.size());
-
                     if (medicionesActuales.isEmpty()) {
-                        tvEstadoCharts.setText("ℹ️ No hay datos para esa fecha");
-                        Toast.makeText(ChartsActivity.this, 
-                            "No hay datos disponibles", Toast.LENGTH_SHORT).show();
+                        tvEstadoCharts.setText("ℹ️ No hay datos");
                     } else {
-                        tvEstadoCharts.setText("✅ " + medicionesActuales.size() + 
-                            " mediciones cargadas. Elige una gráfica.");
+                        tvEstadoCharts.setText("✅ " + medicionesActuales.size() + " mediciones. Pulsa una gráfica.");
+                        actualizarGrafica(); // Llama a pintar la gráfica automáticamente
                     }
                 } else {
                     tvEstadoCharts.setText("❌ Error del servidor");
-                    Toast.makeText(ChartsActivity.this, 
-                        "Error: " + response.code(), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<List<Medicion>> call, Throwable t) {
-                Log.e(TAG, "Error API: " + t.getMessage(), t);
                 tvEstadoCharts.setText("❌ Error de conexión");
-                Toast.makeText(ChartsActivity.this, 
-                    "Error de red: " + t.getMessage(), Toast.LENGTH_LONG).show();
+                Log.e(TAG, "Error: " + t.getMessage());
             }
         });
     }
 
-    private void mostrarLineChart() {
-        cardLineChart.setVisibility(View.VISIBLE);
-        cardBarChart.setVisibility(View.GONE);
-        crearLineChart(medicionesActuales);
+    private void cargarDatosRango(String fechaDesde, String fechaHasta) {
+        tvEstadoCharts.setText("⏳ Consultando rango de días...");
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+        List<Medicion> todasMediciones = new ArrayList<>();
+
+        try {
+            Date dateDesde = sdf.parse(fechaDesde);
+            Date dateHasta = sdf.parse(fechaHasta);
+
+            if (dateDesde.after(dateHasta)) {
+                tvEstadoCharts.setText("❌ La fecha inicial es posterior a la final");
+                return;
+            }
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(dateDesde);
+
+            // Calculamos cuántos días hay para saber cuándo terminar
+            List<String> listaFechas = new ArrayList<>();
+            while (!calendar.getTime().after(dateHasta)) {
+                listaFechas.add(sdf.format(calendar.getTime()));
+                calendar.add(Calendar.DAY_OF_MONTH, 1);
+            }
+
+            final int totalPeticiones = listaFechas.size();
+            final int[] peticionesFinalizadas = {0};
+
+            for (String fechaActual : listaFechas) {
+                ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
+                apiService.getMediciones(fechaActual).enqueue(new Callback<List<Medicion>>() {
+                    @Override
+                    public void onResponse(Call<List<Medicion>> call, Response<List<Medicion>> response) {
+                        if (response.isSuccessful() && response.body() != null) {
+                            todasMediciones.addAll(response.body());
+                        }
+
+                        peticionesFinalizadas[0]++;
+                        if (peticionesFinalizadas[0] == totalPeticiones) {
+                            procesarResultadosFinales(todasMediciones);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Medicion>> call, Throwable t) {
+                        peticionesFinalizadas[0]++;
+                        if (peticionesFinalizadas[0] == totalPeticiones) {
+                            procesarResultadosFinales(todasMediciones);
+                        }
+                    }
+                });
+            }
+
+        } catch (ParseException e) {
+            tvEstadoCharts.setText("❌ Formato de fecha inválido");
+        }
     }
 
+    private void procesarResultadosFinales(List<Medicion> resultados) {
+        if (resultados.isEmpty()) {
+            tvEstadoCharts.setText("ℹ️ No hay datos en este rango");
+            medicionesActuales = null;
+        } else {
+            medicionesActuales = resultados;
+            tvEstadoCharts.setText("✅ " + resultados.size() + " mediciones cargadas.");
+            actualizarGrafica();
+        }
+    }
+    private void cargarTodoElHistorial() {
+        tvEstadoCharts.setText("⏳ Cargando historial completo...");
+
+        ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
+        // Usamos el método sin parámetros
+        Call<List<Medicion>> call = apiService.getAllMediciones();
+
+        call.enqueue(new Callback<List<Medicion>>() {
+            @Override
+            public void onResponse(Call<List<Medicion>> call, Response<List<Medicion>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    medicionesActuales = response.body();
+                    if (medicionesActuales.isEmpty()) {
+                        tvEstadoCharts.setText("ℹ️ El historial está vacío");
+                    } else {
+                        tvEstadoCharts.setText("✅ Historial cargado: " + medicionesActuales.size() + " registros");
+                        actualizarGrafica();
+                    }
+                } else {
+                    tvEstadoCharts.setText("❌ Error al obtener historial");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Medicion>> call, Throwable t) {
+                tvEstadoCharts.setText("❌ Error de conexión al historial");
+            }
+        });
+    }
+
+    private void actualizarGrafica() {
+        if (medicionesActuales == null || medicionesActuales.isEmpty()) {
+            tvEstadoCharts.setText("ℹ️ No hay datos para mostrar");
+            return;
+        }
+
+        if (cardLineChart.getVisibility() == View.VISIBLE) {
+            crearLineChart(medicionesActuales);
+        } else if (cardBarChart.getVisibility() == View.VISIBLE) {
+            crearBarChart(medicionesActuales);
+        }
+    }
+
+    private void crearLineChart(List<Medicion> mediciones) {
+        ArrayList<Entry> entries = new ArrayList<>();
+        ArrayList<String> labels = new ArrayList<>();
+
+        int selectedChipId = chipGroupVariables.getCheckedChipId();
+        String label = "Dato";
+        int color = Color.BLUE;
+
+        for (int i = 0; i < mediciones.size(); i++) {
+            Medicion m = mediciones.get(i);
+            float valor = 0;
+
+            if (selectedChipId == R.id.chipTemp) { valor = (float) m.getTemperatura(); label = "Temp °C"; color = Color.RED; }
+            else if (selectedChipId == R.id.chipHum) { valor = (float) m.getHumedad(); label = "Humedad %"; color = Color.CYAN; }
+            else if (selectedChipId == R.id.chipUV) { valor = (float) m.getRadiacion_uv(); label = "UV"; color = Color.YELLOW; }
+            else if (selectedChipId == R.id.chipRuido) { valor = (float) m.getRuido_db(); label = "Ruido dB"; color = Color.MAGENTA; }
+            else if (selectedChipId == R.id.chipAire) { valor = (float) m.getCalidad_aire(); label = "Aire ppm"; color = Color.GREEN; }
+
+            entries.add(new Entry(i, valor));
+            labels.add(m.getTimestamp().substring(11, 16));
+        }
+
+        LineDataSet dataSet = new LineDataSet(entries, label);
+        dataSet.setColor(color);
+        dataSet.setLineWidth(3f);
+        dataSet.setDrawCircles(true);
+        dataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER); // Gráfica suave
+
+        lineChart.setData(new LineData(dataSet));
+        lineChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(labels));
+        lineChart.invalidate();
+    }
     private void mostrarBarChart() {
         cardLineChart.setVisibility(View.GONE);
         cardBarChart.setVisibility(View.VISIBLE);
         crearBarChart(medicionesActuales);
     }
 
-    private void crearLineChart(List<Medicion> mediciones) {
-        ArrayList<Entry> tempEntries = new ArrayList<>();
-        ArrayList<Entry> humEntries = new ArrayList<>();
-        ArrayList<String> labels = new ArrayList<>();
 
-        // Tomar máximo 20 mediciones para no saturar la gráfica
-        int maxMediciones = Math.min(mediciones.size(), 20);
-        
-        for (int i = 0; i < maxMediciones; i++) {
-            Medicion m = mediciones.get(i);
-            tempEntries.add(new Entry(i, (float) m.getTemperatura()));
-            humEntries.add(new Entry(i, (float) m.getHumedad()));
-            
-            // Extraer hora del timestamp
-            String timestamp = m.getTimestamp();
-            try {
-                String hora = timestamp.substring(11, 16); // HH:MM
-                labels.add(hora);
-            } catch (Exception e) {
-                labels.add("--:--");
-            }
-        }
-
-        // Dataset de Temperatura
-        LineDataSet tempDataSet = new LineDataSet(tempEntries, "Temperatura (°C)");
-        tempDataSet.setColor(Color.rgb(229, 57, 53)); // Rojo
-        tempDataSet.setCircleColor(Color.rgb(229, 57, 53));
-        tempDataSet.setLineWidth(2f);
-        tempDataSet.setCircleRadius(4f);
-        tempDataSet.setValueTextSize(10f);
-        tempDataSet.setDrawFilled(false);
-
-        // Dataset de Humedad
-        LineDataSet humDataSet = new LineDataSet(humEntries, "Humedad (%)");
-        humDataSet.setColor(Color.rgb(30, 136, 229)); // Azul
-        humDataSet.setCircleColor(Color.rgb(30, 136, 229));
-        humDataSet.setLineWidth(2f);
-        humDataSet.setCircleRadius(4f);
-        humDataSet.setValueTextSize(10f);
-        humDataSet.setDrawFilled(false);
-
-        LineData lineData = new LineData(tempDataSet, humDataSet);
-        lineChart.setData(lineData);
-
-        // Configuración del eje X
-        XAxis xAxis = lineChart.getXAxis();
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setValueFormatter(new IndexAxisValueFormatter(labels));
-        xAxis.setGranularity(1f);
-        xAxis.setLabelRotationAngle(-45f);
-
-        // Descripción deshabilitada para no tapar la gráfica
-        lineChart.getDescription().setEnabled(false);
-
-        // Animación y refresh
-        lineChart.animateX(1000);
-        lineChart.invalidate();
-    }
 
     private void crearBarChart(List<Medicion> mediciones) {
         // Calcular promedios

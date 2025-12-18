@@ -3,15 +3,22 @@ package com.uah.estacionmeteorologica;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.button.MaterialButtonToggleGroup;
+import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.materialswitch.MaterialSwitch;
+import com.google.android.material.textfield.TextInputEditText;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import retrofit2.Call;
@@ -22,117 +29,154 @@ public class HistoricDataActivity extends AppCompatActivity {
 
     private static final String TAG = "HistoricData";
 
-    private EditText etFecha;
-    private Button btnConsultar;
-    private LinearLayout layoutResultados;
-    private ScrollView scrollResultados;
+    private TextInputEditText etFechaDesde, etFechaHasta;
+    private MaterialButton btnConsultar, btnBorrarFiltros;
+    private MaterialSwitch switchTodoHistorial;
+    private ChipGroup chipGroupSensores;
+    private MaterialButtonToggleGroup toggleMaxMin;
+    private LinearLayout layoutResultados, layoutFiltrosFecha;
     private TextView tvEstado;
+
+    private List<Medicion> medicionesCargadas = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_historic_data);
 
-        etFecha = findViewById(R.id.etFecha);
+        // Vinculación
+        etFechaDesde = findViewById(R.id.etFechaDesde);
+        etFechaHasta = findViewById(R.id.etFechaHasta);
         btnConsultar = findViewById(R.id.btnConsultar);
+        btnBorrarFiltros = findViewById(R.id.btnBorrarFiltros);
+        switchTodoHistorial = findViewById(R.id.switchTodoHistorial);
+        chipGroupSensores = findViewById(R.id.chipGroupSensores);
+        toggleMaxMin = findViewById(R.id.toggleMaxMin);
         layoutResultados = findViewById(R.id.layoutResultados);
-        scrollResultados = findViewById(R.id.scrollResultados);
+        layoutFiltrosFecha = findViewById(R.id.layoutFiltrosFecha);
         tvEstado = findViewById(R.id.tvEstadoHistorico);
 
-        // Fecha de ejemplo
-        etFecha.setHint("dd-MM-yyyy (ej: 18-12-2025)");
-
-        btnConsultar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String fecha = etFecha.getText().toString().trim();
-                if (!fecha.isEmpty()) {
-                    consultarHistorico(fecha);
-                } else {
-                    Toast.makeText(HistoricDataActivity.this, 
-                        "Ingresa una fecha", Toast.LENGTH_SHORT).show();
-                }
-            }
+        // Lógica para ocultar fechas si se pide todo el historial
+        switchTodoHistorial.setOnCheckedChangeListener((v, isChecked) -> {
+            layoutFiltrosFecha.setVisibility(isChecked ? View.GONE : View.VISIBLE);
         });
+
+        // Botón Limpiar
+        btnBorrarFiltros.setOnClickListener(v -> limpiarFiltros());
+
+        // Botón Consultar Principal
+        btnConsultar.setOnClickListener(v -> ejecutarConsulta());
     }
 
-    private void consultarHistorico(String fecha) {
-        tvEstado.setText("⏳ Consultando servidor...");
-        layoutResultados.removeAllViews();
-
+    private void ejecutarConsulta() {
         ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
-        Call<List<Medicion>> call = apiService.getMediciones(fecha);
+        Call<List<Medicion>> call;
 
+        if (switchTodoHistorial.isChecked()) {
+            call = apiService.getAllMediciones();
+        } else {
+            String desde = etFechaDesde.getText().toString().trim();
+            String hasta = etFechaHasta.getText().toString().trim();
+
+            if (desde.isEmpty()) {
+                Toast.makeText(this, "Escribe al menos la fecha de inicio", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (hasta.isEmpty()) {
+                call = apiService.getMediciones(desde); // Un solo día
+            } else {
+                call = apiService.getMedicionesPorRango(desde, hasta); // Rango
+            }
+        }
+
+        tvEstado.setText("⏳ Consultando...");
         call.enqueue(new Callback<List<Medicion>>() {
             @Override
             public void onResponse(Call<List<Medicion>> call, Response<List<Medicion>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    List<Medicion> mediciones = response.body();
-                    Log.i(TAG, "Mediciones recibidas: " + mediciones.size());
-                    
-                    if (mediciones.isEmpty()) {
-                        tvEstado.setText("ℹ️ No hay datos para esta fecha");
-                    } else {
-                        tvEstado.setText("✅ " + mediciones.size() + " mediciones encontradas");
-                        mostrarResultados(mediciones);
-                    }
+                    medicionesCargadas = response.body();
+                    procesarYMostrarResultados();
                 } else {
-                    tvEstado.setText("❌ Error del servidor");
-                    Toast.makeText(HistoricDataActivity.this, 
-                        "Error: " + response.code(), Toast.LENGTH_SHORT).show();
+                    tvEstado.setText("Error del servidor");
                 }
             }
 
             @Override
             public void onFailure(Call<List<Medicion>> call, Throwable t) {
-                Log.e(TAG, "Error API: " + t.getMessage(), t);
-                tvEstado.setText("❌ Error de conexión");
-                Toast.makeText(HistoricDataActivity.this, 
-                    "Error de red: " + t.getMessage(), Toast.LENGTH_LONG).show();
+                tvEstado.setText("Error de conexión");
             }
         });
     }
 
-    private void mostrarResultados(List<Medicion> mediciones) {
-        layoutResultados.removeAllViews();
-
-        for (Medicion m : mediciones) {
-            TextView tv = new TextView(this);
-            tv.setPadding(16, 16, 16, 16);
-            tv.setTextSize(14);
-            
-            String texto = String.format(
-                "📅 %s\n" +
-                "🌡️ Temp: %.2f°C | 💧 Hum: %.2f%%\n" +
-                "☀️ UV: %.2f | 🔊 Ruido: %.2f dB\n" +
-                "💨 Aire: %.2f ppm\n" +
-                "─────────────────────",
-                m.getTimestamp(),
-                m.getTemperatura(),
-                m.getHumedad(),
-                m.getRadiacion_uv(),
-                m.getRuido_db(),
-                m.getCalidad_aire()
-            );
-            
-            tv.setText(texto);
-            tv.setBackgroundResource(android.R.drawable.dialog_holo_light_frame);
-            
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-            );
-            params.setMargins(0, 0, 0, 16);
-            tv.setLayoutParams(params);
-            
-            layoutResultados.addView(tv);
+    private void procesarYMostrarResultados() {
+        if (medicionesCargadas.isEmpty()) {
+            tvEstado.setText("No hay datos");
+            layoutResultados.removeAllViews();
+            return;
         }
 
-        scrollResultados.post(new Runnable() {
-            @Override
-            public void run() {
-                scrollResultados.fullScroll(View.FOCUS_UP);
-            }
-        });
+        List<Medicion> aMostrar = new ArrayList<>(medicionesCargadas);
+
+        // Lógica de Máximo / Mínimo si hay un chip y un modo seleccionado
+        int chipId = chipGroupSensores.getCheckedChipId();
+        int toggleId = toggleMaxMin.getCheckedButtonId();
+
+        if (chipId != View.NO_ID && toggleId != View.NO_ID) {
+            boolean buscarMax = (toggleId == R.id.btnMax);
+            Medicion extrema = encontrarExtremo(aMostrar, chipId, buscarMax);
+            aMostrar.clear();
+            if (extrema != null) aMostrar.add(extrema);
+            tvEstado.setText("Valor " + (buscarMax ? "Máximo" : "Mínimo") + " encontrado");
+        } else {
+            tvEstado.setText(aMostrar.size() + " registros encontrados");
+        }
+
+        mostrarEnLista(aMostrar);
+    }
+
+    private Medicion encontrarExtremo(List<Medicion> lista, int chipId, boolean max) {
+        Comparator<Medicion> comp;
+        if (chipId == R.id.chipTemp) comp = Comparator.comparingDouble(Medicion::getTemperatura);
+        else if (chipId == R.id.chipHum) comp = Comparator.comparingDouble(Medicion::getHumedad);
+        else if (chipId == R.id.chipRuido) comp = Comparator.comparingDouble(Medicion::getRuido_db);
+        else comp = Comparator.comparingDouble(Medicion::getRadiacion_uv);
+
+        if (lista.isEmpty()) return null;
+        return max ? Collections.max(lista, comp) : Collections.min(lista, comp);
+    }
+
+    private void mostrarEnLista(List<Medicion> lista) {
+        layoutResultados.removeAllViews();
+        for (Medicion m : lista) {
+            MaterialCardView card = new MaterialCardView(this);
+            card.setRadius(40f);
+            card.setCardElevation(0);
+            card.setStrokeWidth(3);
+            card.setStrokeColor(getColor(android.R.color.darker_gray));
+
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(-1, -2);
+            params.setMargins(0, 0, 0, 24);
+            card.setLayoutParams(params);
+
+            TextView tv = new TextView(this);
+            tv.setPadding(40, 40, 40, 40);
+            tv.setText(String.format("📅 %s\n\n🌡️ %.1f°C  💧 %.1f%%\n☀️ %.1f UV  🔊 %.1f dB\n💨 %.1f ppm",
+                    m.getTimestamp(), m.getTemperatura(), m.getHumedad(),
+                    m.getRadiacion_uv(), m.getRuido_db(), m.getCalidad_aire()));
+
+            card.addView(tv);
+            layoutResultados.addView(card);
+        }
+    }
+
+    private void limpiarFiltros() {
+        etFechaDesde.setText("");
+        etFechaHasta.setText("");
+        switchTodoHistorial.setChecked(false);
+        chipGroupSensores.clearCheck();
+        toggleMaxMin.clearChecked();
+        layoutResultados.removeAllViews();
+        tvEstado.setText("ℹ️ Filtros limpiados");
     }
 }

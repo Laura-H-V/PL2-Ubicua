@@ -1,45 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="#F5F5F5">
+    android:background="?attr/colorSurface">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="📋 Historial de Alertas"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="#333333"
+        android:text="Historial de Alertas"
+        android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+        android:textColor="?attr/colorOnSurface"
         android:gravity="center"
-        android:paddingBottom="16dp"/>
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp"
+        android:textStyle="bold" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnBorrarTodo"
-        android:layout_width="match_parent"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="🗑️ Borrar Todas las Alertas"
-        android:backgroundTint="#F44336"
-        android:textColor="#FFFFFF"
+        android:layout_gravity="end"
+        android:text="Borrar todo"
+        android:textColor="?attr/colorError"
+        app:icon="@android:drawable/ic_menu_delete"
+        app:iconTint="?attr/colorError"
         android:layout_marginBottom="16dp"/>
 
-    <TextView
+    <LinearLayout
         android:id="@+id/tvNoAlertas"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="No hay alertas en el historial"
-        android:textSize="16sp"
+        android:layout_height="match_parent"
         android:gravity="center"
-        android:paddingTop="32dp"
-        android:textColor="#757575"
-        android:visibility="gone"/>
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@android:drawable/ic_dialog_info"
+            app:tint="?attr/colorOutlineVariant"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Historial limpio"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            android:textColor="?attr/colorOutline" />
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerAlertas"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="vertical"/>
+        android:clipToPadding="false"
+        android:paddingBottom="80dp" />
 
 </LinearLayout>

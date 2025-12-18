@@ -10,7 +10,7 @@ public interface ApiService {
 
     /**
      * Endpoint para obtener mediciones por fecha
-     * URL completa: http://IP:8080/api/mediciones?fecha=DD-MM-YYYY
+     * URL: http://IP:8080/api/mediciones?fecha=DD-MM-YYYY
      */
     @GET("api/mediciones")
     Call<List<Medicion>> getMediciones(@Query("fecha") String fecha);
@@ -21,7 +21,14 @@ public interface ApiService {
      */
     @GET("api/mediciones")
     Call<List<Medicion>> getMedicionesPorRango(
-        @Query("desde") String desde,
-        @Query("hasta") String hasta
+            @Query("desde") String desde,
+            @Query("hasta") String hasta
     );
+
+    /**
+     * Endpoint para todo el hsitorial
+     * URL: http://IP:8080/api/mediciones
+     */
+    @GET("api/mediciones")
+    Call<List<Medicion>> getAllMediciones();
 }
