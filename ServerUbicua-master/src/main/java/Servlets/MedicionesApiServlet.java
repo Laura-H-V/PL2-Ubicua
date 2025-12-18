@@ -36,9 +36,32 @@ public class MedicionesApiServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
 
-        String fecha = req.getParameter("fecha");  
-        String desde = req.getParameter("desde");  
-        String hasta = req.getParameter("hasta");  
+        String fecha = req.getParameter("fecha");
+        String desde = req.getParameter("desde");
+        String hasta = req.getParameter("hasta");
+
+        // Filtros por valor
+        String tempMin  = req.getParameter("tempMin");
+        String tempMax  = req.getParameter("tempMax");
+        String humMin   = req.getParameter("humMin");
+        String humMax   = req.getParameter("humMax");
+        String ruidoMin = req.getParameter("ruidoMin");
+        String ruidoMax = req.getParameter("ruidoMax");
+        String uvMin    = req.getParameter("uvMin");
+        String uvMax    = req.getParameter("uvMax");
+        String aireMin  = req.getParameter("aireMin");
+        String aireMax  = req.getParameter("aireMax");
+
+        boolean tieneTempMin  = tempMin  != null && !tempMin.isBlank();
+        boolean tieneTempMax  = tempMax  != null && !tempMax.isBlank();
+        boolean tieneHumMin   = humMin   != null && !humMin.isBlank();
+        boolean tieneHumMax   = humMax   != null && !humMax.isBlank();
+        boolean tieneRuidoMin = ruidoMin != null && !ruidoMin.isBlank();
+        boolean tieneRuidoMax = ruidoMax != null && !ruidoMax.isBlank();
+        boolean tieneUvMin    = uvMin    != null && !uvMin.isBlank();
+        boolean tieneUvMax    = uvMax    != null && !uvMax.isBlank();
+        boolean tieneAireMin  = aireMin  != null && !aireMin.isBlank();
+        boolean tieneAireMax  = aireMax  != null && !aireMax.isBlank();
 
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
@@ -54,10 +77,65 @@ public class MedicionesApiServlet extends HttpServlet {
         boolean tieneRango = (desde != null && !desde.isBlank()) &&
                              (hasta != null && !hasta.isBlank());
 
+        boolean whereUsado = false;
+
         if (tieneRango) {
             sql.append("WHERE DATE(timestamp) BETWEEN ? AND ? ");
+            whereUsado = true;
         } else if (tieneFecha) {
             sql.append("WHERE DATE(timestamp) = ? ");
+            whereUsado = true;
+        }
+
+        if (tieneTempMin) {
+            sql.append(whereUsado ? "AND " : "WHERE ");
+            sql.append("temperatura >= ? ");
+            whereUsado = true;
+        }
+        if (tieneTempMax) {
+            sql.append(whereUsado ? "AND " : "WHERE ");
+            sql.append("temperatura <= ? ");
+            whereUsado = true;
+        }
+        if (tieneHumMin) {
+            sql.append(whereUsado ? "AND " : "WHERE ");
+            sql.append("humedad >= ? ");
+            whereUsado = true;
+        }
+        if (tieneHumMax) {
+            sql.append(whereUsado ? "AND " : "WHERE ");
+            sql.append("humedad <= ? ");
+            whereUsado = true;
+        }
+        if (tieneRuidoMin) {
+            sql.append(whereUsado ? "AND " : "WHERE ");
+            sql.append("ruido_db >= ? ");
+            whereUsado = true;
+        }
+        if (tieneRuidoMax) {
+            sql.append(whereUsado ? "AND " : "WHERE ");
+            sql.append("ruido_db <= ? ");
+            whereUsado = true;
+        }
+        if (tieneUvMin) {
+            sql.append(whereUsado ? "AND " : "WHERE ");
+            sql.append("radiacion_uv >= ? ");
+            whereUsado = true;
+        }
+        if (tieneUvMax) {
+            sql.append(whereUsado ? "AND " : "WHERE ");
+            sql.append("radiacion_uv <= ? ");
+            whereUsado = true;
+        }
+        if (tieneAireMin) {
+            sql.append(whereUsado ? "AND " : "WHERE ");
+            sql.append("calidad_aire >= ? ");
+            whereUsado = true;
+        }
+        if (tieneAireMax) {
+            sql.append(whereUsado ? "AND " : "WHERE ");
+            sql.append("calidad_aire <= ? ");
+            whereUsado = true;
         }
 
         sql.append("ORDER BY timestamp");
@@ -75,6 +153,17 @@ public class MedicionesApiServlet extends HttpServlet {
                 java.sql.Date fechaSql = parseFechaDdMmYyyy(fecha);
                 st.setDate(idx++, fechaSql);
             }
+
+            if (tieneTempMin)  st.setDouble(idx++, Double.parseDouble(tempMin));
+            if (tieneTempMax)  st.setDouble(idx++, Double.parseDouble(tempMax));
+            if (tieneHumMin)   st.setDouble(idx++, Double.parseDouble(humMin));
+            if (tieneHumMax)   st.setDouble(idx++, Double.parseDouble(humMax));
+            if (tieneRuidoMin) st.setDouble(idx++, Double.parseDouble(ruidoMin));
+            if (tieneRuidoMax) st.setDouble(idx++, Double.parseDouble(ruidoMax));
+            if (tieneUvMin)    st.setDouble(idx++, Double.parseDouble(uvMin));
+            if (tieneUvMax)    st.setDouble(idx++, Double.parseDouble(uvMax));
+            if (tieneAireMin)  st.setDouble(idx++, Double.parseDouble(aireMin));
+            if (tieneAireMax)  st.setDouble(idx++, Double.parseDouble(aireMax));
 
             try (ResultSet rs = st.executeQuery()) {
                 while (rs.next()) {
