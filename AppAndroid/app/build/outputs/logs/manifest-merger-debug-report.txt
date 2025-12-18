@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:2:1-46:12
-INJECTED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:2:1-46:12
-INJECTED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:2:1-46:12
-INJECTED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:2:1-46:12
+ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:2:1-58:12
+INJECTED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:2:1-58:12
+INJECTED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:2:1-58:12
+INJECTED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:2:1-58:12
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\laura\.gradle\caches\transforms-3\e004d834515d4821022ab53ea1e4b61a\transformed\material-1.11.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\laura\.gradle\caches\transforms-3\395d71d697a2819f71d941e83c2d5fe8\transformed\constraintlayout-2.1.4\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\Users\laura\.gradle\caches\transforms-3\a6e5f6212cc01c97226962f50ee2288b\transformed\jetified-appcompat-resources-1.6.1\AndroidManifest.xml:17:1-22:12
@@ -68,9 +68,21 @@ uses-permission#android.permission.WAKE_LOCK
 ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:7:5-68
 	android:name
 		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:7:22-65
+uses-permission#android.permission.VIBRATE
+ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:8:5-66
+	android:name
+		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:8:22-63
+uses-permission#android.permission.FOREGROUND_SERVICE
+ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:9:5-77
+	android:name
+		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:9:22-74
+uses-permission#android.permission.POST_NOTIFICATIONS
+ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:10:5-77
+	android:name
+		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:10:22-74
 application
-ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:9:5-44:19
-INJECTED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:9:5-44:19
+ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:12:5-56:19
+INJECTED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:12:5-56:19
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\laura\.gradle\caches\transforms-3\e004d834515d4821022ab53ea1e4b61a\transformed\material-1.11.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\laura\.gradle\caches\transforms-3\e004d834515d4821022ab53ea1e4b61a\transformed\material-1.11.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\laura\.gradle\caches\transforms-3\395d71d697a2819f71d941e83c2d5fe8\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
@@ -92,65 +104,81 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\laura\.gradle\cach
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.9.0] C:\Users\laura\.gradle\caches\transforms-3\cf89ab1ea7cc19352d4f47103c74320d\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:14:9-35
+		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:17:9-35
 	android:label
-		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:12:9-41
+		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:15:9-41
 	android:roundIcon
-		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:13:9-54
+		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:16:9-54
 	tools:targetApi
-		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:17:9-29
+		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:20:9-29
 	android:icon
-		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:11:9-43
+		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:14:9-43
 	android:allowBackup
-		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:10:9-35
+		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:13:9-35
 	android:theme
-		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:15:9-76
+		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:18:9-76
 	android:usesCleartextTraffic
-		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:16:9-44
+		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:19:9-44
 activity#com.uah.estacionmeteorologica.MainActivity
-ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:19:9-26:20
+ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:22:9-29:20
 	android:exported
-		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:21:13-36
+		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:24:13-36
 	android:name
-		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:20:13-41
+		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:23:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:22:13-25:29
+ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:25:13-28:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:23:17-69
+ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:26:17-69
 	android:name
-		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:23:25-66
+		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:26:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:24:17-77
+ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:27:17-77
 	android:name
-		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:24:27-74
+		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:27:27-74
 activity#com.uah.estacionmeteorologica.RealtimeMonitoringActivity
-ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:28:9-31:54
+ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:31:9-34:54
 	android:label
-		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:31:13-51
+		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:34:13-51
 	android:exported
-		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:30:13-37
+		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:33:13-37
 	android:name
-		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:29:13-55
+		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:32:13-55
 activity#com.uah.estacionmeteorologica.HistoricDataActivity
-ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:33:9-36:54
+ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:36:9-39:54
 	android:label
-		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:36:13-51
+		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:39:13-51
 	android:exported
-		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:35:13-37
+		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:38:13-37
 	android:name
-		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:34:13-49
+		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:37:13-49
 activity#com.uah.estacionmeteorologica.ChartsActivity
-ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:38:9-41:40
+ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:41:9-44:40
 	android:label
-		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:41:13-37
+		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:44:13-37
 	android:exported
-		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:40:13-37
+		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:43:13-37
 	android:name
-		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:39:13-43
+		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:42:13-43
+activity#com.uah.estacionmeteorologica.AlertHistoryActivity
+ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:46:9-49:52
+	android:label
+		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:49:13-49
+	android:exported
+		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:48:13-37
+	android:name
+		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:47:13-49
+service#com.uah.estacionmeteorologica.MqttBackgroundService
+ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:51:9-53:40
+	android:exported
+		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:53:13-37
+	android:foregroundServiceType
+		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:52:13-53
+	android:name
+		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:51:18-55
 service#org.eclipse.paho.android.service.MqttService
-ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:43:9-80
+ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:55:9-80
 	android:name
-		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:43:18-77
+		ADDED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:55:18-77
 uses-sdk
 INJECTED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml

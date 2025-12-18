@@ -2974,6 +2974,7 @@ drawable abc_textfield_search_material
 drawable abc_vector_test
 drawable avd_hide_password
 drawable avd_show_password
+drawable badge_background
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
 drawable btn_checkbox_unchecked_mtrl
@@ -3174,7 +3175,9 @@ id bounce
 id bounceBoth
 id bounceEnd
 id bounceStart
+id btnAlertas
 id btnBarChart
+id btnBorrarTodo
 id btnCharts
 id btnConsultar
 id btnConsultarCharts
@@ -3451,6 +3454,7 @@ id ratio
 id rbFechaUnica
 id rbRangoFechas
 id rectangles
+id recyclerAlertas
 id report_drawn
 id reverseSawtooth
 id rgTipoFiltro
@@ -3568,11 +3572,16 @@ id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
 id triangle
+id tvAlertaFecha
+id tvAlertaMensaje
+id tvAlertaTipo
+id tvAlertaTitulo
 id tvCalidadAire
 id tvEstado
 id tvEstadoCharts
 id tvEstadoHistorico
 id tvHumedad
+id tvNoAlertas
 id tvRadiacionUV
 id tvRuido
 id tvTemperatura
@@ -3714,6 +3723,7 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_alert_history
 layout activity_charts
 layout activity_historic_data
 layout activity_main
@@ -3734,6 +3744,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout item_alerta
 layout m3_alert_dialog
 layout m3_alert_dialog_actions
 layout m3_alert_dialog_title

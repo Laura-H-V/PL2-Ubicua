@@ -1,0 +1,129 @@
+package com.uah.estacionmeteorologica;
+
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.media.RingtoneManager;
+import android.net.Uri;
+import android.os.Build;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
+
+import androidx.core.app.NotificationCompat;
+
+public class NotificationHelper {
+
+    private static final String CHANNEL_ID_ALERTS = "weather_alerts";
+    private static final String CHANNEL_ID_SERVICE = "weather_service";
+    private static final String CHANNEL_NAME_ALERTS = "Alertas Meteorológicas";
+    private static final String CHANNEL_NAME_SERVICE = "Servicio de Monitoreo";
+
+    private Context context;
+    private NotificationManager notificationManager;
+    private int notificationId = 2; // ID 1 está reservado para foreground
+
+    public NotificationHelper(Context context) {
+        this.context = context;
+        this.notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        createNotificationChannels();
+    }
+
+    private void createNotificationChannels() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // Canal para alertas (alta prioridad)
+            NotificationChannel alertChannel = new NotificationChannel(
+                CHANNEL_ID_ALERTS,
+                CHANNEL_NAME_ALERTS,
+                NotificationManager.IMPORTANCE_HIGH
+            );
+            alertChannel.setDescription("Notificaciones de alertas meteorológicas");
+            alertChannel.enableVibration(true);
+            alertChannel.setVibrationPattern(new long[]{0, 500, 200, 500});
+            alertChannel.enableLights(true);
+            alertChannel.setLightColor(0xFFFF0000); // Rojo
+            alertChannel.setSound(
+                RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION),
+                null
+            );
+
+            // Canal para el servicio foreground (baja prioridad)
+            NotificationChannel serviceChannel = new NotificationChannel(
+                CHANNEL_ID_SERVICE,
+                CHANNEL_NAME_SERVICE,
+                NotificationManager.IMPORTANCE_LOW
+            );
+            serviceChannel.setDescription("Servicio de monitoreo en segundo plano");
+            serviceChannel.enableVibration(false);
+            serviceChannel.setSound(null, null);
+
+            notificationManager.createNotificationChannel(alertChannel);
+            notificationManager.createNotificationChannel(serviceChannel);
+        }
+    }
+
+    // Notificación de foreground para el servicio
+    public Notification createForegroundNotification() {
+        Intent notificationIntent = new Intent(context, MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(
+            context, 
+            0, 
+            notificationIntent, 
+            PendingIntent.FLAG_IMMUTABLE
+        );
+
+        return new NotificationCompat.Builder(context, CHANNEL_ID_SERVICE)
+            .setContentTitle("Monitoreo de Estación Meteorológica")
+            .setContentText("Escuchando alertas en segundo plano...")
+            .setSmallIcon(android.R.drawable.ic_dialog_info)
+            .setContentIntent(pendingIntent)
+            .setOngoing(true)
+            .setPriority(NotificationCompat.PRIORITY_LOW)
+            .build();
+    }
+
+    // Notificación de alerta con vibración y sonido
+    public void showAlertNotification(String titulo, String mensaje) {
+        Intent intent = new Intent(context, AlertHistoryActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(
+            context,
+            0,
+            intent,
+            PendingIntent.FLAG_IMMUTABLE
+        );
+
+        Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID_ALERTS)
+            .setSmallIcon(android.R.drawable.ic_dialog_alert)
+            .setContentTitle(titulo)
+            .setContentText(mensaje)
+            .setStyle(new NotificationCompat.BigTextStyle().bigText(mensaje))
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setAutoCancel(true)
+            .setContentIntent(pendingIntent)
+            .setSound(soundUri)
+            .setVibrate(new long[]{0, 500, 200, 500});
+
+        notificationManager.notify(notificationId++, builder.build());
+
+        // Vibración adicional
+        vibrar();
+    }
+
+    private void vibrar() {
+        Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+        if (vibrator != null && vibrator.hasVibrator()) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                vibrator.vibrate(VibrationEffect.createWaveform(
+                    new long[]{0, 500, 200, 500}, 
+                    -1 // No repetir
+                ));
+            } else {
+                vibrator.vibrate(new long[]{0, 500, 200, 500}, -1);
+            }
+        }
+    }
+}

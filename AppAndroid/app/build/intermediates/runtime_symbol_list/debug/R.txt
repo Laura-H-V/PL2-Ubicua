@@ -2973,6 +2973,7 @@ int drawable abc_textfield_search_material 0x7f070076
 int drawable abc_vector_test 0x7f070077
 int drawable avd_hide_password 0x7f070078
 int drawable avd_show_password 0x7f070079
+int drawable badge_background 0x7f0700df
 int drawable btn_checkbox_checked_mtrl 0x7f07007a
 int drawable btn_checkbox_checked_to_unchecked_mtrl_animation 0x7f07007b
 int drawable btn_checkbox_unchecked_mtrl 0x7f07007c
@@ -3173,7 +3174,9 @@ int id bounce 0x7f08005e
 int id bounceBoth 0x7f08005f
 int id bounceEnd 0x7f080060
 int id bounceStart 0x7f080061
+int id btnAlertas 0x7f08020d
 int id btnBarChart 0x7f080200
+int id btnBorrarTodo 0x7f08020e
 int id btnCharts 0x7f0801fd
 int id btnConsultar 0x7f080062
 int id btnConsultarCharts 0x7f080201
@@ -3450,6 +3453,7 @@ int id ratio 0x7f080167
 int id rbFechaUnica 0x7f08020a
 int id rbRangoFechas 0x7f08020b
 int id rectangles 0x7f080168
+int id recyclerAlertas 0x7f080210
 int id report_drawn 0x7f080169
 int id reverseSawtooth 0x7f08016a
 int id rgTipoFiltro 0x7f08020c
@@ -3567,11 +3571,16 @@ int id transition_position 0x7f0801d9
 int id transition_scene_layoutid_cache 0x7f0801da
 int id transition_transform 0x7f0801db
 int id triangle 0x7f0801dc
+int id tvAlertaFecha 0x7f080211
+int id tvAlertaMensaje 0x7f080212
+int id tvAlertaTipo 0x7f080213
+int id tvAlertaTitulo 0x7f080214
 int id tvCalidadAire 0x7f0801dd
 int id tvEstado 0x7f0801de
 int id tvEstadoCharts 0x7f0801ff
 int id tvEstadoHistorico 0x7f0801df
 int id tvHumedad 0x7f0801e0
+int id tvNoAlertas 0x7f080215
 int id tvRadiacionUV 0x7f0801e1
 int id tvRuido 0x7f0801e2
 int id tvTemperatura 0x7f0801e3
@@ -3713,6 +3722,7 @@ int layout abc_search_dropdown_item_icons_2line 0x7f0b0018
 int layout abc_search_view 0x7f0b0019
 int layout abc_select_dialog_material 0x7f0b001a
 int layout abc_tooltip 0x7f0b001b
+int layout activity_alert_history 0x7f0b006d
 int layout activity_charts 0x7f0b006c
 int layout activity_historic_data 0x7f0b001c
 int layout activity_main 0x7f0b001d
@@ -3733,6 +3743,7 @@ int layout design_navigation_menu 0x7f0b002b
 int layout design_navigation_menu_item 0x7f0b002c
 int layout design_text_input_end_icon 0x7f0b002d
 int layout design_text_input_start_icon 0x7f0b002e
+int layout item_alerta 0x7f0b006e
 int layout m3_alert_dialog 0x7f0b002f
 int layout m3_alert_dialog_actions 0x7f0b0030
 int layout m3_alert_dialog_title 0x7f0b0031

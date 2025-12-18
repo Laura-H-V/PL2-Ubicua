@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#F5F5F5">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="📋 Historial de Alertas"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#333333"
+        android:gravity="center"
+        android:paddingBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btnBorrarTodo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="🗑️ Borrar Todas las Alertas"
+        android:backgroundTint="#F44336"
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/tvNoAlertas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No hay alertas en el historial"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:paddingTop="32dp"
+        android:textColor="#757575"
+        android:visibility="gone"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerAlertas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"/>
+
+</LinearLayout>

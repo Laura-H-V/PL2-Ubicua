@@ -11,6 +11,9 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <permission
         android:name="com.uah.estacionmeteorologica.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
@@ -51,7 +54,15 @@
             android:name="com.uah.estacionmeteorologica.ChartsActivity"
             android:exported="false"
             android:label="Gráficas" />
+        <activity
+            android:name="com.uah.estacionmeteorologica.AlertHistoryActivity"
+            android:exported="false"
+            android:label="Historial de Alertas" />
 
+        <service
+            android:name="com.uah.estacionmeteorologica.MqttBackgroundService"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
         <service android:name="org.eclipse.paho.android.service.MqttService" />
 
         <provider
