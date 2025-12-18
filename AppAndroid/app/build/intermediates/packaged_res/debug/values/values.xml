@@ -9,6 +9,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="white">#FFFFFFFF</color>
     <string name="app_name">Estación Meteorológica</string>
+    <string name="btn_charts">📈 Ver Gráficas</string>
     <string name="btn_historic">📊 Consultar Histórico</string>
     <string name="btn_realtime">🌡️ Monitoreo en Tiempo Real</string>
     <string name="historic_subtitle">Consulta mediciones anteriores por fecha</string>

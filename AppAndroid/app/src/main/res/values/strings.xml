@@ -5,6 +5,7 @@
     <!-- MainActivity -->
     <string name="btn_realtime">🌡️ Monitoreo en Tiempo Real</string>
     <string name="btn_historic">📊 Consultar Histórico</string>
+    <string name="btn_charts">📈 Ver Gráficas</string>
     
     <!-- RealtimeMonitoringActivity -->
     <string name="realtime_title">Monitoreo en Tiempo Real</string>

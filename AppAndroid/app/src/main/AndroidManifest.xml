@@ -35,6 +35,11 @@
             android:exported="false"
             android:label="@string/historic_title" />
         
+        <activity
+            android:name=".ChartsActivity"
+            android:exported="false"
+            android:label="Gráficas" />
+        
         <service android:name="org.eclipse.paho.android.service.MqttService" />
     </application>
 

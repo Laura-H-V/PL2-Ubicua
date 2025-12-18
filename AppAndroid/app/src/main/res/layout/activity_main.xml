@@ -41,7 +41,17 @@
         android:text="@string/btn_historic"
         android:textSize="18sp"
         android:padding="16dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="#2196F3" />
+
+    <Button
+        android:id="@+id/btnCharts"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_charts"
+        android:textSize="18sp"
+        android:padding="16dp"
+        android:backgroundTint="#FF9800" />
 
     <TextView
         android:layout_width="wrap_content"

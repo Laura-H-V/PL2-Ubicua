@@ -11,6 +11,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button btnRealtime;
     private Button btnHistoric;
+    private Button btnCharts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
         btnRealtime = findViewById(R.id.btnRealtime);
         btnHistoric = findViewById(R.id.btnHistoric);
+        btnCharts = findViewById(R.id.btnCharts);
 
         btnRealtime.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,6 +34,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, HistoricDataActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnCharts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ChartsActivity.class);
                 startActivity(intent);
             }
         });

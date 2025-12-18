@@ -611,3 +611,20 @@
 1766071366: mosquitto version 2.0.22 running
 1766072128: mosquitto version 2.0.22 terminating
 1766072128: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1766072201: mosquitto version 2.0.22 starting
+1766072201: Config loaded from /mosquitto/config/mosquitto.conf.
+1766072201: Opening ipv4 listen socket on port 1883.
+1766072201: Opening ipv6 listen socket on port 1883.
+1766072201: mosquitto version 2.0.22 running
+1766072254: New connection from 172.18.0.4:57676 on port 1883.
+1766072255: New client connected from 172.18.0.4:57676 as java_server (p2, c1, k60).
+1766074001: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1766074172: New connection from 172.18.0.1:42898 on port 1883.
+1766074172: New client connected from 172.18.0.1:42898 as paho2586694686900 (p2, c1, k60, u'ubicua').
+1766074178: Client paho2586694686900 disconnected.
+1766074196: New connection from 172.18.0.1:48062 on port 1883.
+1766074196: New client connected from 172.18.0.1:48062 as paho2610716535000 (p2, c1, k60, u'ubicua').
+1766074201: Client paho2610716535000 disconnected.
+1766074250: New connection from 172.18.0.1:44184 on port 1883.
+1766074250: New client connected from 172.18.0.1:44184 as paho2664852304500 (p2, c1, k60, u'ubicua').
+1766074255: Client paho2664852304500 disconnected.
