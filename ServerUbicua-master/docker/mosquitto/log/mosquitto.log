@@ -655,3 +655,11 @@
 1766142623: Opening ipv4 listen socket on port 1883.
 1766142623: Opening ipv6 listen socket on port 1883.
 1766142623: mosquitto version 2.0.22 running
+1766142657: New connection from 172.18.0.2:39442 on port 1883.
+1766142657: New client connected from 172.18.0.2:39442 as java_server (p2, c1, k60).
+1766142694: New connection from 172.18.0.1:60184 on port 1883.
+1766142695: New client connected from 172.18.0.1:60184 as android_alert_1766142694107 (p2, c1, k60, u'ubicua').
+1766143404: Client android_alert_1766142694107 closed its connection.
+1766143448: New connection from 172.18.0.1:36974 on port 1883.
+1766143448: New client connected from 172.18.0.1:36974 as android_alert_1766143447313 (p2, c1, k60, u'ubicua').
+1766143501: Client android_alert_1766143447313 closed its connection.

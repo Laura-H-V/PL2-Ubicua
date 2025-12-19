@@ -151,12 +151,25 @@ public class HistoricDataActivity extends AppCompatActivity {
         int chipId = chipGroupSensores.getCheckedChipId();
         int toggleId = toggleMaxMin.getCheckedButtonId();
 
+        // Si hay toggle seleccionado pero NO hay chip, mostrar advertencia
+        if (toggleId != View.NO_ID && chipId == View.NO_ID) {
+            Toast.makeText(this, "⚠️ Selecciona un sensor para buscar Máximo/Mínimo", Toast.LENGTH_LONG).show();
+            tvEstado.setText("Selecciona un sensor para aplicar filtro Máx/Mín");
+            return;
+        }
+
+        // Si hay AMBOS seleccionados, filtrar
         if (chipId != View.NO_ID && toggleId != View.NO_ID) {
             boolean buscarMax = (toggleId == R.id.btnMax);
             Medicion extrema = encontrarExtremo(aMostrar, chipId, buscarMax);
             aMostrar.clear();
-            if (extrema != null) aMostrar.add(extrema);
-            tvEstado.setText("Valor " + (buscarMax ? "Máximo" : "Mínimo") + " encontrado");
+            if (extrema != null) {
+                aMostrar.add(extrema);
+                tvEstado.setText("Valor " + (buscarMax ? "Máximo" : "Mínimo") + " encontrado");
+            } else {
+                tvEstado.setText("No se pudo encontrar el extremo");
+                return;
+            }
         } else {
             tvEstado.setText(aMostrar.size() + " registros encontrados");
         }
