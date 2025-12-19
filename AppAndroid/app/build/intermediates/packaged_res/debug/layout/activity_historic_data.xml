@@ -15,7 +15,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Historial"
-            android:textAppearance="@style/TextAppearance.Material3.TitleLarge" />
+            android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+            android:textColor="?attr/colorOnSurface"
+            android:textStyle="bold" />
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnBorrarFiltros"
             style="@style/Widget.Material3.Button.TextButton"

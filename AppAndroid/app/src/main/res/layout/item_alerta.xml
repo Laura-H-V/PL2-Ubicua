@@ -47,7 +47,7 @@
                     android:text="TIPO"
                     android:textAppearance="@style/TextAppearance.Material3.LabelSmall"
                     android:textColor="?attr/colorOnPrimaryContainer"
-                    android:textStyle="bold" />
+                    />
             </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>

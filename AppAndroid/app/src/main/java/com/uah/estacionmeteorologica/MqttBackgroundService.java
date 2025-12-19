@@ -130,7 +130,7 @@ public class MqttBackgroundService extends Service {
                 }
             } else {
                 // Si no hay array messages, al menos una alerta genérica
-                crearAlerta("Alarma estación", "Se ha recibido una alarma.", "GENERAL");
+                crearAlerta("Alarma estación", "Se ha recibido una alarma.", "ST_1657");
             }
 
         } catch (Exception e) {

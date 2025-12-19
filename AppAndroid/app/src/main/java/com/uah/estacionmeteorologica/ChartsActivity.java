@@ -113,7 +113,7 @@ public class ChartsActivity extends AppCompatActivity {
         rgTipoFiltro.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId == R.id.rbFechaUnica) {
                 // Día único: mostrar solo la caja única
-                tilFechaUnica.setVisibility(View.GONE);
+                    tilFechaUnica.setVisibility(View.VISIBLE);
                 layoutRangoFechas.setVisibility(View.GONE);
             } else if (checkedId == R.id.rbRangoFechas) {
                 // Rango: ocultar fecha única y mostrar las dos de rango
