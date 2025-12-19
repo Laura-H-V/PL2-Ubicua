@@ -1,8 +1,9 @@
 package com.uah.estacionmeteorologica;
 
 import com.google.gson.annotations.SerializedName;
+import java.io.Serializable;
 
-public class Medicion {
+public class Medicion implements Serializable {
     
     private int id;
     

@@ -39,6 +39,11 @@
             android:label="@string/historic_title" />
         
         <activity
+            android:name=".DataDetailsActivity"
+            android:exported="false"
+            android:label="Detalles de Datos" />
+        
+        <activity
             android:name=".ChartsActivity"
             android:exported="false"
             android:label="Gráficas" />

@@ -5,10 +5,11 @@
 2. [MainActivity - Pantalla Principal](#mainactivity---pantalla-principal)
 3. [Monitoreo en Tiempo Real](#monitoreo-en-tiempo-real)
 4. [Consulta de Datos Históricos](#consulta-de-datos-históricos)
-5. [Visualización de Gráficas](#visualización-de-gráficas)
-6. [Sistema de Notificaciones Push](#sistema-de-notificaciones-push)
-7. [Historial de Alertas](#historial-de-alertas)
-8. [Tecnologías Utilizadas](#tecnologías-utilizadas)
+5. [Pantalla de Detalles en Grande](#pantalla-de-detalles-en-grande-datadetailsactivity)
+6. [Visualización de Gráficas](#visualización-de-gráficas)
+7. [Sistema de Notificaciones Push](#sistema-de-notificaciones-push)
+8. [Historial de Alertas](#historial-de-alertas)
+9. [Tecnologías Utilizadas](#tecnologías-utilizadas)
 
 ---
 
@@ -20,7 +21,8 @@ El sistema completo funciona mediante una arquitectura IoT donde los sensores pu
 
 ### Funcionalidades Principales
 - **Monitoreo en tiempo real:** Conexión directa al broker MQTT para recibir lecturas de sensores al instante
-- **Consulta de datos históricos:** Acceso a la base de datos mediante API REST con filtros por fecha específica o rango de fechas
+- **Consulta de datos históricos:** Acceso a la base de datos mediante API REST con filtros por fecha única o rango de fechas
+- **Visualización ampliada de datos:** Pantalla dedicada para mostrar mediciones en formato grande y legible con código de colores
 - **Visualización de gráficas interactivas:** Representación gráfica de la evolución temporal de los datos y cálculo de promedios
 - **Sistema de notificaciones push:** Servicio en segundo plano que escucha alertas y notifica al usuario cuando se superan umbrales críticos
 - **Historial de alertas:** Almacenamiento local persistente de todas las notificaciones recibidas con posibilidad de consulta posterior
@@ -124,6 +126,78 @@ Si no hay datos disponibles para la fecha consultada, la aplicación muestra un 
 La aplicación verifica que el campo de fecha no esté vacío antes de intentar realizar la consulta. Si el usuario intenta buscar sin introducir una fecha, aparece un mensaje solicitando que ingrese la información requerida. Toda la comunicación con el servidor se realiza de forma asíncrona, lo que significa que la interfaz permanece responsive y el usuario puede seguir interactuando con la aplicación mientras se espera la respuesta del servidor.
 
 Este diseño asíncrono es fundamental para proporcionar una buena experiencia de usuario, especialmente en conexiones más lentas donde la respuesta del servidor podría tardar varios segundos.
+
+### Selector de Tipo de Búsqueda - Fecha Única vs Rango
+
+La interfaz de consulta histórica ha sido mejorada con un **selector de modo de búsqueda** mediante RadioButtons que permite elegir entre dos opciones:
+
+**📅 Fecha Única (Opción por defecto):** Al seleccionar esta opción, aparece un único campo de texto donde el usuario introduce una fecha específica en formato DD-MM-YYYY. Este modo es ideal para consultas puntuales de un día concreto.
+
+**📆 Rango de Fechas:** Al activar este modo, la interfaz muestra dos campos de texto: "Desde" y "Hasta". El usuario debe rellenar ambos campos para definir el período completo que desea consultar. Si solo se rellena el campo "Desde", el sistema automáticamente consultará únicamente ese día.
+
+El cambio entre modos es instantáneo - los campos de entrada se muestran y ocultan dinámicamente según la selección, manteniendo la interfaz limpia y enfocada en las opciones relevantes.
+
+### Pantalla de Detalles en Grande (DataDetailsActivity)
+
+Cuando el usuario pulsa el botón "Consultar", la aplicación **abre automáticamente una nueva Activity** que presenta los resultados en un formato grande y optimizado para lectura. Esta pantalla de detalles tiene las siguientes características:
+
+**Encabezado Informativo:**
+- Título "📊 Resultados de la Consulta" en tamaño HeadlineMedium
+- Contador de registros: "Total: X registros" en color secundario
+
+**Tarjetas de Datos Ampliadas:**
+
+Cada medición se presenta en una tarjeta (MaterialCardView) blanca con sombra de 4dp y esquinas redondeadas de 24dp. El contenido dentro de cada tarjeta incluye:
+
+**Fecha y Hora Formateada:**
+- Ubicada en la parte superior con emoji 📅
+- Formato limpio: `2025-12-02 07:00:00` (se eliminan la T y la Z del formato ISO)
+- Color azul oscuro (`holo_blue_dark`)
+- Tamaño TitleLarge para máxima legibilidad
+- Margen inferior de 32dp para separarla de los datos
+
+**Datos de Sensores en Líneas Separadas:**
+
+Cada sensor se presenta en su propia línea horizontal con un diseño de dos columnas:
+- Columna izquierda: Emoji + nombre del sensor (ej: "🌡️ Temperatura")
+- Columna derecha: Valor con unidad, alineado a la derecha y en negrita
+
+Código de colores por sensor:
+- 🌡️ Temperatura → Rojo (`holo_red_light`)
+- 💧 Humedad → Azul (`holo_blue_light`)
+- ☀️ Radiación UV → Naranja (`holo_orange_light`)
+- 🔊 Ruido → Púrpura (`holo_purple`)
+- 💨 Calidad del Aire → Verde (`holo_green_light`)
+
+**Espaciado Generoso:**
+- Padding de 48dp en todo el contenido de la tarjeta
+- 24dp de separación entre cada línea de dato
+- 32dp de margen entre tarjetas
+
+Este diseño espacioso y con colores diferenciados hace que los datos sean perfectamente legibles incluso a distancia, ideal para presentaciones o cuando se necesita mostrar información a varias personas simultáneamente.
+
+**Desplazamiento Vertical:**
+
+La pantalla utiliza un NestedScrollView que permite desplazarse suavemente a través de todas las mediciones, sin límites en la cantidad de resultados que se pueden mostrar.
+
+**Formato de Timestamp Mejorado:**
+
+El sistema automáticamente procesa las fechas que vienen del servidor en formato ISO 8601 (`2025-12-02T07:00:00Z`) y las transforma a un formato más legible eliminando la "T" y la "Z": `2025-12-02 07:00:00`. Esta transformación se realiza mediante el método `replace()` aplicado al timestamp antes de mostrarlo.
+
+### Flujo Completo de Consulta
+
+1. Usuario selecciona "Fecha única" o "Rango de fechas"
+2. Introduce la(s) fecha(s) en formato DD-MM-YYYY
+3. Opcionalmente activa filtros adicionales (Máx/Mín de un sensor)
+4. Pulsa "Consultar"
+5. La aplicación muestra mensaje "⏳ Consultando..." en el tvEstado
+6. Se realiza petición HTTP al servidor vía Retrofit
+7. Al recibir respuesta exitosa:
+   - Se procesa la lista de mediciones
+   - Se aplican filtros si hay alguno seleccionado
+   - Se abre DataDetailsActivity con los datos
+   - Se muestra mensaje "X registros encontrados"
+8. En la nueva pantalla, el usuario puede desplazarse por todas las mediciones en formato grande
 
 ---
 
@@ -406,7 +480,7 @@ La aplicación también utiliza `usesCleartextTraffic="true"` en el manifiesto, 
 
 La aplicación Android desarrollada para la Estación Meteorológica ST_1657 representa una solución completa e integrada para el monitoreo de condiciones ambientales. Combina múltiples tecnologías modernas (MQTT, REST, gráficas interactivas, notificaciones push) en una interfaz de usuario coherente y fácil de usar.
 
-Las cinco pantallas principales (Main, Monitoreo en Tiempo Real, Datos Históricos, Gráficas y Historial de Alertas) cubren todos los casos de uso relevantes: desde la visualización instantánea de datos actuales hasta el análisis de tendencias históricas, pasando por un sistema de alertas proactivo que mantiene al usuario informado de condiciones peligrosas incluso cuando no está usando activamente la aplicación.
+Las seis pantallas principales (MainActivity, Monitoreo en Tiempo Real, Consulta de Datos Históricos, Detalles en Grande, Gráficas y Historial de Alertas) cubren todos los casos de uso relevantes: desde la visualización instantánea de datos actuales hasta el análisis de tendencias históricas con presentación ampliada, pasando por un sistema de alertas proactivo que mantiene al usuario informado de condiciones peligrosas incluso cuando no está usando activamente la aplicación.
 
 El diseño técnico sigue las mejores prácticas de desarrollo Android, utilizando patrones establecidos como Singleton para clientes HTTP, Repository para almacenamiento, y Service para operaciones en segundo plano. La arquitectura está preparada para escalar y mantener a futuro.
 
@@ -569,12 +643,13 @@ La aplicación Android implementa un **sistema completo de monitoreo IoT** con l
 
 | Requisito | Estado | Detalles |
 |-----------|--------|----------|
-| Mínimo 3 Activities | ✅ Superado | 5 Activities implementadas |
+| Mínimo 3 Activities | ✅ Superado | 6 Activities implementadas |
 | Conexión API REST | ✅ Cumplido | Retrofit con endpoints de mediciones |
 | Conexión MQTT | ✅ Cumplido | Eclipse Paho en tiempo real y background |
-| Visualización datos | ✅ Cumplido | Realtime + Histórico + Gráficas |
+| Visualización datos | ✅ Cumplido | Realtime + Histórico + Detalles + Gráficas |
 | Sistema de alertas | ⭐ Extra | Push notifications con vibración |
 | Historial persistente | ⭐ Extra | SharedPreferences con Gson |
+| Pantalla detalles grande | ⭐ Extra | DataDetailsActivity con diseño ampliado |
 
 ---
 

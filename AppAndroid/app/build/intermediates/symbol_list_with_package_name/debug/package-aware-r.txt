@@ -3864,6 +3864,7 @@ id escape
 id etFechaCharts
 id etFechaDesde
 id etFechaHasta
+id etFechaUnica
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
@@ -3918,10 +3919,11 @@ id jumpToEnd
 id jumpToStart
 id labeled
 id layout
+id layoutDetalles
+id layoutFechaUnica
 id layoutFiltrosFecha
 id layoutInputsFechas
 id layoutRangoFechas
-id layoutResultados
 id left
 id leftToRight
 id legacy
@@ -4052,6 +4054,9 @@ id pressed
 id progress_circular
 id progress_horizontal
 id radio
+id radioFechaUnica
+id radioGroupTipoFecha
+id radioRangoFechas
 id ratio
 id rbFechaUnica
 id rbRangoFechas
@@ -4196,6 +4201,7 @@ id tvRadiacionUV
 id tvRuido
 id tvTemperatura
 id tvTimestamp
+id tvTotalRegistros
 id unchecked
 id uniform
 id unlabeled
@@ -4338,6 +4344,7 @@ layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_alert_history
 layout activity_charts
+layout activity_data_details
 layout activity_historic_data
 layout activity_main
 layout activity_realtime_monitoring

@@ -37,34 +37,81 @@
         android:id="@+id/layoutFiltrosFecha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_marginBottom="16dp">
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
+        
+        <RadioGroup
+            android:id="@+id/radioGroupTipoFecha"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="Desde"
-            android:layout_marginEnd="4dp">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etFechaDesde"
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp">
+            <RadioButton
+                android:id="@+id/radioFechaUnica"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Fecha única"
+                android:checked="true" />
+            <RadioButton
+                android:id="@+id/radioRangoFechas"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Rango de fechas" />
+        </RadioGroup>
+
+        <LinearLayout
+            android:id="@+id/layoutFechaUnica"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="date" />
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
+                android:hint="Fecha (dd-MM-yyyy)">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etFechaUnica"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="date" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutRangoFechas"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="Hasta"
-            android:layout_marginStart="4dp">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etFechaHasta"
-                android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:visibility="gone">
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:inputType="date" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_weight="1"
+                android:hint="Desde"
+                android:layout_marginEnd="4dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etFechaDesde"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="date" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Hasta"
+                android:layout_marginStart="4dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etFechaHasta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="date" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
     </LinearLayout>
 
     <TextView
@@ -144,16 +191,5 @@
             android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
             android:textColor="?attr/colorOnSecondaryContainer" />
     </com.google.android.material.card.MaterialCardView>
-
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="12dp">
-        <LinearLayout
-            android:id="@+id/layoutResultados"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

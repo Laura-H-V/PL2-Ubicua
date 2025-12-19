@@ -52,6 +52,10 @@
             android:exported="false"
             android:label="@string/historic_title" />
         <activity
+            android:name="com.uah.estacionmeteorologica.DataDetailsActivity"
+            android:exported="false"
+            android:label="Detalles de Datos" />
+        <activity
             android:name="com.uah.estacionmeteorologica.ChartsActivity"
             android:exported="false"
             android:label="Gráficas" />

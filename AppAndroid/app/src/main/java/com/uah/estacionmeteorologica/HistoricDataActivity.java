@@ -1,9 +1,11 @@
 package com.uah.estacionmeteorologica;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,12 +31,14 @@ public class HistoricDataActivity extends AppCompatActivity {
 
     private static final String TAG = "HistoricData";
 
-    private TextInputEditText etFechaDesde, etFechaHasta;
+    private RadioGroup radioGroupTipoFecha;
+    private LinearLayout layoutFechaUnica, layoutRangoFechas;
+    private TextInputEditText etFechaUnica, etFechaDesde, etFechaHasta;
     private MaterialButton btnConsultar, btnBorrarFiltros;
     private MaterialSwitch switchTodoHistorial;
     private ChipGroup chipGroupSensores;
     private MaterialButtonToggleGroup toggleMaxMin;
-    private LinearLayout layoutResultados, layoutFiltrosFecha;
+    private LinearLayout layoutFiltrosFecha;
     private TextView tvEstado;
 
     private List<Medicion> medicionesCargadas = new ArrayList<>();
@@ -45,6 +49,10 @@ public class HistoricDataActivity extends AppCompatActivity {
         setContentView(R.layout.activity_historic_data);
 
         // Vinculación
+        radioGroupTipoFecha = findViewById(R.id.radioGroupTipoFecha);
+        layoutFechaUnica = findViewById(R.id.layoutFechaUnica);
+        layoutRangoFechas = findViewById(R.id.layoutRangoFechas);
+        etFechaUnica = findViewById(R.id.etFechaUnica);
         etFechaDesde = findViewById(R.id.etFechaDesde);
         etFechaHasta = findViewById(R.id.etFechaHasta);
         btnConsultar = findViewById(R.id.btnConsultar);
@@ -52,9 +60,19 @@ public class HistoricDataActivity extends AppCompatActivity {
         switchTodoHistorial = findViewById(R.id.switchTodoHistorial);
         chipGroupSensores = findViewById(R.id.chipGroupSensores);
         toggleMaxMin = findViewById(R.id.toggleMaxMin);
-        layoutResultados = findViewById(R.id.layoutResultados);
         layoutFiltrosFecha = findViewById(R.id.layoutFiltrosFecha);
         tvEstado = findViewById(R.id.tvEstadoHistorico);
+
+        // Lógica para cambiar entre fecha única y rango
+        radioGroupTipoFecha.setOnCheckedChangeListener((group, checkedId) -> {
+            if (checkedId == R.id.radioFechaUnica) {
+                layoutFechaUnica.setVisibility(View.VISIBLE);
+                layoutRangoFechas.setVisibility(View.GONE);
+            } else {
+                layoutFechaUnica.setVisibility(View.GONE);
+                layoutRangoFechas.setVisibility(View.VISIBLE);
+            }
+        });
 
         // Lógica para ocultar fechas si se pide todo el historial
         switchTodoHistorial.setOnCheckedChangeListener((v, isChecked) -> {
@@ -75,18 +93,30 @@ public class HistoricDataActivity extends AppCompatActivity {
         if (switchTodoHistorial.isChecked()) {
             call = apiService.getAllMediciones();
         } else {
-            String desde = etFechaDesde.getText().toString().trim();
-            String hasta = etFechaHasta.getText().toString().trim();
-
-            if (desde.isEmpty()) {
-                Toast.makeText(this, "Escribe al menos la fecha de inicio", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            if (hasta.isEmpty()) {
-                call = apiService.getMediciones(desde); // Un solo día
+            // Verificar qué tipo de fecha está seleccionado
+            boolean esFechaUnica = radioGroupTipoFecha.getCheckedRadioButtonId() == R.id.radioFechaUnica;
+            
+            if (esFechaUnica) {
+                String fecha = etFechaUnica.getText().toString().trim();
+                if (fecha.isEmpty()) {
+                    Toast.makeText(this, "Escribe la fecha", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                call = apiService.getMediciones(fecha);
             } else {
-                call = apiService.getMedicionesPorRango(desde, hasta); // Rango
+                String desde = etFechaDesde.getText().toString().trim();
+                String hasta = etFechaHasta.getText().toString().trim();
+
+                if (desde.isEmpty()) {
+                    Toast.makeText(this, "Escribe la fecha de inicio", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (hasta.isEmpty()) {
+                    call = apiService.getMediciones(desde); // Un solo día
+                } else {
+                    call = apiService.getMedicionesPorRango(desde, hasta); // Rango
+                }
             }
         }
 
@@ -112,7 +142,6 @@ public class HistoricDataActivity extends AppCompatActivity {
     private void procesarYMostrarResultados() {
         if (medicionesCargadas.isEmpty()) {
             tvEstado.setText("No hay datos");
-            layoutResultados.removeAllViews();
             return;
         }
 
@@ -132,7 +161,10 @@ public class HistoricDataActivity extends AppCompatActivity {
             tvEstado.setText(aMostrar.size() + " registros encontrados");
         }
 
-        mostrarEnLista(aMostrar);
+        // Abrir nueva Activity con los datos en grande
+        Intent intent = new Intent(HistoricDataActivity.this, DataDetailsActivity.class);
+        intent.putExtra("mediciones", (ArrayList<Medicion>) aMostrar);
+        startActivity(intent);
     }
 
     private Medicion encontrarExtremo(List<Medicion> lista, int chipId, boolean max) {
@@ -146,37 +178,14 @@ public class HistoricDataActivity extends AppCompatActivity {
         return max ? Collections.max(lista, comp) : Collections.min(lista, comp);
     }
 
-    private void mostrarEnLista(List<Medicion> lista) {
-        layoutResultados.removeAllViews();
-        for (Medicion m : lista) {
-            MaterialCardView card = new MaterialCardView(this);
-            card.setRadius(40f);
-            card.setCardElevation(0);
-            card.setStrokeWidth(3);
-            card.setStrokeColor(getColor(android.R.color.darker_gray));
-
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(-1, -2);
-            params.setMargins(0, 0, 0, 24);
-            card.setLayoutParams(params);
-
-            TextView tv = new TextView(this);
-            tv.setPadding(40, 40, 40, 40);
-            tv.setText(String.format("📅 %s\n\n🌡️ %.1f°C  💧 %.1f%%\n☀️ %.1f UV  🔊 %.1f dB\n💨 %.1f ppm",
-                    m.getTimestamp(), m.getTemperatura(), m.getHumedad(),
-                    m.getRadiacion_uv(), m.getRuido_db(), m.getCalidad_aire()));
-
-            card.addView(tv);
-            layoutResultados.addView(card);
-        }
-    }
-
     private void limpiarFiltros() {
+        etFechaUnica.setText("");
         etFechaDesde.setText("");
         etFechaHasta.setText("");
         switchTodoHistorial.setChecked(false);
+        radioGroupTipoFecha.check(R.id.radioFechaUnica);
         chipGroupSensores.clearCheck();
         toggleMaxMin.clearChecked();
-        layoutResultados.removeAllViews();
         tvEstado.setText("ℹ️ Filtros limpiados");
     }
 }
