@@ -26,7 +26,7 @@ public interface ApiService {
     );
 
     /**
-     * Endpoint para todo el hsitorial
+     * Endpoint para el hsitorial compelto
      * URL: http://IP:8080/api/mediciones
      */
     @GET("api/mediciones")

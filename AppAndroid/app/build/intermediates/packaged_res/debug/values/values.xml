@@ -43,5 +43,6 @@
         <item name="colorOnError">@color/md_theme_onError</item>
         <item name="colorOutlineVariant">@color/md_theme_outline_variant</item>
 
+
     </style>
 </resources>

@@ -1,24 +1,28 @@
 package com.uah.estacionmeteorologica;
 
+import android.content.SharedPreferences;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
 
     private static Retrofit retrofit;
-    
-    // IMPORTANTE: Cambia esta IP por la IP de tu ordenador en la red local
-    // Para emulador Android usa 10.0.2.2 que apunta a localhost del host
-    // Para dispositivo físico usa la IP real (ej: 192.168.1.76)
-    private static final String BASE_URL = "http://10.0.2.2:8080/";
 
-    public static Retrofit getRetrofitInstance() {
+    private static String getBaseUrl(android.content.Context context) {
+        SharedPreferences prefs = context.getSharedPreferences("AppSettings", android.content.Context.MODE_PRIVATE);
+        String host = prefs.getString("broker_host", "10.0.2.2");
+        return "http://" + host + ":8080/";
+    }
+
+    public static Retrofit getRetrofitInstance(android.content.Context context) {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
+                    .baseUrl(getBaseUrl(context))
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
         return retrofit;
     }
 }
+

@@ -1,5 +1,6 @@
 package com.uah.estacionmeteorologica;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -21,10 +22,8 @@ import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 public class RealtimeMonitoringActivity extends AppCompatActivity {
 
     private static final String TAG = "RealtimeMQTT";
-    
-    // IMPORTANTE: Cambia esta IP por la IP de tu ordenador en la red local
-    // Para obtenerla: ipconfig (Windows) o ifconfig (Linux/Mac)
-    private static final String MQTT_BROKER = "tcp://10.0.2.2:1883";
+
+
     private static final String MQTT_TOPIC = "sensors/ST_1657/weather_station/WS_USE_1657";
     private static final String MQTT_USER = "ubicua";
     private static final String MQTT_PASS = "ubicua1234";
@@ -38,11 +37,16 @@ public class RealtimeMonitoringActivity extends AppCompatActivity {
     private TextView tvCalidadAire;
     private TextView tvTimestamp;
     private TextView tvEstado;
+    private String MQTT_BROKER;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_realtime_monitoring);
+
+        SharedPreferences prefs = getSharedPreferences("AppSettings", MODE_PRIVATE);
+        String host = prefs.getString("broker_host", "10.0.2.2");
+        MQTT_BROKER = "tcp://" + host + ":1883";
 
         // Vincular vistas
         tvTemperatura = findViewById(R.id.tvTemperatura);
@@ -83,7 +87,7 @@ public class RealtimeMonitoringActivity extends AppCompatActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    tvEstado.setText("❌ Conexión perdida");
+                                    tvEstado.setText("Conexión perdida");
                                     Toast.makeText(RealtimeMonitoringActivity.this, 
                                         "Conexión MQTT perdida", Toast.LENGTH_SHORT).show();
                                 }
@@ -112,7 +116,7 @@ public class RealtimeMonitoringActivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            tvEstado.setText("✅ Conectado - Esperando datos...");
+                            tvEstado.setText("Conectado - Esperando datos...");
                         }
                     });
 
@@ -121,7 +125,7 @@ public class RealtimeMonitoringActivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            tvEstado.setText("❌ Error de conexión");
+                            tvEstado.setText("Error de conexión");
                             Toast.makeText(RealtimeMonitoringActivity.this, 
                                 "Error conectando a MQTT: " + e.getMessage(), 
                                 Toast.LENGTH_LONG).show();
@@ -156,8 +160,8 @@ public class RealtimeMonitoringActivity extends AppCompatActivity {
                     tvRadiacionUV.setText(String.format("☀️ Radiación UV: %.2f mW/cm²", uv));
                     tvRuido.setText(String.format("🔊 Ruido: %.2f dB", ruido));
                     tvCalidadAire.setText(String.format("💨 Calidad Aire: %.2f ppm", calidadAire));
-                    tvTimestamp.setText("⏰ " + time);
-                    tvEstado.setText("✅ Datos recibidos");
+                    tvTimestamp.setText("⏰ " + time.toString().replace("T", "  ").replace("Z", ""));
+                    tvEstado.setText("Datos recibidos");
                 }
             });
 

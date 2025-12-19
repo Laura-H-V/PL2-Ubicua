@@ -52,7 +52,7 @@
                         android:layout_height="wrap_content"
                         android:text="🌡️ Temperatura: -- °C"
                         android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
-                        android:textColor="?attr/colorPrimary" />
+                        android:textColor="?attr/colorSecondary" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -90,7 +90,7 @@
                         android:layout_height="wrap_content"
                         android:text="☀️ Radiación UV: -- mW/cm²"
                         android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
-                        android:textColor="?attr/colorTertiary" />
+                        android:textColor="?attr/colorSecondary" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -109,7 +109,7 @@
                         android:layout_height="wrap_content"
                         android:text="🔊 Ruido: -- dB"
                         android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
-                        android:textColor="?attr/colorTertiary" />
+                        android:textColor="?attr/colorSecondary" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -128,7 +128,7 @@
                         android:layout_height="wrap_content"
                         android:text="💨 Calidad Aire: -- ppm"
                         android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
-                        android:textColor="?attr/colorOutline" />
+                        android:textColor="?attr/colorSecondary" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 

@@ -87,7 +87,7 @@ public class HistoricDataActivity extends AppCompatActivity {
     }
 
     private void ejecutarConsulta() {
-        ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
+        ApiService apiService = RetrofitClient.getRetrofitInstance(this).create(ApiService.class);
         Call<List<Medicion>> call;
 
         if (switchTodoHistorial.isChecked()) {
@@ -120,7 +120,7 @@ public class HistoricDataActivity extends AppCompatActivity {
             }
         }
 
-        tvEstado.setText("⏳ Consultando...");
+        tvEstado.setText("Consultando...");
         call.enqueue(new Callback<List<Medicion>>() {
             @Override
             public void onResponse(Call<List<Medicion>> call, Response<List<Medicion>> response) {
@@ -153,7 +153,7 @@ public class HistoricDataActivity extends AppCompatActivity {
 
         // Si hay toggle seleccionado pero NO hay chip, mostrar advertencia
         if (toggleId != View.NO_ID && chipId == View.NO_ID) {
-            Toast.makeText(this, "⚠️ Selecciona un sensor para buscar Máximo/Mínimo", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Selecciona un sensor para buscar Máximo/Mínimo", Toast.LENGTH_LONG).show();
             tvEstado.setText("Selecciona un sensor para aplicar filtro Máx/Mín");
             return;
         }

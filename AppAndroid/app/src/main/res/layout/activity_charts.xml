@@ -138,6 +138,7 @@
                     android:orientation="vertical">
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilFechaUnica"
                         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -148,7 +149,7 @@
                             android:id="@+id/etFechaCharts"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="date" />
+                            android:inputType="text" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <LinearLayout
@@ -161,24 +162,24 @@
                             style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Desde"
+                            android:hint="Desde (dd-MM-yyyy)"
                             android:layout_marginBottom="12dp">
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/etFechaDesde"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="date" />
+                                android:inputType="text" />
                         </com.google.android.material.textfield.TextInputLayout>
                         <com.google.android.material.textfield.TextInputLayout
                             style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Hasta">
+                            android:hint="Hasta (dd-MM-yyyy)">
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/etFechaHasta"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="date" />
+                                android:inputType="text" />
                         </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -245,7 +246,8 @@
                 android:id="@+id/lineChart"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="8dp" />
+                android:padding="8dp"
+                android:background="@android:color/white"/>
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
@@ -260,7 +262,8 @@
                 android:id="@+id/barChart"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="8dp" />
+                android:padding="8dp"
+                android:background="@android:color/white"/>
         </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>

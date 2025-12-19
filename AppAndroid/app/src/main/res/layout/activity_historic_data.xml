@@ -75,7 +75,7 @@
                     android:id="@+id/etFechaUnica"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="date" />
+                    android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
@@ -90,26 +90,26 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="Desde"
+                android:hint="Desde (dd-MM-yyyy)"
                 android:layout_marginEnd="4dp">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etFechaDesde"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="date" />
+                    android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="Hasta"
+                android:hint="Hasta (dd-MM-yyyy)"
                 android:layout_marginStart="4dp">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etFechaHasta"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="date" />
+                    android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
     </LinearLayout>
@@ -141,6 +141,7 @@
                 <com.google.android.material.chip.Chip android:id="@+id/chipHum" style="@style/Widget.Material3.Chip.Filter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Humedad" />
                 <com.google.android.material.chip.Chip android:id="@+id/chipRuido" style="@style/Widget.Material3.Chip.Filter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ruido" />
                 <com.google.android.material.chip.Chip android:id="@+id/chipUV" style="@style/Widget.Material3.Chip.Filter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="UV" />
+                <com.google.android.material.chip.Chip android:id="@+id/chipAire" style="@style/Widget.Material3.Chip.Filter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="C. Aire" />
             </com.google.android.material.chip.ChipGroup>
         </HorizontalScrollView>
 

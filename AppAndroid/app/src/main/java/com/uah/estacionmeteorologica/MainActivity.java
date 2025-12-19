@@ -17,17 +17,23 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.material.materialswitch.MaterialSwitch;
 
+import android.widget.Toast;
+import android.content.SharedPreferences;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final int REQUEST_NOTIFICATION_PERMISSION = 100;
     private static final String PREFS_NAME = "AppSettings";
     private static final String KEY_DARK_MODE = "dark_mode";
-    
+    private static final String KEY_BROKER_HOST = "broker_host";
     private Button btnRealtime;
     private Button btnHistoric;
     private Button btnCharts;
     private Button btnAlertas;
+    private Button btnConfigIp;
     private MaterialSwitch switchDarkMode;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
         btnCharts = findViewById(R.id.btnCharts);
         btnAlertas = findViewById(R.id.btnAlertas);
         switchDarkMode = findViewById(R.id.switchDarkMode);
+        btnConfigIp = findViewById(R.id.btnConfigIp);
+
 
         // Configurar estado inicial del switch según preferencia guardada
         SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
@@ -108,10 +116,63 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        btnConfigIp.setOnClickListener(v -> {
+            String ipActual = prefs.getString(KEY_BROKER_HOST, "10.0.2.2");
 
+            androidx.appcompat.app.AlertDialog.Builder builder =
+                    new androidx.appcompat.app.AlertDialog.Builder(MainActivity.this);
+            builder.setTitle("IP del servidor MQTT");
+
+            // Contenedor vertical con mensaje + caja de texto
+            android.widget.LinearLayout layout = new android.widget.LinearLayout(MainActivity.this);
+            layout.setOrientation(android.widget.LinearLayout.VERTICAL);
+            int padding = (int) (16 * getResources().getDisplayMetrics().density);
+            layout.setPadding(padding, padding, padding, padding);
+
+            android.widget.TextView info = new android.widget.TextView(MainActivity.this);
+            info.setText(
+                    "• Usa la IP del PC que ejecuta Docker.\n" +
+                            "• Si usas el emulador de Android Studio, pon 10.0.2.2"
+            );
+            info.setTextSize(14);
+
+            final android.widget.EditText input = new android.widget.EditText(MainActivity.this);
+            input.setInputType(android.text.InputType.TYPE_CLASS_PHONE);
+            input.setText(ipActual);
+
+            layout.addView(info);
+            layout.addView(input);
+
+            builder.setView(layout);
+
+            builder.setPositiveButton("Guardar", (dialog, which) -> {
+                String nuevaIp = input.getText().toString().trim();
+                if (!nuevaIp.isEmpty()) {
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putString(KEY_BROKER_HOST, nuevaIp);
+                    editor.apply();
+                    Toast.makeText(MainActivity.this,
+                            "IP guardada: " + nuevaIp, Toast.LENGTH_SHORT).show();
+                }
+
+                Intent serviceIntent = new Intent(MainActivity.this, MqttBackgroundService.class);
+                stopService(serviceIntent);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    startForegroundService(serviceIntent);
+                } else {
+                    startService(serviceIntent);
+                }
+
+            });
+
+            builder.setNegativeButton("Cancelar", (dialog, which) -> dialog.cancel());
+            builder.show();
+        });
         // Iniciar servicio automáticamente al abrir la app
         iniciarServicioAlertas();
     }
+
+
 
     private void aplicarTemaGuardado() {
         SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);

@@ -25,6 +25,7 @@ id btnBorrarFiltros
 id btnBorrarTodo
 id btnCharts
 id btnCompartir
+id btnConfigIp
 id btnConsultar
 id btnConsultarCharts
 id btnGuardar
@@ -67,6 +68,7 @@ id recyclerAlertas
 id rgTipoFiltro
 id switchDarkMode
 id switchTodoHistorial
+id tilFechaUnica
 id toggleGroupCharts
 id toggleMaxMin
 id tvAlertaFecha
@@ -92,6 +94,7 @@ layout activity_main
 layout activity_realtime_monitoring
 layout item_alerta
 mipmap ic_launcher
+mipmap ic_launcher_foreground
 mipmap ic_launcher_round
 string app_name
 string btn_charts

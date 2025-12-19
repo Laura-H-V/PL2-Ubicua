@@ -1,0 +1,6 @@
+com.uah.estacionmeteorologica.test.app-jetified-core-1.5.0-0 C:\Users\Sergio\.gradle\caches\transforms-3\555d4374212dd9690f574250e5a5755d\transformed\jetified-core-1.5.0\res
+com.uah.estacionmeteorologica.test.app-jetified-annotation-experimental-1.4.0-1 C:\Users\Sergio\.gradle\caches\transforms-3\db934f6c250811b68112e18808848b13\transformed\jetified-annotation-experimental-1.4.0\res
+com.uah.estacionmeteorologica.test.app-androidTest-2 C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\build\generated\res\resValues\androidTest\debug
+com.uah.estacionmeteorologica.test.app-mergeDebugAndroidTestResources-3 C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+com.uah.estacionmeteorologica.test.app-mergeDebugAndroidTestResources-4 C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+com.uah.estacionmeteorologica.test.app-merged_res-5 C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\build\intermediates\merged_res\debugAndroidTest

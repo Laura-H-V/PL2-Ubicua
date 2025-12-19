@@ -2,6 +2,7 @@ package com.uah.estacionmeteorologica;
 
 import android.app.Service;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.util.Log;
 
@@ -19,8 +20,9 @@ import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 public class MqttBackgroundService extends Service {
 
     private static final String TAG = "MqttBackgroundService";
-    private static final String BROKER_URL = "tcp://10.0.2.2:1883";
-    private static final String TOPIC_ALERTAS = "alertas/ST_1657/weather_station/WS_USE_1657";
+    private static final String PREFS_NAME = "AppSettings";
+    private static final String KEY_BROKER_HOST = "broker_host";
+    private static final String TOPIC_ALERTAS = "sensors/ST_1657/weather_station/WS_USE_1657/alarms";
     private static final String USERNAME = "ubicua";
     private static final String PASSWORD = "ubicua";
 
@@ -29,9 +31,9 @@ public class MqttBackgroundService extends Service {
     private AlertaManager alertaManager;
 
     // Umbrales de alerta
-    private static final double TEMP_MAX = 35.0;
-    private static final double HUM_MIN = 20.0;
-    private static final double UV_MAX = 10.0;
+    private static final double TEMP_MAX = 25.0;
+    private static final double HUM_MIN = 10.0;
+    private static final double UV_MAX = 20.0;
     private static final double RUIDO_MAX = 75.0;
     private static final double AIRE_MAX = 350.0;
 
@@ -54,8 +56,12 @@ public class MqttBackgroundService extends Service {
             @Override
             public void run() {
                 try {
+                    SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+                    String host = prefs.getString(KEY_BROKER_HOST, "10.0.2.2");
+                    String brokerUrl = "tcp://" + host + ":1883";
+
                     String clientId = "android_alert_" + System.currentTimeMillis();
-                    mqttClient = new MqttClient(BROKER_URL, clientId, new MemoryPersistence());
+                    mqttClient = new MqttClient(brokerUrl, clientId, new MemoryPersistence());
 
                     MqttConnectOptions options = new MqttConnectOptions();
                     options.setUserName(USERNAME);
@@ -106,41 +112,25 @@ public class MqttBackgroundService extends Service {
             Gson gson = new Gson();
             JsonObject json = gson.fromJson(payload, JsonObject.class);
 
-            double temperatura = json.has("temperatura") ? json.get("temperatura").getAsDouble() : 0;
-            double humedad = json.has("humedad") ? json.get("humedad").getAsDouble() : 0;
-            double radiacionUv = json.has("radiacion_uv") ? json.get("radiacion_uv").getAsDouble() : 0;
-            double ruidoDb = json.has("ruido_db") ? json.get("ruido_db").getAsDouble() : 0;
-            double calidadAire = json.has("calidad_aire") ? json.get("calidad_aire").getAsDouble() : 0;
+            boolean alert = json.has("alert") && json.get("alert").getAsBoolean();
 
-            // Verificar umbrales
-            if (temperatura > TEMP_MAX) {
-                crearAlerta("🌡️ Temperatura Alta", 
-                    "Temperatura: " + temperatura + "°C (límite: " + TEMP_MAX + "°C)", 
-                    "TEMPERATURA");
+            if (!alert) {
+                Log.i(TAG, "Mensaje de alarmas sin alert=true, no se genera alerta");
+                return;
             }
 
-            if (humedad < HUM_MIN) {
-                crearAlerta("💧 Humedad Baja", 
-                    "Humedad: " + humedad + "% (mínimo: " + HUM_MIN + "%)", 
-                    "HUMEDAD");
-            }
-
-            if (radiacionUv > UV_MAX) {
-                crearAlerta("☀️ Radiación UV Alta", 
-                    "UV: " + radiacionUv + " (límite: " + UV_MAX + ")", 
-                    "UV");
-            }
-
-            if (ruidoDb > RUIDO_MAX) {
-                crearAlerta("🔊 Ruido Excesivo", 
-                    "Ruido: " + ruidoDb + " dB (límite: " + RUIDO_MAX + " dB)", 
-                    "RUIDO");
-            }
-
-            if (calidadAire > AIRE_MAX) {
-                crearAlerta("💨 Calidad de Aire Mala", 
-                    "Aire: " + calidadAire + " ppm (límite: " + AIRE_MAX + " ppm)", 
-                    "AIRE");
+            if (json.has("messages") && json.get("messages").isJsonArray()) {
+                for (com.google.gson.JsonElement msgElement : json.get("messages").getAsJsonArray()) {
+                    String mensaje = msgElement.getAsString();
+                    crearAlerta(
+                            "Alarma estación",
+                            mensaje,
+                            "GENERAL"
+                    );
+                }
+            } else {
+                // Si no hay array messages, al menos una alerta genérica
+                crearAlerta("Alarma estación", "Se ha recibido una alarma.", "GENERAL");
             }
 
         } catch (Exception e) {

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +31,7 @@ import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.materialswitch.MaterialSwitch;
 import com.google.android.material.radiobutton.MaterialRadioButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -61,7 +63,7 @@ public class ChartsActivity extends AppCompatActivity {
     private MaterialRadioButton rbFechaUnica;
 
     private List<Medicion> medicionesActuales = null;
-
+    private TextInputLayout tilFechaUnica;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,6 +89,8 @@ public class ChartsActivity extends AppCompatActivity {
         layoutInputsFechas = findViewById(R.id.layoutInputsFechas);
         layoutRangoFechas = findViewById(R.id.layoutRangoFechas);
         rbFechaUnica = findViewById(R.id.rbFechaUnica);
+        tilFechaUnica = findViewById(R.id.tilFechaUnica);
+
 
         // Lógica del Switch "Todo el historial"
         switchTodoHistorial.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -94,8 +98,28 @@ public class ChartsActivity extends AppCompatActivity {
         });
 
         // Cambio de filtros rango/único
-        findViewById(R.id.rgTipoFiltro).setOnClickListener(v -> {
-            layoutRangoFechas.setVisibility(rbFechaUnica.isChecked() ? View.GONE : View.VISIBLE);
+        RadioGroup rgTipoFiltro = findViewById(R.id.rgTipoFiltro);
+        rgTipoFiltro.setOnCheckedChangeListener((group, checkedId) -> {
+            if (checkedId == R.id.rbFechaUnica) {
+                layoutRangoFechas.setVisibility(View.GONE);
+            } else if (checkedId == R.id.rbRangoFechas) {
+                layoutRangoFechas.setVisibility(View.VISIBLE);
+            }
+        });
+
+        LinearLayout layoutRangoFechas = findViewById(R.id.layoutRangoFechas);
+        TextInputEditText etFechaCharts = findViewById(R.id.etFechaCharts);
+
+        rgTipoFiltro.setOnCheckedChangeListener((group, checkedId) -> {
+            if (checkedId == R.id.rbFechaUnica) {
+                // Día único: mostrar solo la caja única
+                tilFechaUnica.setVisibility(View.GONE);
+                layoutRangoFechas.setVisibility(View.GONE);
+            } else if (checkedId == R.id.rbRangoFechas) {
+                // Rango: ocultar fecha única y mostrar las dos de rango
+                tilFechaUnica.setVisibility(View.GONE);
+                layoutRangoFechas.setVisibility(View.VISIBLE);
+            }
         });
 
         btnConsultarCharts.setOnClickListener(v -> {
@@ -116,12 +140,18 @@ public class ChartsActivity extends AppCompatActivity {
         btnLineChart.setOnClickListener(v -> {
             cardLineChart.setVisibility(View.VISIBLE);
             cardBarChart.setVisibility(View.GONE);
+            chipGroupVariables.setVisibility(View.VISIBLE);
+
             if (medicionesActuales != null) actualizarGrafica();
         });
 
         btnBarChart.setOnClickListener(v -> {
             cardLineChart.setVisibility(View.GONE); // Ocultamos la de líneas
             cardBarChart.setVisibility(View.VISIBLE); // Mostramos la de barras
+
+            chipGroupVariables.clearCheck();
+            chipGroupVariables.setVisibility(View.GONE);
+
             if (medicionesActuales != null) actualizarGrafica();
         });
 
@@ -209,7 +239,7 @@ public class ChartsActivity extends AppCompatActivity {
 
         // Si el switch de "Todo el historial" envía "ALL",
         // asegúrate de que tu API soporte recibir ese valor o una fecha vacía
-        ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
+        ApiService apiService = RetrofitClient.getRetrofitInstance(this).create(ApiService.class);
         Call<List<Medicion>> call = apiService.getMediciones(fecha);
 
         call.enqueue(new Callback<List<Medicion>>() {
@@ -265,7 +295,7 @@ public class ChartsActivity extends AppCompatActivity {
             final int[] peticionesFinalizadas = {0};
 
             for (String fechaActual : listaFechas) {
-                ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
+                ApiService apiService = RetrofitClient.getRetrofitInstance(this).create(ApiService.class);
                 apiService.getMediciones(fechaActual).enqueue(new Callback<List<Medicion>>() {
                     @Override
                     public void onResponse(Call<List<Medicion>> call, Response<List<Medicion>> response) {
@@ -337,7 +367,7 @@ public class ChartsActivity extends AppCompatActivity {
     private void cargarTodoElHistorial() {
         tvEstadoCharts.setText("⏳ Cargando historial completo...");
 
-        ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
+        ApiService apiService = RetrofitClient.getRetrofitInstance(this).create(ApiService.class);
         // Usamos el método sin parámetros
         Call<List<Medicion>> call = apiService.getAllMediciones();
 

@@ -15,7 +15,7 @@ public class AlertaManager {
 
     private static final String PREFS_NAME = "AlertasPrefs";
     private static final String KEY_ALERTAS = "alertas_historial";
-    private static final int MAX_ALERTAS = 100; // Límite de alertas guardadas
+    private static final int MAX_ALERTAS = 100;
 
     private Context context;
     private SharedPreferences preferences;
@@ -38,14 +38,12 @@ public class AlertaManager {
             System.currentTimeMillis()
         );
         
-        alertas.add(0, nuevaAlerta); // Añadir al principio (más reciente primero)
-        
-        // Mantener solo las últimas MAX_ALERTAS
+        alertas.add(0, nuevaAlerta); // Añadir al principio
+
         if (alertas.size() > MAX_ALERTAS) {
             alertas = alertas.subList(0, MAX_ALERTAS);
         }
-        
-        // Guardar en SharedPreferences
+
         String json = gson.toJson(alertas);
         preferences.edit().putString(KEY_ALERTAS, json).apply();
     }

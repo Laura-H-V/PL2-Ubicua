@@ -3763,6 +3763,7 @@ id btnBorrarFiltros
 id btnBorrarTodo
 id btnCharts
 id btnCompartir
+id btnConfigIp
 id btnConsultar
 id btnConsultarCharts
 id btnGuardar
@@ -4174,6 +4175,7 @@ id textinput_helper_text
 id textinput_placeholder
 id textinput_prefix_text
 id textinput_suffix_text
+id tilFechaUnica
 id time
 id title
 id titleDividerNoCustom
@@ -4440,6 +4442,7 @@ layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
 mipmap ic_launcher
+mipmap ic_launcher_foreground
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description
 string abc_action_bar_home_description
