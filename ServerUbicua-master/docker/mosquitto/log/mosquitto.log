@@ -663,3 +663,9 @@
 1766143448: New connection from 172.18.0.1:36974 on port 1883.
 1766143448: New client connected from 172.18.0.1:36974 as android_alert_1766143447313 (p2, c1, k60, u'ubicua').
 1766143501: Client android_alert_1766143447313 closed its connection.
+1766144036: New connection from 172.18.0.1:49554 on port 1883.
+1766144037: New client connected from 172.18.0.1:49554 as android_alert_1766144036060 (p2, c1, k60, u'ubicua').
+1766144229: Client android_alert_1766144036060 closed its connection.
+1766144233: New connection from 172.18.0.1:44660 on port 1883.
+1766144234: New client connected from 172.18.0.1:44660 as android_alert_1766144232941 (p2, c1, k60, u'ubicua').
+1766144259: Client android_alert_1766144232941 closed its connection.

@@ -40,6 +40,7 @@ id chipHum
 id chipRuido
 id chipTemp
 id chipUV
+id darkModeContainer
 id etFechaCharts
 id etFechaDesde
 id etFechaHasta
@@ -57,6 +58,7 @@ id rbFechaUnica
 id rbRangoFechas
 id recyclerAlertas
 id rgTipoFiltro
+id switchDarkMode
 id switchTodoHistorial
 id toggleGroupCharts
 id toggleMaxMin

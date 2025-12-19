@@ -125,6 +125,7 @@ public class DataDetailsActivity extends AppCompatActivity {
         TextView tvTitulo = new TextView(this);
         tvTitulo.setText(titulo);
         tvTitulo.setTextAppearance(this, com.google.android.material.R.style.TextAppearance_Material3_BodyLarge);
+        tvTitulo.setTextColor(getColor(android.R.color.black));
         tvTitulo.setLayoutParams(new LinearLayout.LayoutParams(
                 0,
                 LinearLayout.LayoutParams.WRAP_CONTENT,

@@ -3817,6 +3817,7 @@ id currentState
 id custom
 id customPanel
 id cut
+id darkModeContainer
 id date_picker_actions
 id decelerate
 id decelerateAndComplete
@@ -4134,6 +4135,7 @@ id stretch
 id submenuarrow
 id submit_area
 id supportScrollUp
+id switchDarkMode
 id switchTodoHistorial
 id tabMode
 id tag_accessibility_actions

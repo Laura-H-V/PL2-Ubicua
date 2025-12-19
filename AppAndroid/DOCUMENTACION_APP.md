@@ -26,6 +26,7 @@ El sistema completo funciona mediante una arquitectura IoT donde los sensores pu
 - **Visualización de gráficas interactivas:** Representación gráfica de la evolución temporal de los datos y cálculo de promedios
 - **Sistema de notificaciones push:** Servicio en segundo plano que escucha alertas y notifica al usuario cuando se superan umbrales críticos
 - **Historial de alertas:** Almacenamiento local persistente de todas las notificaciones recibidas con posibilidad de consulta posterior
+- **Modo claro/oscuro con preferencia guardada:** Conmutador visible en la pantalla principal que recuerda la elección del usuario y aplica el tema antes de renderizar la UI
 
 ---
 
@@ -43,6 +44,10 @@ La pantalla muestra en la parte superior el título "Estación Meteorológica" j
 - **Botón púrpura "Historial de Alertas":** Accede al registro de notificaciones recibidas
 
 En la parte inferior se muestra un pequeño texto con la versión de la aplicación.
+
+### Modo claro/oscuro
+
+En la esquina superior derecha hay un pequeño texto "Modo oscuro" junto a un switch compacto. Al activarlo se aplica el tema oscuro mediante `AppCompatDelegate`, y la preferencia queda guardada en `SharedPreferences` para que el tema se cargue antes de dibujar la UI en siguientes aperturas.
 
 ### Funcionalidad de Inicio Automático
 
@@ -148,6 +153,8 @@ Cuando el usuario pulsa el botón "Consultar", la aplicación **abre automática
 **Tarjetas de Datos Ampliadas:**
 
 Cada medición se presenta en una tarjeta (MaterialCardView) blanca con sombra de 4dp y esquinas redondeadas de 24dp. El contenido dentro de cada tarjeta incluye:
+
+**Contraste en temas claros y oscuros:** Los títulos de cada línea usan texto negro explícito sobre la tarjeta blanca para mantener legibilidad también en modo oscuro; los valores mantienen su código de color por sensor.
 
 **Fecha y Hora Formateada:**
 - Ubicada en la parte superior con emoji 📅
@@ -487,7 +494,7 @@ El diseño técnico sigue las mejores prácticas de desarrollo Android, utilizan
 ---
 
 **Versión:** 1.0  
-**Fecha:** 18 de Diciembre de 2025  
+**Fecha:** 19 de Diciembre de 2025  
 **Estación:** ST_1657 - Weather Station USE_1657  
 **Plataforma:** Android 7.0+ (API 24-34)  
 **Tecnologías Principales:** MQTT, REST API, MPAndroidChart, Material Design

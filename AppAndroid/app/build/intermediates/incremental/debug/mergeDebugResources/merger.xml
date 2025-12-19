@@ -12294,7 +12294,32 @@
         <item name="colorOnError">@color/md_theme_onError</item>
         <item name="colorOutlineVariant">@color/md_theme_outline_variant</item>
 
-    </style></file><file name="activity_data_details" path="C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\res\layout\activity_data_details.xml" qualifiers="" type="layout"/></source></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\debug\res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug" generated-set="debug$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\debug\res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="generated$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\build\generated\res\resValues\debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="generated" generated-set="generated$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\build\generated\res\resValues\debug"/></dataSet><mergedItems><configuration qualifiers=""><declare-styleable name="AlertDialog">
+    </style></file><file name="activity_data_details" path="C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\res\layout\activity_data_details.xml" qualifiers="" type="layout"/><file path="C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\res\values-night\themes.xml" qualifiers="night-v8"><style name="Theme.EstacionMeteorologica" parent="Theme.Material3.DayNight.NoActionBar">
+        
+        <item name="colorPrimary">#64B5F6</item>
+        <item name="colorOnPrimary">#000000</item>
+        <item name="colorPrimaryContainer">#1976D2</item>
+        <item name="colorOnPrimaryContainer">#E3F2FD</item>
+
+        
+        <item name="colorSecondary">#64B5F6</item>
+        <item name="colorOnSecondary">#000000</item>
+        <item name="colorSecondaryContainer">#1565C0</item>
+        <item name="colorOnSecondaryContainer">#BBDEFB</item>
+
+        
+        <item name="android:windowBackground">#121212</item>
+        <item name="colorSurface">#1E1E1E</item>
+        <item name="colorOnSurface">#E0E0E0</item>
+        <item name="colorSurfaceVariant">#2C2C2C</item>
+        <item name="colorOnSurfaceVariant">#BDBDBD</item>
+        <item name="colorOutline">#757575</item>
+
+        
+        <item name="colorError">#EF5350</item>
+        <item name="colorOnError">#1A1A1A</item>
+        <item name="colorOutlineVariant">#424242</item>
+    </style></file></source></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\debug\res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug" generated-set="debug$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\debug\res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="generated$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\build\generated\res\resValues\debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="generated" generated-set="generated$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\build\generated\res\resValues\debug"/></dataSet><mergedItems><configuration qualifiers=""><declare-styleable name="AlertDialog">
         <attr name="android:layout"/>
         <attr format="reference" name="buttonPanelSideLayout"/>
         <attr format="reference" name="listLayout"/>

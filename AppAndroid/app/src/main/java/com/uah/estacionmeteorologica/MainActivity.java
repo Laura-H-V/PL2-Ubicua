@@ -2,6 +2,7 @@ package com.uah.estacionmeteorologica;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -10,27 +11,61 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
+import com.google.android.material.materialswitch.MaterialSwitch;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final int REQUEST_NOTIFICATION_PERMISSION = 100;
+    private static final String PREFS_NAME = "AppSettings";
+    private static final String KEY_DARK_MODE = "dark_mode";
     
     private Button btnRealtime;
     private Button btnHistoric;
     private Button btnCharts;
     private Button btnAlertas;
+    private MaterialSwitch switchDarkMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        // Aplicar el tema guardado ANTES de setContentView
+        aplicarTemaGuardado();
+        
         setContentView(R.layout.activity_main);
 
         btnRealtime = findViewById(R.id.btnRealtime);
         btnHistoric = findViewById(R.id.btnHistoric);
         btnCharts = findViewById(R.id.btnCharts);
         btnAlertas = findViewById(R.id.btnAlertas);
+        switchDarkMode = findViewById(R.id.switchDarkMode);
+
+        // Configurar estado inicial del switch según preferencia guardada
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        boolean isDarkMode = prefs.getBoolean(KEY_DARK_MODE, false);
+        switchDarkMode.setChecked(isDarkMode);
+
+        // Listener para cambio de modo oscuro
+        switchDarkMode.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            // Guardar preferencia
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putBoolean(KEY_DARK_MODE, isChecked);
+            editor.apply();
+            
+            // Aplicar tema
+            if (isChecked) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            }
+            
+            // Recrear la actividad para aplicar el cambio
+            recreate();
+        });
 
         // Solicitar permiso de notificaciones en Android 13+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -76,6 +111,17 @@ public class MainActivity extends AppCompatActivity {
 
         // Iniciar servicio automáticamente al abrir la app
         iniciarServicioAlertas();
+    }
+
+    private void aplicarTemaGuardado() {
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        boolean isDarkMode = prefs.getBoolean(KEY_DARK_MODE, false);
+        
+        if (isDarkMode) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
     }
 
     private void iniciarServicioAlertas() {
