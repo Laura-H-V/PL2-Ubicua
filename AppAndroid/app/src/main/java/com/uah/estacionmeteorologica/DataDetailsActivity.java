@@ -1,11 +1,16 @@
 package com.uah.estacionmeteorologica;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import java.io.OutputStream;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 
 import java.io.Serializable;
@@ -17,6 +22,9 @@ public class DataDetailsActivity extends AppCompatActivity {
     private TextView tvTotalRegistros;
     private LinearLayout layoutDetalles;
     private List<Medicion> mediciones;
+        private MaterialButton btnCompartir;
+        private MaterialButton btnGuardar;
+        private static final int REQ_SAVE_DETAILS_CSV = 1001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +33,8 @@ public class DataDetailsActivity extends AppCompatActivity {
 
         tvTotalRegistros = findViewById(R.id.tvTotalRegistros);
         layoutDetalles = findViewById(R.id.layoutDetalles);
+                btnCompartir = findViewById(R.id.btnCompartir);
+                btnGuardar = findViewById(R.id.btnGuardar);
 
         // Recibir datos del Intent
         Serializable extra = getIntent().getSerializableExtra("mediciones");
@@ -32,7 +42,58 @@ public class DataDetailsActivity extends AppCompatActivity {
             mediciones = (ArrayList<Medicion>) extra;
             mostrarDatos();
         }
+
+                btnCompartir.setOnClickListener(v -> compartirResultados());
+                btnGuardar.setOnClickListener(v -> guardarComoCsv());
     }
+
+        private void guardarComoCsv() {
+                if (mediciones == null || mediciones.isEmpty()) {
+                        Toast.makeText(this, "No hay datos para guardar", Toast.LENGTH_SHORT).show();
+                        return;
+                }
+
+                Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
+                intent.addCategory(Intent.CATEGORY_OPENABLE);
+                intent.setType("text/csv");
+                intent.putExtra(Intent.EXTRA_TITLE, "datos_ST_1657.csv");
+                startActivityForResult(intent, REQ_SAVE_DETAILS_CSV);
+        }
+
+        @Override
+        protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+                super.onActivityResult(requestCode, resultCode, data);
+                if (requestCode == REQ_SAVE_DETAILS_CSV && resultCode == RESULT_OK && data != null) {
+                        Uri uri = data.getData();
+                        if (uri != null) {
+                                String csv = construirCsvMediciones();
+                                try (OutputStream os = getContentResolver().openOutputStream(uri)) {
+                                        if (os != null) {
+                                                os.write(csv.getBytes("UTF-8"));
+                                                Toast.makeText(this, "CSV guardado", Toast.LENGTH_SHORT).show();
+                                        }
+                                } catch (Exception e) {
+                                        Toast.makeText(this, "Error al guardar", Toast.LENGTH_SHORT).show();
+                                }
+                        }
+                }
+        }
+
+        private String construirCsvMediciones() {
+                StringBuilder sb = new StringBuilder();
+                sb.append("fecha,temperatura,humedad,uv,ruido,aire\n");
+                for (Medicion m : mediciones) {
+                        String fechaFormateada = m.getTimestamp().replace("T", " ").replace("Z", "");
+                        sb.append(fechaFormateada).append(',')
+                                        .append(String.format("%.1f", m.getTemperatura())).append(',')
+                                        .append(String.format("%.1f", m.getHumedad())).append(',')
+                                        .append(String.format("%.1f", m.getRadiacion_uv())).append(',')
+                                        .append(String.format("%.1f", m.getRuido_db())).append(',')
+                                        .append(String.format("%.0f", m.getCalidad_aire()))
+                                        .append('\n');
+                }
+                return sb.toString();
+        }
 
     private void mostrarDatos() {
         if (mediciones == null || mediciones.isEmpty()) {
@@ -142,5 +203,52 @@ public class DataDetailsActivity extends AppCompatActivity {
         linea.addView(tvValor);
 
         return linea;
+    }
+
+    private void compartirResultados() {
+        if (mediciones == null || mediciones.isEmpty()) {
+            Toast.makeText(this, "No hay datos para compartir", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String contenido = construirTextoCompartir();
+
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Datos históricos - Estación ST_1657");
+        intent.putExtra(Intent.EXTRA_TEXT, contenido);
+        startActivity(Intent.createChooser(intent, "Compartir resultados"));
+    }
+
+    private String construirTextoCompartir() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Resultados de la consulta (" )
+                .append(mediciones.size())
+                .append(" registros)\n\n");
+
+        for (Medicion m : mediciones) {
+            String fechaFormateada = m.getTimestamp()
+                    .replace("T", " ")
+                    .replace("Z", "");
+
+            sb.append("Fecha: ").append(fechaFormateada).append('\n');
+            sb.append("Temperatura: ")
+                    .append(String.format("%.1f °C", m.getTemperatura()))
+                    .append('\n');
+            sb.append("Humedad: ")
+                    .append(String.format("%.1f %%", m.getHumedad()))
+                    .append('\n');
+            sb.append("Radiación UV: ")
+                    .append(String.format("%.1f", m.getRadiacion_uv()))
+                    .append('\n');
+            sb.append("Ruido: ")
+                    .append(String.format("%.1f dB", m.getRuido_db()))
+                    .append('\n');
+            sb.append("Calidad del aire: ")
+                    .append(String.format("%.0f ppm", m.getCalidad_aire()))
+                    .append("\n\n");
+        }
+
+        return sb.toString().trim();
     }
 }

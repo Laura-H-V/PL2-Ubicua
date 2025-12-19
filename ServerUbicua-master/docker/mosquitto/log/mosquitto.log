@@ -669,3 +669,19 @@
 1766144233: New connection from 172.18.0.1:44660 on port 1883.
 1766144234: New client connected from 172.18.0.1:44660 as android_alert_1766144232941 (p2, c1, k60, u'ubicua').
 1766144259: Client android_alert_1766144232941 closed its connection.
+1766144397: New connection from 172.18.0.1:57120 on port 1883.
+1766144397: New client connected from 172.18.0.1:57120 as android_alert_1766144396633 (p2, c1, k60, u'ubicua').
+1766144403: New connection from 172.18.0.1:57130 on port 1883.
+1766144404: New client connected from 172.18.0.1:57130 as paho14634701818800 (p2, c1, k60, u'ubicua').
+1766144406: Client paho14634701818800 disconnected.
+1766144423: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1766144736: Client android_alert_1766144396633 closed its connection.
+1766144752: New connection from 172.18.0.1:50768 on port 1883.
+1766144752: New client connected from 172.18.0.1:50768 as android_alert_1766144751811 (p2, c1, k60, u'ubicua').
+1766144896: Client android_alert_1766144751811 closed its connection.
+1766145008: New connection from 172.18.0.1:59738 on port 1883.
+1766145009: New client connected from 172.18.0.1:59738 as android_alert_1766145008166 (p2, c1, k60, u'ubicua').
+1766145026: Client android_alert_1766145008166 closed its connection.
+1766145104: New connection from 172.18.0.1:43668 on port 1883.
+1766145104: New client connected from 172.18.0.1:43668 as android_alert_1766145103284 (p2, c1, k60, u'ubicua').
+1766145169: Client android_alert_1766145103284 closed its connection.

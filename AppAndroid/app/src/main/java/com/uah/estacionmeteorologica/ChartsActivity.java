@@ -1,5 +1,8 @@
 package com.uah.estacionmeteorologica;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -48,7 +51,9 @@ public class ChartsActivity extends AppCompatActivity {
     private BarChart barChart;
     private TextView tvEstadoCharts;
     private TextInputEditText etFechaCharts, etFechaDesde, etFechaHasta;
-    private MaterialButton btnConsultarCharts, btnLineChart, btnBarChart;
+    private MaterialButton btnConsultarCharts, btnLineChart, btnBarChart, btnShareCharts, btnSaveCharts, btnSaveChartImage;
+    private static final int REQ_SAVE_CHARTS_CSV = 2001;
+    private static final int REQ_SAVE_CHART_IMAGE = 2002;
     private MaterialCardView cardLineChart, cardBarChart;
     private MaterialSwitch switchTodoHistorial;
     private ChipGroup chipGroupVariables;
@@ -72,6 +77,9 @@ public class ChartsActivity extends AppCompatActivity {
         btnConsultarCharts = findViewById(R.id.btnConsultarCharts);
         btnLineChart = findViewById(R.id.btnLineChart);
         btnBarChart = findViewById(R.id.btnBarChart);
+        btnShareCharts = findViewById(R.id.btnShareCharts);
+        btnSaveCharts = findViewById(R.id.btnSaveCharts);
+        btnSaveChartImage = findViewById(R.id.btnSaveChartImage);
         cardLineChart = findViewById(R.id.cardLineChart);
         cardBarChart = findViewById(R.id.cardBarChart);
         switchTodoHistorial = findViewById(R.id.switchTodoHistorial);
@@ -116,7 +124,86 @@ public class ChartsActivity extends AppCompatActivity {
             cardBarChart.setVisibility(View.VISIBLE); // Mostramos la de barras
             if (medicionesActuales != null) actualizarGrafica();
         });
+
+        btnShareCharts.setOnClickListener(v -> compartirMediciones());
+        btnSaveCharts.setOnClickListener(v -> guardarMedicionesCsv());
+        btnSaveChartImage.setOnClickListener(v -> guardarGraficaPng());
     }
+        private void guardarMedicionesCsv() {
+            if (medicionesActuales == null || medicionesActuales.isEmpty()) {
+                Toast.makeText(this, "No hay datos para guardar", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
+            intent.addCategory(Intent.CATEGORY_OPENABLE);
+            intent.setType("text/csv");
+            intent.putExtra(Intent.EXTRA_TITLE, "graficas_ST_1657.csv");
+            startActivityForResult(intent, REQ_SAVE_CHARTS_CSV);
+        }
+
+        private void guardarGraficaPng() {
+            Bitmap bmp = null;
+            if (cardLineChart.getVisibility() == View.VISIBLE) {
+                bmp = lineChart.getChartBitmap();
+            } else if (cardBarChart.getVisibility() == View.VISIBLE) {
+                bmp = barChart.getChartBitmap();
+            }
+            if (bmp == null) {
+                Toast.makeText(this, "No hay gráfica para guardar", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
+            intent.addCategory(Intent.CATEGORY_OPENABLE);
+            intent.setType("image/png");
+            intent.putExtra(Intent.EXTRA_TITLE, "grafica_ST_1657.png");
+            startActivityForResult(intent, REQ_SAVE_CHART_IMAGE);
+        }
+
+        @Override
+        protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+            super.onActivityResult(requestCode, resultCode, data);
+            if (resultCode == RESULT_OK && data != null) {
+                Uri uri = data.getData();
+                if (uri == null) return;
+                try {
+                    if (requestCode == REQ_SAVE_CHARTS_CSV) {
+                        String csv = construirCsvMediciones(medicionesActuales);
+                        try (java.io.OutputStream os = getContentResolver().openOutputStream(uri)) {
+                            if (os != null) {
+                                os.write(csv.getBytes("UTF-8"));
+                                Toast.makeText(this, "CSV guardado", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    } else if (requestCode == REQ_SAVE_CHART_IMAGE) {
+                        Bitmap bmp = (cardLineChart.getVisibility() == View.VISIBLE) ? lineChart.getChartBitmap() : barChart.getChartBitmap();
+                        try (java.io.OutputStream os = getContentResolver().openOutputStream(uri)) {
+                            if (os != null && bmp != null) {
+                                bmp.compress(Bitmap.CompressFormat.PNG, 100, os);
+                                Toast.makeText(this, "Imagen guardada", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(this, "Error al guardar", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+
+        private String construirCsvMediciones(List<Medicion> lista) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("fecha,temperatura,humedad,uv,ruido,aire\n");
+            for (Medicion m : lista) {
+                String fechaFormateada = m.getTimestamp().replace("T", " ").replace("Z", "");
+                sb.append(fechaFormateada).append(',')
+                        .append(String.format("%.1f", m.getTemperatura())).append(',')
+                        .append(String.format("%.1f", m.getHumedad())).append(',')
+                        .append(String.format("%.1f", m.getRadiacion_uv())).append(',')
+                        .append(String.format("%.1f", m.getRuido_db())).append(',')
+                        .append(String.format("%.0f", m.getCalidad_aire()))
+                        .append('\n');
+            }
+            return sb.toString();
+        }
     private void cargarDatos(String fecha) {
         tvEstadoCharts.setText("⏳ Cargando datos...");
 
@@ -216,6 +303,36 @@ public class ChartsActivity extends AppCompatActivity {
             tvEstadoCharts.setText("✅ " + resultados.size() + " mediciones cargadas.");
             actualizarGrafica();
         }
+    }
+
+    private void compartirMediciones() {
+        if (medicionesActuales == null || medicionesActuales.isEmpty()) {
+            Toast.makeText(this, "No hay datos para compartir", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("Resultados de gráficas (" )
+                .append(medicionesActuales.size())
+                .append(" registros)\n\n");
+
+        for (Medicion m : medicionesActuales) {
+            String fechaFormateada = m.getTimestamp()
+                    .replace("T", " ")
+                    .replace("Z", "");
+            sb.append("Fecha: ").append(fechaFormateada).append('\n');
+            sb.append("Temp: ").append(String.format("%.1f °C", m.getTemperatura())).append('\n');
+            sb.append("Hum: ").append(String.format("%.1f %%", m.getHumedad())).append('\n');
+            sb.append("UV: ").append(String.format("%.1f", m.getRadiacion_uv())).append('\n');
+            sb.append("Ruido: ").append(String.format("%.1f dB", m.getRuido_db())).append('\n');
+            sb.append("Aire: ").append(String.format("%.0f ppm", m.getCalidad_aire())).append("\n\n");
+        }
+
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Datos para gráficas - Estación ST_1657");
+        intent.putExtra(Intent.EXTRA_TEXT, sb.toString().trim());
+        startActivity(Intent.createChooser(intent, "Compartir datos de gráficas"));
     }
     private void cargarTodoElHistorial() {
         tvEstadoCharts.setText("⏳ Cargando historial completo...");

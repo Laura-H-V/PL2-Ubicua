@@ -27,6 +27,8 @@ El sistema completo funciona mediante una arquitectura IoT donde los sensores pu
 - **Sistema de notificaciones push:** Servicio en segundo plano que escucha alertas y notifica al usuario cuando se superan umbrales críticos
 - **Historial de alertas:** Almacenamiento local persistente de todas las notificaciones recibidas con posibilidad de consulta posterior
 - **Modo claro/oscuro con preferencia guardada:** Conmutador visible en la pantalla principal que recuerda la elección del usuario y aplica el tema antes de renderizar la UI
+- **Exportar/compartir resultados:** Botones de compartir en Detalles, Gráficas y Historial de Alertas para exportar los datos visibles en texto plano a correo, WhatsApp u otras apps
+- **Guardar/descargar resultados:** Botones de guardar en Detalles (CSV), Gráficas (CSV e imagen PNG) y Historial (CSV) usando el diálogo del sistema (ACTION_CREATE_DOCUMENT)
 
 ---
 
@@ -156,6 +158,10 @@ Cada medición se presenta en una tarjeta (MaterialCardView) blanca con sombra d
 
 **Contraste en temas claros y oscuros:** Los títulos de cada línea usan texto negro explícito sobre la tarjeta blanca para mantener legibilidad también en modo oscuro; los valores mantienen su código de color por sensor.
 
+**Botón de compartir:** En la cabecera de la pantalla hay un botón "Compartir" que abre el menú del sistema para enviar todas las mediciones en texto plano (incluye fecha/hora formateada y todos los sensores). Si no hay datos, muestra un aviso amigable.
+
+**Botón Guardar (CSV):** Junto al icono de compartir, hay un botón compacto de "Guardar" (solo icono, sin fondo). Permite descargar un fichero `.csv` con todas las mediciones mostradas. Al pulsarlo se abre el diálogo del sistema para elegir nombre y ubicación del archivo. El CSV contiene columnas: `fecha, temperatura, humedad, uv, ruido, aire`.
+
 **Fecha y Hora Formateada:**
 - Ubicada en la parte superior con emoji 📅
 - Formato limpio: `2025-12-02 07:00:00` (se eliminan la T y la Z del formato ISO)
@@ -205,6 +211,7 @@ El sistema automáticamente procesa las fechas que vienen del servidor en format
    - Se abre DataDetailsActivity con los datos
    - Se muestra mensaje "X registros encontrados"
 8. En la nueva pantalla, el usuario puede desplazarse por todas las mediciones en formato grande
+9. Opcional: Pulsar "Compartir" para exportar el listado completo en texto plano a cualquier app
 
 ---
 
@@ -271,6 +278,15 @@ Cuando el usuario selecciona qué gráfica quiere ver, la aplicación realiza lo
 Un detalle importante del diseño es que las gráficas se muestran dentro de tarjetas (CardView) que inicialmente están ocultas. Solo cuando el usuario pulsa uno de los botones de gráfica, la tarjeta correspondiente se hace visible con una animación suave. Si el usuario decide cambiar de tipo de gráfica, la anterior se oculta y aparece la nueva, manteniendo la interfaz limpia y enfocada en una visualización a la vez.
 
 Los campos de fecha están vacíos por defecto, dando al usuario total control sobre qué período desea analizar sin imponer fechas predeterminadas que podrían no ser relevantes para su caso de uso.
+
+### Botón de Compartir en Gráficas
+
+En la cabecera de la pantalla de gráficas hay un **botón compacto de compartir** (icono) que exporta todas las mediciones cargadas para la visualización actual. El contenido se genera en texto plano, incluyendo por registro: fecha/hora formateada y valores de temperatura, humedad, radiación UV, ruido y calidad del aire. Si no hay datos cargados, se muestra un aviso de que no hay nada para compartir.
+
+### Botones de Guardar en Gráficas
+
+- **Guardar CSV:** Botón compacto para descargar las mediciones actuales como archivo `.csv` mediante el diálogo del sistema.
+- **Guardar imagen (PNG):** Botón compacto que guarda la gráfica visible (líneas o barras) como imagen `.png`. El sistema solicita nombre y carpeta.
 
 ---
 
@@ -365,6 +381,14 @@ La pantalla de historial presenta un diseño limpio y organizado:
 
 En la parte superior, un título con el emoji de portapapeles indica claramente la función de la pantalla. Inmediatamente debajo hay un botón rojo "Borrar Todas las Alertas" que permite limpiar completamente el historial si el usuario lo desea.
 
+### Compartir Historial
+
+La cabecera del historial incluye un **icono de compartir** compacto. Permite exportar el listado completo de alertas en texto plano con: fecha/hora formateada, título y mensaje. Cuando no hay alertas, el botón permanece visible pero deshabilitado para mantener la coherencia visual de la cabecera.
+
+### Guardar Historial (CSV)
+
+Junto al icono de compartir, hay un botón compacto de **Guardar CSV**. Descarga un archivo `.csv` con columnas `fecha, tipo, titulo, mensaje`. Si el historial está vacío, el botón permanece visible pero deshabilitado.
+
 ### Visualización con RecyclerView
 
 El listado de alertas utiliza un componente RecyclerView, que es la forma más eficiente de mostrar listas largas en Android. A diferencia de crear todos los elementos de una vez, RecyclerView solo crea los elementos visibles en pantalla más algunos adicionales en buffer, reciclando las vistas conforme el usuario se desplaza. Esto hace que la interfaz sea fluida incluso con 100 alertas.
@@ -424,6 +448,8 @@ La aplicación se construye sobre un conjunto cuidadosamente seleccionado de tec
 ### Material Design
 
 La interfaz utiliza los componentes de Material Design, el sistema de diseño de Google para Android. Esto proporciona una experiencia de usuario consistente y familiar, con botones, tarjetas y otros elementos que siguen las guías de diseño actuales de Android. Material Design no solo hace que la aplicación se vea moderna, sino que también garantiza accesibilidad y usabilidad en diferentes tamaños de pantalla.
+
+Los botones de acción en cabeceras (compartir/guardar) se presentan como **iconos compactos sin fondo** para reducir el ruido visual y mantener el foco en el contenido principal.
 
 ### Retrofit para Comunicación REST
 
@@ -498,10 +524,7 @@ El diseño técnico sigue las mejores prácticas de desarrollo Android, utilizan
 **Estación:** ST_1657 - Weather Station USE_1657  
 **Plataforma:** Android 7.0+ (API 24-34)  
 **Tecnologías Principales:** MQTT, REST API, MPAndroidChart, Material Design
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-}
-```
+
 
 ---
 
