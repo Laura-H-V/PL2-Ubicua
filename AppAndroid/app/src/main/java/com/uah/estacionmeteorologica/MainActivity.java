@@ -23,15 +23,18 @@ import android.content.SharedPreferences;
 public class MainActivity extends AppCompatActivity {
 
     private static final int REQUEST_NOTIFICATION_PERMISSION = 100;
+    private static final int REQUEST_CAMERA_PERMISSION = 200;
     private static final String PREFS_NAME = "AppSettings";
     private static final String KEY_DARK_MODE = "dark_mode";
     private static final String KEY_BROKER_HOST = "broker_host";
+    private static final String KEY_ALERT_FLASH = "alert_flash";
     private Button btnRealtime;
     private Button btnHistoric;
     private Button btnCharts;
     private Button btnAlertas;
     private Button btnConfigIp;
     private MaterialSwitch switchDarkMode;
+    private MaterialSwitch switchAlertFlash;
 
 
 
@@ -49,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         btnCharts = findViewById(R.id.btnCharts);
         btnAlertas = findViewById(R.id.btnAlertas);
         switchDarkMode = findViewById(R.id.switchDarkMode);
+        switchAlertFlash = findViewById(R.id.switchAlertFlash);
         btnConfigIp = findViewById(R.id.btnConfigIp);
 
 
@@ -56,6 +60,9 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         boolean isDarkMode = prefs.getBoolean(KEY_DARK_MODE, false);
         switchDarkMode.setChecked(isDarkMode);
+
+        boolean alertFlash = prefs.getBoolean(KEY_ALERT_FLASH, false);
+        switchAlertFlash.setChecked(alertFlash);
 
         // Listener para cambio de modo oscuro
         switchDarkMode.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -75,6 +82,26 @@ public class MainActivity extends AppCompatActivity {
             recreate();
         });
 
+        switchAlertFlash.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            SharedPreferences.Editor editor = prefs.edit();
+
+            if (isChecked) {
+                // Si no hay permiso de cámara, solicitarlo y revertir hasta concesión
+                if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(this,
+                            new String[]{Manifest.permission.CAMERA},
+                            REQUEST_CAMERA_PERMISSION);
+                    switchAlertFlash.setChecked(false);
+                    Toast.makeText(this, "Se necesita permiso de cámara para usar la linterna", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
+
+            editor.putBoolean(KEY_ALERT_FLASH, isChecked);
+            editor.apply();
+        });
+
         // Solicitar permiso de notificaciones en Android 13+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) 
@@ -83,6 +110,15 @@ public class MainActivity extends AppCompatActivity {
                     new String[]{Manifest.permission.POST_NOTIFICATIONS}, 
                     REQUEST_NOTIFICATION_PERMISSION);
             }
+        }
+
+        // Solicitar permiso de cámara si ya está activado el modo linterna
+        if (prefs.getBoolean(KEY_ALERT_FLASH, false) &&
+            ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.CAMERA},
+                REQUEST_CAMERA_PERMISSION);
         }
 
         btnRealtime.setOnClickListener(new View.OnClickListener() {

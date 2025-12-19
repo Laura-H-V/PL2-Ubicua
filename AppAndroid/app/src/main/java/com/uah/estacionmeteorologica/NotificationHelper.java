@@ -6,13 +6,19 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.hardware.camera2.CameraAccessException;
+import android.hardware.camera2.CameraManager;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
 
 import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 
 public class NotificationHelper {
 
@@ -20,6 +26,8 @@ public class NotificationHelper {
     private static final String CHANNEL_ID_SERVICE = "weather_service";
     private static final String CHANNEL_NAME_ALERTS = "Alertas Meteorológicas";
     private static final String CHANNEL_NAME_SERVICE = "Servicio de Monitoreo";
+    private static final String PREFS_NAME = "AppSettings";
+    private static final String KEY_ALERT_FLASH = "alert_flash";
 
     private Context context;
     private NotificationManager notificationManager;
@@ -109,8 +117,15 @@ public class NotificationHelper {
 
         notificationManager.notify(notificationId++, builder.build());
 
-        // Vibración adicional
-        vibrar();
+        // Feedback según preferencia
+        SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        boolean usarLinterna = prefs.getBoolean(KEY_ALERT_FLASH, false);
+
+        if (usarLinterna) {
+            activarLinterna();
+        } else {
+            vibrar();
+        }
     }
 
     private void vibrar() {
@@ -124,6 +139,57 @@ public class NotificationHelper {
             } else {
                 vibrator.vibrate(new long[]{0, 500, 200, 500}, -1);
             }
+        }
+    }
+
+    private void activarLinterna() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            vibrar();
+            return;
+        }
+
+        if (ContextCompat.checkSelfPermission(context, android.Manifest.permission.CAMERA)
+                != android.content.pm.PackageManager.PERMISSION_GRANTED) {
+            vibrar();
+            return;
+        }
+
+        CameraManager cameraManager = (CameraManager) context.getSystemService(Context.CAMERA_SERVICE);
+        if (cameraManager == null) {
+            vibrar();
+            return;
+        }
+
+        try {
+            String cameraId = null;
+            for (String id : cameraManager.getCameraIdList()) {
+                Boolean hasFlash = cameraManager.getCameraCharacteristics(id)
+                        .get(android.hardware.camera2.CameraCharacteristics.FLASH_INFO_AVAILABLE);
+                if (hasFlash != null && hasFlash) {
+                    cameraId = id;
+                    break;
+                }
+            }
+
+            if (cameraId == null) {
+                vibrar();
+                return;
+            }
+
+            cameraManager.setTorchMode(cameraId, true);
+            final String finalCameraId = cameraId;
+
+            // Apagar linterna tras 1.5 segundos
+            new Handler(Looper.getMainLooper()).postDelayed(() -> {
+                try {
+                    cameraManager.setTorchMode(finalCameraId, false);
+                } catch (CameraAccessException e) {
+                    // En caso de error al apagar, no interrumpir flujo
+                }
+            }, 1500);
+
+        } catch (CameraAccessException e) {
+            vibrar();
         }
     }
 }

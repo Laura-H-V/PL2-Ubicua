@@ -18,6 +18,7 @@ color md_theme_surface
 drawable badge_background
 drawable ic_launcher_background
 drawable ic_launcher_foreground
+id alertModeContainer
 id barChart
 id btnAlertas
 id btnBarChart
@@ -66,6 +67,7 @@ id rbFechaUnica
 id rbRangoFechas
 id recyclerAlertas
 id rgTipoFiltro
+id switchAlertFlash
 id switchDarkMode
 id switchTodoHistorial
 id tilFechaUnica

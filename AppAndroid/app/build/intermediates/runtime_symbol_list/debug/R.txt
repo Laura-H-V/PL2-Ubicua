@@ -3725,6 +3725,7 @@ int id actions 0x7f080044
 int id activity_chooser_view_content 0x7f080045
 int id add 0x7f080046
 int id advance 0x7f080047
+int id alertModeContainer 0x7f080246
 int id alertTitle 0x7f080048
 int id aligned 0x7f080049
 int id all 0x7f08004a
@@ -4142,6 +4143,7 @@ int id stretch 0x7f0801e5
 int id submenuarrow 0x7f0801e6
 int id submit_area 0x7f0801e7
 int id supportScrollUp 0x7f0801e8
+int id switchAlertFlash 0x7f080247
 int id switchDarkMode 0x7f0801e9
 int id switchTodoHistorial 0x7f0801ea
 int id tabMode 0x7f0801eb

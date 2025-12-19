@@ -9585,3 +9585,8 @@
 1766176660: Client java_server closed its connection.
 1766176660: mosquitto version 2.0.22 terminating
 1766176660: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1766180312: mosquitto version 2.0.22 starting
+1766180312: Config loaded from /mosquitto/config/mosquitto.conf.
+1766180312: Opening ipv4 listen socket on port 1883.
+1766180312: Opening ipv6 listen socket on port 1883.
+1766180312: mosquitto version 2.0.22 running
