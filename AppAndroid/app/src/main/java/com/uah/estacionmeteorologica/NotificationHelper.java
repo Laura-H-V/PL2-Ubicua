@@ -104,6 +104,9 @@ public class NotificationHelper {
 
         Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
+        SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        boolean usarLinterna = prefs.getBoolean(KEY_ALERT_FLASH, false);
+
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID_ALERTS)
             .setSmallIcon(android.R.drawable.ic_dialog_alert)
             .setContentTitle(titulo)
@@ -112,13 +115,14 @@ public class NotificationHelper {
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setAutoCancel(true)
             .setContentIntent(pendingIntent)
-            .setSound(soundUri)
-            .setVibrate(new long[]{0, 500, 200, 500});
+            .setSound(soundUri);
+
+        // Solo vibra si NO está en modo linterna
+        if (!usarLinterna) {
+            builder.setVibrate(new long[]{0, 500, 200, 500});
+        }
 
         notificationManager.notify(notificationId++, builder.build());
-
-        SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-        boolean usarLinterna = prefs.getBoolean(KEY_ALERT_FLASH, false);
 
         if (usarLinterna) {
             activarLinterna();
