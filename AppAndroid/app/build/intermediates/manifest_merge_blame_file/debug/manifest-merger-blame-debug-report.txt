@@ -9,206 +9,213 @@
 9        android:targetSdkVersion="34" />
 10
 11    <uses-permission android:name="android.permission.INTERNET" />
-11-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:5:5-67
-11-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:5:22-64
+11-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:5:5-67
+11-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:5:22-64
 12    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-12-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:6:5-79
-12-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:6:22-76
+12-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:6:5-79
+12-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:6:22-76
 13    <uses-permission android:name="android.permission.WAKE_LOCK" />
-13-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:7:5-68
-13-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:7:22-65
+13-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:7:5-68
+13-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:7:22-65
 14    <uses-permission android:name="android.permission.VIBRATE" />
-14-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:8:5-66
-14-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:8:22-63
+14-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:8:5-66
+14-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:8:22-63
 15    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-15-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:9:5-77
-15-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:9:22-74
+15-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:9:5-77
+15-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:9:22-74
 16    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-16-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:10:5-77
-16-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:10:22-74
+16-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:10:5-77
+16-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:10:22-74
 17    <uses-permission android:name="android.permission.CAMERA" />
-17-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:11:5-65
-17-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:11:22-62
+17-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:11:5-65
+17-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:11:22-62
 18    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
-18-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:64:5-65:74
-18-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:65:9-71
+18-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:12:5-87
+18-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:12:22-84
 19
 20    <uses-feature
-20-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:66:5-91
+20-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:14:5-16:36
 21        android:name="android.hardware.camera.flash"
-21-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:66:19-63
+21-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:15:9-53
 22        android:required="false" />
-22-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:66:64-88
+22-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:16:9-33
 23
 24    <permission
-24-->[androidx.core:core:1.13.0] C:\Users\laura\.gradle\caches\transforms-3\6464713f7ab4b9aab80dcd422dacd6d9\transformed\core-1.13.0\AndroidManifest.xml:22:5-24:47
+24-->[androidx.core:core:1.13.0] C:\Users\Sergio\.gradle\caches\transforms-3\6464713f7ab4b9aab80dcd422dacd6d9\transformed\core-1.13.0\AndroidManifest.xml:22:5-24:47
 25        android:name="com.uah.estacionmeteorologica.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-25-->[androidx.core:core:1.13.0] C:\Users\laura\.gradle\caches\transforms-3\6464713f7ab4b9aab80dcd422dacd6d9\transformed\core-1.13.0\AndroidManifest.xml:23:9-81
+25-->[androidx.core:core:1.13.0] C:\Users\Sergio\.gradle\caches\transforms-3\6464713f7ab4b9aab80dcd422dacd6d9\transformed\core-1.13.0\AndroidManifest.xml:23:9-81
 26        android:protectionLevel="signature" />
-26-->[androidx.core:core:1.13.0] C:\Users\laura\.gradle\caches\transforms-3\6464713f7ab4b9aab80dcd422dacd6d9\transformed\core-1.13.0\AndroidManifest.xml:24:9-44
+26-->[androidx.core:core:1.13.0] C:\Users\Sergio\.gradle\caches\transforms-3\6464713f7ab4b9aab80dcd422dacd6d9\transformed\core-1.13.0\AndroidManifest.xml:24:9-44
 27
 28    <uses-permission android:name="com.uah.estacionmeteorologica.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-28-->[androidx.core:core:1.13.0] C:\Users\laura\.gradle\caches\transforms-3\6464713f7ab4b9aab80dcd422dacd6d9\transformed\core-1.13.0\AndroidManifest.xml:26:5-97
-28-->[androidx.core:core:1.13.0] C:\Users\laura\.gradle\caches\transforms-3\6464713f7ab4b9aab80dcd422dacd6d9\transformed\core-1.13.0\AndroidManifest.xml:26:22-94
+28-->[androidx.core:core:1.13.0] C:\Users\Sergio\.gradle\caches\transforms-3\6464713f7ab4b9aab80dcd422dacd6d9\transformed\core-1.13.0\AndroidManifest.xml:26:5-97
+28-->[androidx.core:core:1.13.0] C:\Users\Sergio\.gradle\caches\transforms-3\6464713f7ab4b9aab80dcd422dacd6d9\transformed\core-1.13.0\AndroidManifest.xml:26:22-94
 29
 30    <application
-30-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:13:5-63:19
+30-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:18:5-67:19
 31        android:allowBackup="true"
-31-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:14:9-35
+31-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:19:9-35
 32        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-32-->[androidx.core:core:1.13.0] C:\Users\laura\.gradle\caches\transforms-3\6464713f7ab4b9aab80dcd422dacd6d9\transformed\core-1.13.0\AndroidManifest.xml:28:18-86
+32-->[androidx.core:core:1.13.0] C:\Users\Sergio\.gradle\caches\transforms-3\6464713f7ab4b9aab80dcd422dacd6d9\transformed\core-1.13.0\AndroidManifest.xml:28:18-86
 33        android:debuggable="true"
 34        android:extractNativeLibs="false"
 35        android:icon="@mipmap/ic_launcher"
-35-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:15:9-43
+35-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:20:9-43
 36        android:label="@string/app_name"
-36-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:16:9-41
+36-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:21:9-41
 37        android:roundIcon="@mipmap/ic_launcher_round"
-37-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:17:9-54
+37-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:22:9-54
 38        android:supportsRtl="true"
-38-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:18:9-35
-39        android:testOnly="true"
-40        android:theme="@style/Theme.EstacionMeteorologica"
-40-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:19:9-59
-41        android:usesCleartextTraffic="true" >
-41-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:20:9-44
-42        <activity
-42-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:23:9-30:20
-43            android:name="com.uah.estacionmeteorologica.MainActivity"
-43-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:24:13-41
-44            android:exported="true" >
-44-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:25:13-36
-45            <intent-filter>
-45-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:26:13-29:29
-46                <action android:name="android.intent.action.MAIN" />
-46-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:27:17-69
-46-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:27:25-66
-47
-48                <category android:name="android.intent.category.LAUNCHER" />
-48-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:28:17-77
-48-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:28:27-74
-49            </intent-filter>
-50        </activity>
-51        <activity
-51-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:32:9-35:54
-52            android:name="com.uah.estacionmeteorologica.RealtimeMonitoringActivity"
-52-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:33:13-55
-53            android:exported="false"
-53-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:34:13-37
-54            android:label="@string/realtime_title" />
-54-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:35:13-51
-55        <activity
-55-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:37:9-40:54
-56            android:name="com.uah.estacionmeteorologica.HistoricDataActivity"
-56-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:38:13-49
-57            android:exported="false"
-57-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:39:13-37
-58            android:label="@string/historic_title" />
-58-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:40:13-51
-59        <activity
-59-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:42:9-45:49
-60            android:name="com.uah.estacionmeteorologica.DataDetailsActivity"
-60-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:43:13-48
-61            android:exported="false"
-61-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:44:13-37
-62            android:label="Detalles de Datos" />
-62-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:45:13-46
-63        <activity
-63-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:47:9-50:40
-64            android:name="com.uah.estacionmeteorologica.ChartsActivity"
-64-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:48:13-43
-65            android:exported="false"
-65-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:49:13-37
-66            android:label="Gráficas" />
-66-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:50:13-37
-67        <activity
-67-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:52:9-56:52
-68            android:name="com.uah.estacionmeteorologica.AlertHistoryActivity"
-68-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:53:13-49
-69            android:exported="false"
-69-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:55:13-37
-70            android:label="Historial de Alertas"
-70-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:56:13-49
-71            android:theme="@style/Theme.EstacionMeteorologica" />
-71-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:54:13-63
-72
-73        <service
-73-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:58:9-60:40
-74            android:name="com.uah.estacionmeteorologica.MqttBackgroundService"
-74-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:58:18-55
-75            android:exported="false"
-75-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:60:13-37
-76            android:foregroundServiceType="dataSync" />
-76-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:59:13-53
-77        <service android:name="org.eclipse.paho.android.service.MqttService" />
-77-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:62:9-80
-77-->C:\Users\laura\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:62:18-77
-78
-79        <provider
-79-->[androidx.emoji2:emoji2:1.3.0] C:\Users\laura\.gradle\caches\transforms-3\799129a7d7681a63cf2c552a0f69616d\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
-80            android:name="androidx.startup.InitializationProvider"
-80-->[androidx.emoji2:emoji2:1.3.0] C:\Users\laura\.gradle\caches\transforms-3\799129a7d7681a63cf2c552a0f69616d\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:25:13-67
-81            android:authorities="com.uah.estacionmeteorologica.androidx-startup"
-81-->[androidx.emoji2:emoji2:1.3.0] C:\Users\laura\.gradle\caches\transforms-3\799129a7d7681a63cf2c552a0f69616d\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:26:13-68
-82            android:exported="false" >
-82-->[androidx.emoji2:emoji2:1.3.0] C:\Users\laura\.gradle\caches\transforms-3\799129a7d7681a63cf2c552a0f69616d\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:27:13-37
-83            <meta-data
-83-->[androidx.emoji2:emoji2:1.3.0] C:\Users\laura\.gradle\caches\transforms-3\799129a7d7681a63cf2c552a0f69616d\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
-84                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-84-->[androidx.emoji2:emoji2:1.3.0] C:\Users\laura\.gradle\caches\transforms-3\799129a7d7681a63cf2c552a0f69616d\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:30:17-75
-85                android:value="androidx.startup" />
-85-->[androidx.emoji2:emoji2:1.3.0] C:\Users\laura\.gradle\caches\transforms-3\799129a7d7681a63cf2c552a0f69616d\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:31:17-49
+38-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:23:9-35
+39        android:theme="@style/Theme.EstacionMeteorologica"
+39-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:24:9-59
+40        android:usesCleartextTraffic="true" >
+40-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:25:9-44
+41        <activity
+41-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:27:9-35:20
+42            android:name="com.uah.estacionmeteorologica.LoadingActivity"
+42-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:28:13-44
+43            android:exported="true" >
+43-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:29:13-36
+44            <intent-filter>
+44-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:30:13-34:29
+45                <action android:name="android.intent.action.MAIN" />
+45-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:31:17-69
+45-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:31:25-66
+46
+47                <category android:name="android.intent.category.LAUNCHER" />
+47-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:33:17-77
+47-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:33:27-74
+48            </intent-filter>
+49        </activity>
+50        <activity
+50-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:36:9-39:46
+51            android:name="com.uah.estacionmeteorologica.MainMenuActivity"
+51-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:37:13-45
+52            android:exported="false"
+52-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:38:13-37
+53            android:label="menu principal" />
+53-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:39:13-43
+54        <activity
+54-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:40:9-43:54
+55            android:name="com.uah.estacionmeteorologica.RealtimeMonitoringActivity"
+55-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:41:13-55
+56            android:exported="false"
+56-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:42:13-37
+57            android:label="@string/realtime_title" />
+57-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:43:13-51
+58        <activity
+58-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:44:9-47:54
+59            android:name="com.uah.estacionmeteorologica.HistoricDataActivity"
+59-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:45:13-49
+60            android:exported="false"
+60-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:46:13-37
+61            android:label="@string/historic_title" />
+61-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:47:13-51
+62        <activity
+62-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:48:9-51:49
+63            android:name="com.uah.estacionmeteorologica.DataDetailsActivity"
+63-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:49:13-48
+64            android:exported="false"
+64-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:50:13-37
+65            android:label="Detalles de Datos" />
+65-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:51:13-46
+66        <activity
+66-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:52:9-55:40
+67            android:name="com.uah.estacionmeteorologica.ChartsActivity"
+67-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:53:13-43
+68            android:exported="false"
+68-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:54:13-37
+69            android:label="Gráficas" />
+69-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:55:13-37
+70        <activity
+70-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:56:9-60:66
+71            android:name="com.uah.estacionmeteorologica.AlertHistoryActivity"
+71-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:57:13-49
+72            android:exported="false"
+72-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:58:13-37
+73            android:label="Historial de Alertas"
+73-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:59:13-49
+74            android:theme="@style/Theme.EstacionMeteorologica" />
+74-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:60:13-63
+75
+76        <service
+76-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:62:9-65:56
+77            android:name="com.uah.estacionmeteorologica.MqttBackgroundService"
+77-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:63:13-50
+78            android:exported="false"
+78-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:64:13-37
+79            android:foregroundServiceType="dataSync" />
+79-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:65:13-53
+80        <service android:name="org.eclipse.paho.android.service.MqttService" />
+80-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:66:9-80
+80-->C:\Users\Sergio\Documents\GitHub\PL2-Ubicua\AppAndroid\app\src\main\AndroidManifest.xml:66:18-77
+81
+82        <provider
+82-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Sergio\.gradle\caches\transforms-3\799129a7d7681a63cf2c552a0f69616d\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
+83            android:name="androidx.startup.InitializationProvider"
+83-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Sergio\.gradle\caches\transforms-3\799129a7d7681a63cf2c552a0f69616d\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:25:13-67
+84            android:authorities="com.uah.estacionmeteorologica.androidx-startup"
+84-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Sergio\.gradle\caches\transforms-3\799129a7d7681a63cf2c552a0f69616d\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:26:13-68
+85            android:exported="false" >
+85-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Sergio\.gradle\caches\transforms-3\799129a7d7681a63cf2c552a0f69616d\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:27:13-37
 86            <meta-data
-86-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\laura\.gradle\caches\transforms-3\61d70d70c905efdf740ac8b0430fdeaa\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:29:13-31:52
-87                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-87-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\laura\.gradle\caches\transforms-3\61d70d70c905efdf740ac8b0430fdeaa\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:30:17-78
+86-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Sergio\.gradle\caches\transforms-3\799129a7d7681a63cf2c552a0f69616d\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
+87                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+87-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Sergio\.gradle\caches\transforms-3\799129a7d7681a63cf2c552a0f69616d\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:30:17-75
 88                android:value="androidx.startup" />
-88-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\laura\.gradle\caches\transforms-3\61d70d70c905efdf740ac8b0430fdeaa\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:31:17-49
+88-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Sergio\.gradle\caches\transforms-3\799129a7d7681a63cf2c552a0f69616d\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:31:17-49
 89            <meta-data
-89-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\laura\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:29:13-31:52
-90                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-90-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\laura\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:30:17-85
+89-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\Sergio\.gradle\caches\transforms-3\61d70d70c905efdf740ac8b0430fdeaa\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:29:13-31:52
+90                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+90-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\Sergio\.gradle\caches\transforms-3\61d70d70c905efdf740ac8b0430fdeaa\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:30:17-78
 91                android:value="androidx.startup" />
-91-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\laura\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:31:17-49
-92        </provider>
-93
-94        <receiver
-94-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\laura\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:34:9-52:20
-95            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-95-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\laura\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:35:13-76
-96            android:directBootAware="false"
-96-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\laura\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:36:13-44
-97            android:enabled="true"
-97-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\laura\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:37:13-35
-98            android:exported="true"
-98-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\laura\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:38:13-36
-99            android:permission="android.permission.DUMP" >
-99-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\laura\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:39:13-57
-100            <intent-filter>
-100-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\laura\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:40:13-42:29
-101                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-101-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\laura\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:41:17-91
-101-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\laura\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:41:25-88
-102            </intent-filter>
+91-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\Sergio\.gradle\caches\transforms-3\61d70d70c905efdf740ac8b0430fdeaa\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:31:17-49
+92            <meta-data
+92-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Sergio\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:29:13-31:52
+93                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+93-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Sergio\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:30:17-85
+94                android:value="androidx.startup" />
+94-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Sergio\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:31:17-49
+95        </provider>
+96
+97        <receiver
+97-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Sergio\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:34:9-52:20
+98            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+98-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Sergio\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:35:13-76
+99            android:directBootAware="false"
+99-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Sergio\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:36:13-44
+100            android:enabled="true"
+100-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Sergio\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:37:13-35
+101            android:exported="true"
+101-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Sergio\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:38:13-36
+102            android:permission="android.permission.DUMP" >
+102-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Sergio\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:39:13-57
 103            <intent-filter>
-103-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\laura\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:43:13-45:29
-104                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-104-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\laura\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:44:17-85
-104-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\laura\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:44:25-82
+103-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Sergio\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:40:13-42:29
+104                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+104-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Sergio\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:41:17-91
+104-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Sergio\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:41:25-88
 105            </intent-filter>
 106            <intent-filter>
-106-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\laura\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:46:13-48:29
-107                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-107-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\laura\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:47:17-88
-107-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\laura\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:47:25-85
+106-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Sergio\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:43:13-45:29
+107                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+107-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Sergio\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:44:17-85
+107-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Sergio\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:44:25-82
 108            </intent-filter>
 109            <intent-filter>
-109-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\laura\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:49:13-51:29
-110                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-110-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\laura\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:50:17-95
-110-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\laura\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:50:25-92
+109-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Sergio\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:46:13-48:29
+110                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+110-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Sergio\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:47:17-88
+110-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Sergio\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:47:25-85
 111            </intent-filter>
-112        </receiver>
-113    </application>
-114
-115</manifest>
+112            <intent-filter>
+112-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Sergio\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:49:13-51:29
+113                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+113-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Sergio\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:50:17-95
+113-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Sergio\.gradle\caches\transforms-3\bbe14ef4a847da126fa8258e667feeb7\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:50:25-92
+114            </intent-filter>
+115        </receiver>
+116    </application>
+117
+118</manifest>

@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Estación Meteorológica</string>
-    
+
     <!-- MainActivity -->
     <string name="btn_realtime">🌡️ Monitoreo en Tiempo Real</string>
     <string name="btn_historic">📊 Consultar Histórico</string>
     <string name="btn_charts">📈 Ver Gráficas</string>
-    
+
     <!-- RealtimeMonitoringActivity -->
     <string name="realtime_title">Monitoreo en Tiempo Real</string>
-    
+
     <!-- HistoricDataActivity -->
     <string name="historic_title">Datos Históricos</string>
     <string name="historic_subtitle">Consulta mediciones anteriores por fecha</string>
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

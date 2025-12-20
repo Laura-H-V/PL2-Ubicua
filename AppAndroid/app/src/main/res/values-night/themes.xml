@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="Theme.EstacionMeteorologica" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Colores primarios oscuros -->
         <item name="colorPrimary">#64B5F6</item>
@@ -25,5 +26,10 @@
         <item name="colorError">#EF5350</item>
         <item name="colorOnError">#1A1A1A</item>
         <item name="colorOutlineVariant">#424242</item>
+    </style>
+
+    <style name="ThemeOverlay.EstacionMeteorologica.FullscreenContainer" parent="">
+        <item name="fullscreenBackgroundColor">@color/light_blue_900</item>
+        <item name="fullscreenTextColor">@color/light_blue_A400</item>
     </style>
 </resources>

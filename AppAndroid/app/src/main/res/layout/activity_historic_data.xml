@@ -143,7 +143,7 @@
                 <com.google.android.material.chip.Chip android:id="@+id/chipHum" style="@style/Widget.Material3.Chip.Filter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Humedad" />
                 <com.google.android.material.chip.Chip android:id="@+id/chipRuido" style="@style/Widget.Material3.Chip.Filter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ruido" />
                 <com.google.android.material.chip.Chip android:id="@+id/chipUV" style="@style/Widget.Material3.Chip.Filter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="UV" />
-                <com.google.android.material.chip.Chip android:id="@+id/chipAire" style="@style/Widget.Material3.Chip.Filter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="C. Aire" />
+                <com.google.android.material.chip.Chip android:id="@+id/chipAire" style="@style/Widget.Material3.Chip.Filter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Aire" />
             </com.google.android.material.chip.ChipGroup>
         </HorizontalScrollView>
 

@@ -9,6 +9,11 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+
+    <uses-feature
+        android:name="android.hardware.camera.flash"
+        android:required="false" />
 
     <application
         android:allowBackup="true"
@@ -19,49 +24,46 @@
         android:theme="@style/Theme.EstacionMeteorologica"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-        
         <activity
-            android:name=".MainActivity"
+            android:name=".LoadingActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
+        <activity
+            android:name=".MainMenuActivity"
+            android:exported="false"
+            android:label="menu principal" />
         <activity
             android:name=".RealtimeMonitoringActivity"
             android:exported="false"
             android:label="@string/realtime_title" />
-        
         <activity
             android:name=".HistoricDataActivity"
             android:exported="false"
             android:label="@string/historic_title" />
-        
         <activity
             android:name=".DataDetailsActivity"
             android:exported="false"
             android:label="Detalles de Datos" />
-        
         <activity
             android:name=".ChartsActivity"
             android:exported="false"
             android:label="Gráficas" />
-        
         <activity
             android:name=".AlertHistoryActivity"
-            android:theme="@style/Theme.EstacionMeteorologica"
             android:exported="false"
-            android:label="Historial de Alertas" />
-        
-        <service android:name=".MqttBackgroundService"
-            android:foregroundServiceType="dataSync"
-            android:exported="false" />
-        
+            android:label="Historial de Alertas"
+            android:theme="@style/Theme.EstacionMeteorologica" />
+
+        <service
+            android:name=".MqttBackgroundService"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
         <service android:name="org.eclipse.paho.android.service.MqttService" />
     </application>
-    <uses-permission
-        android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
-    <uses-feature android:name="android.hardware.camera.flash" android:required="false" />
+
 </manifest>

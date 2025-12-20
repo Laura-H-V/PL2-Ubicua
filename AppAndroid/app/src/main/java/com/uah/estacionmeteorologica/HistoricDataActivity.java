@@ -93,7 +93,7 @@ public class HistoricDataActivity extends AppCompatActivity {
         if (switchTodoHistorial.isChecked()) {
             call = apiService.getAllMediciones();
         } else {
-            // Verificar qué tipo de fecha está seleccionado
+
             boolean esFechaUnica = radioGroupTipoFecha.getCheckedRadioButtonId() == R.id.radioFechaUnica;
             
             if (esFechaUnica) {
@@ -158,7 +158,7 @@ public class HistoricDataActivity extends AppCompatActivity {
             return;
         }
 
-        // Si hay AMBOS seleccionados, filtrar
+        // Si hay ambos seleccionados filtrar
         if (chipId != View.NO_ID && toggleId != View.NO_ID) {
             boolean buscarMax = (toggleId == R.id.btnMax);
             Medicion extrema = encontrarExtremo(aMostrar, chipId, buscarMax);

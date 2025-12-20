@@ -46,7 +46,6 @@ public class AlertHistoryActivity extends AppCompatActivity {
         cargarAlertas();
 
         btnBorrarTodo.setOnClickListener(v -> {
-            // Cambio: Diálogo con estilo Material 3
             new MaterialAlertDialogBuilder(this)
                     .setTitle("¿Borrar historial?")
                     .setMessage("Esta acción eliminará todas las alertas registradas permanentemente.")

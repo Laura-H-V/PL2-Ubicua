@@ -103,7 +103,7 @@ public class RealtimeMonitoringActivity extends AppCompatActivity {
 
                         @Override
                         public void deliveryComplete(IMqttDeliveryToken token) {
-                            // No se usa en suscripción
+
                         }
                     });
 
@@ -160,7 +160,7 @@ public class RealtimeMonitoringActivity extends AppCompatActivity {
                     tvRadiacionUV.setText(String.format("☀️ Radiación UV: %.2f mW/cm²", uv));
                     tvRuido.setText(String.format("🔊 Ruido: %.2f dB", ruido));
                     tvCalidadAire.setText(String.format("💨 Calidad Aire: %.2f ppm", calidadAire));
-                    tvTimestamp.setText("⏰ " + time.toString().replace("T", "  ").replace("Z", ""));
+                    tvTimestamp.setText(" " + time.toString().replace("T", "  ").replace("Z", ""));
                     tvEstado.setText("Datos recibidos");
                 }
             });

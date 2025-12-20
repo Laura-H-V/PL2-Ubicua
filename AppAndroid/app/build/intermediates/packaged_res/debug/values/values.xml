@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="black_overlay">#66000000</color>
+    <color name="light_blue_600">#FF039BE5</color>
+    <color name="light_blue_900">#FF01579B</color>
+    <color name="light_blue_A200">#FF40C4FF</color>
+    <color name="light_blue_A400">#FF00B0FF</color>
     <color name="md_theme_error">#BA1A1A</color>
     <color name="md_theme_onError">#FFFFFF</color>
     <color name="md_theme_onPrimary">#FFFFFF</color>
@@ -19,9 +24,12 @@
     <string name="btn_charts">📈 Ver Gráficas</string>
     <string name="btn_historic">📊 Consultar Histórico</string>
     <string name="btn_realtime">🌡️ Monitoreo en Tiempo Real</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="historic_subtitle">Consulta mediciones anteriores por fecha</string>
     <string name="historic_title">Datos Históricos</string>
     <string name="realtime_title">Monitoreo en Tiempo Real</string>
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
     <style name="Theme.EstacionMeteorologica" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/md_theme_primary</item>
         <item name="colorOnPrimary">@color/md_theme_onPrimary</item>
@@ -45,4 +53,26 @@
 
 
     </style>
+    <style name="Theme.EstacionMeteorologica.Fullscreen" parent="Theme.EstacionMeteorologica">
+        <item name="android:actionBarStyle">
+            @style/Widget.Theme.EstacionMeteorologica.ActionBar.Fullscreen
+        </item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+    </style>
+    <style name="ThemeOverlay.EstacionMeteorologica.FullscreenContainer" parent="">
+        <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
+        <item name="fullscreenTextColor">@color/light_blue_A200</item>
+    </style>
+    <style name="Widget.Theme.EstacionMeteorologica.ActionBar.Fullscreen" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/black_overlay</item>
+    </style>
+    <style name="Widget.Theme.EstacionMeteorologica.ButtonBar.Fullscreen" parent="">
+        <item name="android:background">@color/black_overlay</item>
+        <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
+    </style>
+    <declare-styleable name="FullscreenAttrs">
+        <attr format="color" name="fullscreenBackgroundColor"/>
+        <attr format="color" name="fullscreenTextColor"/>
+    </declare-styleable>
 </resources>

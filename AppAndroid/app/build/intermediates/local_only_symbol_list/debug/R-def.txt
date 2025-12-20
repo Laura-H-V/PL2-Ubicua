@@ -1,5 +1,12 @@
 R_DEF: Internal format may change without notice
 local
+attr? fullscreenBackgroundColor
+attr? fullscreenTextColor
+color black_overlay
+color light_blue_600
+color light_blue_900
+color light_blue_A200
+color light_blue_A400
 color md_theme_error
 color md_theme_onError
 color md_theme_onPrimary
@@ -54,12 +61,14 @@ id etFechaCharts
 id etFechaDesde
 id etFechaHasta
 id etFechaUnica
+id imgLogo
 id layoutDetalles
 id layoutFechaUnica
 id layoutFiltrosFecha
 id layoutInputsFechas
 id layoutRangoFechas
 id lineChart
+id progressCircular
 id radioFechaUnica
 id radioGroupTipoFecha
 id radioRangoFechas
@@ -92,6 +101,7 @@ layout activity_alert_history
 layout activity_charts
 layout activity_data_details
 layout activity_historic_data
+layout activity_loading
 layout activity_main
 layout activity_realtime_monitoring
 layout item_alerta
@@ -102,7 +112,15 @@ string app_name
 string btn_charts
 string btn_historic
 string btn_realtime
+string dummy_button
+string dummy_content
 string historic_subtitle
 string historic_title
 string realtime_title
+string title_activity_fullscreen
+style ThemeOverlay.EstacionMeteorologica.FullscreenContainer
 style Theme.EstacionMeteorologica
+style Theme.EstacionMeteorologica.Fullscreen
+style Widget.Theme.EstacionMeteorologica.ActionBar.Fullscreen
+style Widget.Theme.EstacionMeteorologica.ButtonBar.Fullscreen
+styleable FullscreenAttrs fullscreenBackgroundColor fullscreenTextColor

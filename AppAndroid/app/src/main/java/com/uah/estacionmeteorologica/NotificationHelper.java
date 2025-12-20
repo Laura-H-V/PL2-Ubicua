@@ -41,7 +41,7 @@ public class NotificationHelper {
 
     private void createNotificationChannels() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            // Canal para alertas (alta prioridad)
+            // Canal para alertas
             NotificationChannel alertChannel = new NotificationChannel(
                 CHANNEL_ID_ALERTS,
                 CHANNEL_NAME_ALERTS,
@@ -51,13 +51,13 @@ public class NotificationHelper {
             alertChannel.enableVibration(true);
             alertChannel.setVibrationPattern(new long[]{0, 500, 200, 500});
             alertChannel.enableLights(true);
-            alertChannel.setLightColor(0xFFFF0000); // Rojo
+            alertChannel.setLightColor(0xFFFF0000);
             alertChannel.setSound(
                 RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION),
                 null
             );
 
-            // Canal para el servicio foreground (baja prioridad)
+            // Canal para el servicio foreground
             NotificationChannel serviceChannel = new NotificationChannel(
                 CHANNEL_ID_SERVICE,
                 CHANNEL_NAME_SERVICE,
@@ -74,7 +74,7 @@ public class NotificationHelper {
 
     // Notificación de foreground para el servicio
     public Notification createForegroundNotification() {
-        Intent notificationIntent = new Intent(context, MainActivity.class);
+        Intent notificationIntent = new Intent(context, MainMenuActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(
             context, 
             0, 
@@ -117,7 +117,6 @@ public class NotificationHelper {
 
         notificationManager.notify(notificationId++, builder.build());
 
-        // Feedback según preferencia
         SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         boolean usarLinterna = prefs.getBoolean(KEY_ALERT_FLASH, false);
 
@@ -134,7 +133,7 @@ public class NotificationHelper {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 vibrator.vibrate(VibrationEffect.createWaveform(
                     new long[]{0, 500, 200, 500}, 
-                    -1 // No repetir
+                    -1
                 ));
             } else {
                 vibrator.vibrate(new long[]{0, 500, 200, 500}, -1);
@@ -183,9 +182,7 @@ public class NotificationHelper {
             new Handler(Looper.getMainLooper()).postDelayed(() -> {
                 try {
                     cameraManager.setTorchMode(finalCameraId, false);
-                } catch (CameraAccessException e) {
-                    // En caso de error al apagar, no interrumpir flujo
-                }
+                } catch (CameraAccessException e) {}
             }, 1500);
 
         } catch (CameraAccessException e) {

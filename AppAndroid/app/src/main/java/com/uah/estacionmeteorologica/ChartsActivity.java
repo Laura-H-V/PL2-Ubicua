@@ -69,7 +69,6 @@ public class ChartsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_charts);
 
-        // Inicialización corregida para Material 3
         lineChart = findViewById(R.id.lineChart);
         barChart = findViewById(R.id.barChart);
         tvEstadoCharts = findViewById(R.id.tvEstadoCharts);
@@ -91,8 +90,6 @@ public class ChartsActivity extends AppCompatActivity {
         rbFechaUnica = findViewById(R.id.rbFechaUnica);
         tilFechaUnica = findViewById(R.id.tilFechaUnica);
 
-
-        // Lógica del Switch "Todo el historial"
         switchTodoHistorial.setOnCheckedChangeListener((buttonView, isChecked) -> {
             layoutInputsFechas.setVisibility(isChecked ? View.GONE : View.VISIBLE);
         });
@@ -112,11 +109,11 @@ public class ChartsActivity extends AppCompatActivity {
 
         rgTipoFiltro.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId == R.id.rbFechaUnica) {
-                // Día único: mostrar solo la caja única
+                // Día único
                     tilFechaUnica.setVisibility(View.VISIBLE);
                 layoutRangoFechas.setVisibility(View.GONE);
             } else if (checkedId == R.id.rbRangoFechas) {
-                // Rango: ocultar fecha única y mostrar las dos de rango
+                // Rango
                 tilFechaUnica.setVisibility(View.GONE);
                 layoutRangoFechas.setVisibility(View.VISIBLE);
             }
@@ -132,7 +129,7 @@ public class ChartsActivity extends AppCompatActivity {
             }
         });
 
-        // Actualizar gráfica al cambiar de variable (Chip)
+        // Actualizar grafica al cambiar de variable
         chipGroupVariables.setOnCheckedStateChangeListener((group, checkedIds) -> {
             if (medicionesActuales != null) actualizarGrafica();
         });
@@ -146,8 +143,8 @@ public class ChartsActivity extends AppCompatActivity {
         });
 
         btnBarChart.setOnClickListener(v -> {
-            cardLineChart.setVisibility(View.GONE); // Ocultamos la de líneas
-            cardBarChart.setVisibility(View.VISIBLE); // Mostramos la de barras
+            cardLineChart.setVisibility(View.GONE);
+            cardBarChart.setVisibility(View.VISIBLE);
 
             chipGroupVariables.clearCheck();
             chipGroupVariables.setVisibility(View.GONE);
@@ -237,8 +234,6 @@ public class ChartsActivity extends AppCompatActivity {
     private void cargarDatos(String fecha) {
         tvEstadoCharts.setText("⏳ Cargando datos...");
 
-        // Si el switch de "Todo el historial" envía "ALL",
-        // asegúrate de que tu API soporte recibir ese valor o una fecha vacía
         ApiService apiService = RetrofitClient.getRetrofitInstance(this).create(ApiService.class);
         Call<List<Medicion>> call = apiService.getMediciones(fecha);
 
@@ -254,20 +249,20 @@ public class ChartsActivity extends AppCompatActivity {
                         actualizarGrafica(); // Llama a pintar la gráfica automáticamente
                     }
                 } else {
-                    tvEstadoCharts.setText("❌ Error del servidor");
+                    tvEstadoCharts.setText("Error del servidor");
                 }
             }
 
             @Override
             public void onFailure(Call<List<Medicion>> call, Throwable t) {
-                tvEstadoCharts.setText("❌ Error de conexión");
+                tvEstadoCharts.setText("Error de conexión");
                 Log.e(TAG, "Error: " + t.getMessage());
             }
         });
     }
 
     private void cargarDatosRango(String fechaDesde, String fechaHasta) {
-        tvEstadoCharts.setText("⏳ Consultando rango de días...");
+        tvEstadoCharts.setText("Consultando rango de días...");
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
         List<Medicion> todasMediciones = new ArrayList<>();
@@ -277,14 +272,13 @@ public class ChartsActivity extends AppCompatActivity {
             Date dateHasta = sdf.parse(fechaHasta);
 
             if (dateDesde.after(dateHasta)) {
-                tvEstadoCharts.setText("❌ La fecha inicial es posterior a la final");
+                tvEstadoCharts.setText("La fecha inicial es posterior a la final");
                 return;
             }
 
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(dateDesde);
 
-            // Calculamos cuántos días hay para saber cuándo terminar
             List<String> listaFechas = new ArrayList<>();
             while (!calendar.getTime().after(dateHasta)) {
                 listaFechas.add(sdf.format(calendar.getTime()));
@@ -320,7 +314,7 @@ public class ChartsActivity extends AppCompatActivity {
             }
 
         } catch (ParseException e) {
-            tvEstadoCharts.setText("❌ Formato de fecha inválido");
+            tvEstadoCharts.setText("Formato de fecha inválido");
         }
     }
 
@@ -353,7 +347,7 @@ public class ChartsActivity extends AppCompatActivity {
             sb.append("Fecha: ").append(fechaFormateada).append('\n');
             sb.append("Temp: ").append(String.format("%.1f °C", m.getTemperatura())).append('\n');
             sb.append("Hum: ").append(String.format("%.1f %%", m.getHumedad())).append('\n');
-            sb.append("UV: ").append(String.format("%.1f", m.getRadiacion_uv())).append('\n');
+            sb.append("UV: ").append(String.format("%.1f mW/cm²", m.getRadiacion_uv())).append('\n');
             sb.append("Ruido: ").append(String.format("%.1f dB", m.getRuido_db())).append('\n');
             sb.append("Aire: ").append(String.format("%.0f ppm", m.getCalidad_aire())).append("\n\n");
         }
@@ -365,7 +359,7 @@ public class ChartsActivity extends AppCompatActivity {
         startActivity(Intent.createChooser(intent, "Compartir datos de gráficas"));
     }
     private void cargarTodoElHistorial() {
-        tvEstadoCharts.setText("⏳ Cargando historial completo...");
+        tvEstadoCharts.setText("Cargando historial completo...");
 
         ApiService apiService = RetrofitClient.getRetrofitInstance(this).create(ApiService.class);
         // Usamos el método sin parámetros
@@ -383,13 +377,13 @@ public class ChartsActivity extends AppCompatActivity {
                         actualizarGrafica();
                     }
                 } else {
-                    tvEstadoCharts.setText("❌ Error al obtener historial");
+                    tvEstadoCharts.setText("Error al obtener historial");
                 }
             }
 
             @Override
             public void onFailure(Call<List<Medicion>> call, Throwable t) {
-                tvEstadoCharts.setText("❌ Error de conexión al historial");
+                tvEstadoCharts.setText("Error de conexión al historial");
             }
         });
     }
@@ -433,7 +427,7 @@ public class ChartsActivity extends AppCompatActivity {
         dataSet.setColor(color);
         dataSet.setLineWidth(3f);
         dataSet.setDrawCircles(true);
-        dataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER); // Gráfica suave
+        dataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
 
         lineChart.setData(new LineData(dataSet));
         lineChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(labels));
@@ -448,7 +442,7 @@ public class ChartsActivity extends AppCompatActivity {
 
 
     private void crearBarChart(List<Medicion> mediciones) {
-        // Calcular promedios
+
         double sumTemp = 0, sumHum = 0, sumUV = 0, sumRuido = 0, sumAire = 0;
         
         for (Medicion m : mediciones) {
@@ -466,7 +460,6 @@ public class ChartsActivity extends AppCompatActivity {
         float avgRuido = (float) (sumRuido / count);
         float avgAire = (float) (sumAire / count);
 
-        // Normalizar valores para que se vean proporcionados en la gráfica
         // Temperatura y humedad en su escala, UV escalado x10, ruido/10, aire/10
         ArrayList<BarEntry> entries = new ArrayList<>();
         entries.add(new BarEntry(0, avgTemp));
@@ -476,14 +469,14 @@ public class ChartsActivity extends AppCompatActivity {
         entries.add(new BarEntry(4, avgAire / 100)); // Reducir calidad aire
 
         BarDataSet dataSet = new BarDataSet(entries, "Promedios de Sensores");
-        
-        // Colores diferentes para cada barra
+
+
         int[] colors = {
-            Color.rgb(229, 57, 53),   // Temperatura - Rojo
-            Color.rgb(30, 136, 229),  // Humedad - Azul
-            Color.rgb(251, 140, 0),   // UV - Naranja
-            Color.rgb(142, 36, 170),  // Ruido - Morado
-            Color.rgb(67, 160, 71)    // Aire - Verde
+            Color.rgb(229, 57, 53),   // Rojo
+            Color.rgb(30, 136, 229),  // Azul
+            Color.rgb(255, 152, 0),   // Naranja
+            Color.rgb(142, 36, 170),  // Morado
+            Color.rgb(67, 160, 71)    // Verde
         };
         dataSet.setColors(colors);
         dataSet.setValueTextSize(12f);
@@ -498,10 +491,8 @@ public class ChartsActivity extends AppCompatActivity {
         xAxis.setValueFormatter(new IndexAxisValueFormatter(labels));
         xAxis.setGranularity(1f);
 
-        // Descripción deshabilitada para no tapar la gráfica
         barChart.getDescription().setEnabled(false);
 
-        // Animación y refresh
         barChart.animateY(1000);
         barChart.invalidate();
     }

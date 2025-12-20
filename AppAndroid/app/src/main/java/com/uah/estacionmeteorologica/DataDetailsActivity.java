@@ -135,13 +135,13 @@ public class DataDetailsActivity extends AppCompatActivity {
         contenido.setOrientation(LinearLayout.VERTICAL);
         contenido.setPadding(48, 48, 48, 48);
 
-        // Título con fecha (formatear para quitar T y Z)
+        // Título con fecha
         String fechaFormateada = m.getTimestamp()
                 .replace("T", " ")
                 .replace("Z", "");
         
         TextView tvFecha = new TextView(this);
-        tvFecha.setText("📅 " + fechaFormateada);
+        tvFecha.setText(" " + fechaFormateada);
         tvFecha.setTextAppearance(this, com.google.android.material.R.style.TextAppearance_Material3_TitleLarge);
         tvFecha.setTextColor(getColor(android.R.color.holo_blue_dark));
         LinearLayout.LayoutParams fechaParams = new LinearLayout.LayoutParams(

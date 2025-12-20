@@ -30,13 +30,6 @@ public class MqttBackgroundService extends Service {
     private NotificationHelper notificationHelper;
     private AlertaManager alertaManager;
 
-    // Umbrales de alerta
-    private static final double TEMP_MAX = 25.0;
-    private static final double HUM_MIN = 10.0;
-    private static final double UV_MAX = 20.0;
-    private static final double RUIDO_MAX = 75.0;
-    private static final double AIRE_MAX = 350.0;
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -129,7 +122,7 @@ public class MqttBackgroundService extends Service {
                     );
                 }
             } else {
-                // Si no hay array messages, al menos una alerta genérica
+
                 crearAlerta("Alarma estación", "Se ha recibido una alarma.", "ST_1657");
             }
 
